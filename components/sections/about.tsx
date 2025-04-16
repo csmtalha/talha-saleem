@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import { motion, useAnimation, useInView } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { useEffect, useRef } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 export default function About() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const controls = useAnimation()
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const controls = useAnimation();
 
   useEffect(() => {
     if (isInView) {
-      controls.start("visible")
+      controls.start("visible");
     }
-  }, [isInView, controls])
+  }, [isInView, controls]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -24,7 +24,7 @@ export default function About() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -35,10 +35,10 @@ export default function About() {
         duration: 0.5,
       },
     },
-  }
+  };
 
   return (
-    <section id="about" className="w-full py-16 md:py-24 bg-background">
+    <section id="about" className="w-full py-8 md:py-12 bg-background">
       <motion.div
         ref={ref}
         className="section-container"
@@ -54,18 +54,24 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div variants={itemVariants} className="space-y-6">
             <p className="text-lg">
-              I'm a <span className="font-semibold text-primary">highly skilled Software Engineer</span> with over 5
-              years of professional experience specializing in modern front-end and full-stack development.
+              I'm a{" "}
+              <span className="font-semibold text-primary">
+                highly skilled Software Engineer
+              </span>{" "}
+              with over 5 years of professional experience specializing in
+              modern front-end and full-stack development.
             </p>
             <p className="text-lg">
-              My expertise lies in building scalable, high-performance web applications with component-based
-              architecture, advanced state management, and modern frameworks. I excel at creating intuitive, accessible,
-              and engaging user experiences across all devices.
+              My expertise lies in building scalable, high-performance web
+              applications with component-based architecture, advanced state
+              management, and modern frameworks. I excel at creating intuitive,
+              accessible, and engaging user experiences across all devices.
             </p>
             <p className="text-lg">
-              I'm passionate about clean code, performance optimization, and staying at the cutting edge of web
-              development technologies. My goal is to create digital experiences that are not only visually stunning but
-              also technically excellent.
+              I'm passionate about clean code, performance optimization, and
+              staying at the cutting edge of web development technologies. My
+              goal is to create digital experiences that are not only visually
+              stunning but also technically excellent.
             </p>
           </motion.div>
 
@@ -85,7 +91,11 @@ export default function About() {
                     "Performance Optimization",
                     "Responsive Design",
                   ].map((skill) => (
-                    <Badge key={skill} variant="secondary" className="px-3 py-1 text-sm">
+                    <Badge
+                      key={skill}
+                      variant="secondary"
+                      className="px-3 py-1 text-sm"
+                    >
                       {skill}
                     </Badge>
                   ))}
@@ -103,7 +113,9 @@ export default function About() {
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-2">•</span>
-                    <span>Bachelor's in Computer Science from University of Lahore</span>
+                    <span>
+                      Bachelor's in Computer Science from University of Lahore
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-2">•</span>
@@ -111,7 +123,9 @@ export default function About() {
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-2">•</span>
-                    <span>Passionate about creating accessible web experiences</span>
+                    <span>
+                      Passionate about creating accessible web experiences
+                    </span>
                   </li>
                 </ul>
               </CardContent>
@@ -120,5 +134,5 @@ export default function About() {
         </div>
       </motion.div>
     </section>
-  )
+  );
 }

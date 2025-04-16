@@ -1,20 +1,20 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import { motion, useAnimation, useInView } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Progress } from "@/components/ui/progress"
+import { useEffect, useRef } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Progress } from "@/components/ui/progress";
 
 export default function Skills() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const controls = useAnimation()
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const controls = useAnimation();
 
   useEffect(() => {
     if (isInView) {
-      controls.start("visible")
+      controls.start("visible");
     }
-  }, [isInView, controls])
+  }, [isInView, controls]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -24,7 +24,7 @@ export default function Skills() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -35,7 +35,7 @@ export default function Skills() {
         duration: 0.5,
       },
     },
-  }
+  };
 
   const frontendSkills = [
     { name: "React.js", level: 95 },
@@ -44,7 +44,7 @@ export default function Skills() {
     { name: "TailwindCSS", level: 90 },
     { name: "Material UI", level: 85 },
     { name: "WordPress", level: 80 },
-  ]
+  ];
 
   const backendSkills = [
     { name: "Node.js", level: 80 },
@@ -53,7 +53,7 @@ export default function Skills() {
     { name: "RESTful APIs", level: 85 },
     { name: "PostgreSQL", level: 75 },
     { name: "MongoDB", level: 70 },
-  ]
+  ];
 
   const otherSkills = [
     { name: "UI/UX Design", level: 85 },
@@ -62,10 +62,10 @@ export default function Skills() {
     { name: "SEO", level: 75 },
     { name: "Git/GitHub", level: 85 },
     { name: "CI/CD", level: 70 },
-  ]
+  ];
 
   return (
-    <section id="skills" className="w-full py-16 md:py-24 bg-muted/30">
+    <section id="skills" className="w-full py-8 md:py-12 bg-muted/30">
       <motion.div
         ref={ref}
         className="section-container"
@@ -74,10 +74,13 @@ export default function Skills() {
         animate={controls}
       >
         <motion.div variants={itemVariants} className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Technical Skills</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Technical Skills
+          </h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            My expertise spans across various technologies and frameworks in web development.
+            My expertise spans across various technologies and frameworks in web
+            development.
           </p>
         </motion.div>
 
@@ -85,13 +88,17 @@ export default function Skills() {
           <motion.div variants={itemVariants}>
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-6 text-center">Frontend Development</h3>
+                <h3 className="text-xl font-bold mb-6 text-center">
+                  Frontend Development
+                </h3>
                 <div className="space-y-6">
                   {frontendSkills.map((skill, index) => (
                     <div key={index}>
                       <div className="flex justify-between mb-2">
                         <span className="font-medium">{skill.name}</span>
-                        <span className="text-muted-foreground">{skill.level}%</span>
+                        <span className="text-muted-foreground">
+                          {skill.level}%
+                        </span>
                       </div>
                       <Progress value={skill.level} className="h-2" />
                     </div>
@@ -104,13 +111,17 @@ export default function Skills() {
           <motion.div variants={itemVariants}>
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-6 text-center">Backend Development</h3>
+                <h3 className="text-xl font-bold mb-6 text-center">
+                  Backend Development
+                </h3>
                 <div className="space-y-6">
                   {backendSkills.map((skill, index) => (
                     <div key={index}>
                       <div className="flex justify-between mb-2">
                         <span className="font-medium">{skill.name}</span>
-                        <span className="text-muted-foreground">{skill.level}%</span>
+                        <span className="text-muted-foreground">
+                          {skill.level}%
+                        </span>
                       </div>
                       <Progress value={skill.level} className="h-2" />
                     </div>
@@ -123,13 +134,17 @@ export default function Skills() {
           <motion.div variants={itemVariants}>
             <Card>
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-6 text-center">Other Skills</h3>
+                <h3 className="text-xl font-bold mb-6 text-center">
+                  Other Skills
+                </h3>
                 <div className="space-y-6">
                   {otherSkills.map((skill, index) => (
                     <div key={index}>
                       <div className="flex justify-between mb-2">
                         <span className="font-medium">{skill.name}</span>
-                        <span className="text-muted-foreground">{skill.level}%</span>
+                        <span className="text-muted-foreground">
+                          {skill.level}%
+                        </span>
                       </div>
                       <Progress value={skill.level} className="h-2" />
                     </div>
@@ -141,5 +156,5 @@ export default function Skills() {
         </div>
       </motion.div>
     </section>
-  )
+  );
 }

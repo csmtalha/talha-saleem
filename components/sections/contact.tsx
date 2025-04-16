@@ -1,31 +1,42 @@
-"use client"
+"use client";
 
-import { useEffect, useRef, useState } from "react"
-import { motion, useAnimation, useInView } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Button } from "@/components/ui/button"
-import { useToast } from "@/components/ui/use-toast"
-import { Mail, MapPin, Phone } from "lucide-react"
-import { z } from "zod"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { useEffect, useRef, useState } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
+import { Mail, MapPin, Phone } from "lucide-react";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email address." }),
-  subject: z.string().min(5, { message: "Subject must be at least 5 characters." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
-})
+  subject: z
+    .string()
+    .min(5, { message: "Subject must be at least 5 characters." }),
+  message: z
+    .string()
+    .min(10, { message: "Message must be at least 10 characters." }),
+});
 
 export default function Contact() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const controls = useAnimation()
-  const { toast } = useToast()
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const controls = useAnimation();
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -35,13 +46,13 @@ export default function Contact() {
       subject: "",
       message: "",
     },
-  })
+  });
 
   useEffect(() => {
     if (isInView) {
-      controls.start("visible")
+      controls.start("visible");
     }
-  }, [isInView, controls])
+  }, [isInView, controls]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -51,7 +62,7 @@ export default function Contact() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -62,25 +73,46 @@ export default function Contact() {
         duration: 0.5,
       },
     },
-  }
+  };
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true)
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      console.log(values)
-      setIsSubmitting(false)
-      form.reset()
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Message sent!",
+          description: "Thank you for your message. I'll get back to you soon.",
+        });
+        form.reset();
+      } else {
+        toast({
+          title: "Error",
+          description: "Something went wrong. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
       toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      })
-    }, 1500)
+        title: "Network error",
+        description: "Please check your internet connection.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
-    <section id="contact" className="w-full py-16 md:py-24 bg-background">
+    <section id="contact" className="w-full py-8 md:py-12 bg-background">
       <motion.div
         ref={ref}
         className="section-container"
@@ -92,7 +124,8 @@ export default function Contact() {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or want to discuss potential opportunities? Feel free to reach out!
+            Have a project in mind or want to discuss potential opportunities?
+            Feel free to reach out!
           </p>
         </motion.div>
 
@@ -119,7 +152,9 @@ export default function Contact() {
                     </div>
                     <div>
                       <h4 className="font-medium">Email</h4>
-                      <p className="text-muted-foreground">csmtalha@gmail.com</p>
+                      <p className="text-muted-foreground">
+                        csmtalha@gmail.com
+                      </p>
                     </div>
                   </div>
 
@@ -138,7 +173,11 @@ export default function Contact() {
                   <h3 className="text-xl font-bold mb-4">Follow Me</h3>
                   <div className="flex gap-4">
                     <Button variant="outline" size="icon" asChild>
-                      <a href="https://github.com/csmtalha" target="_blank" rel="noopener noreferrer">
+                      <a
+                        href="https://github.com/csmtalha"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
@@ -155,7 +194,11 @@ export default function Contact() {
                       </a>
                     </Button>
                     <Button variant="outline" size="icon" asChild>
-                      <a href="https://linkedin.com/in/csmtalha/" target="_blank" rel="noopener noreferrer">
+                      <a
+                        href="https://linkedin.com/in/csmtalha/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
@@ -202,7 +245,10 @@ export default function Contact() {
                 <h3 className="text-xl font-bold mb-6">Send Me a Message</h3>
 
                 <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-6"
+                  >
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <FormField
                         control={form.control}
@@ -240,7 +286,10 @@ export default function Contact() {
                         <FormItem>
                           <FormLabel>Subject</FormLabel>
                           <FormControl>
-                            <Input placeholder="Subject of your message" {...field} />
+                            <Input
+                              placeholder="Subject of your message"
+                              {...field}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -254,14 +303,22 @@ export default function Contact() {
                         <FormItem>
                           <FormLabel>Message</FormLabel>
                           <FormControl>
-                            <Textarea placeholder="Your message" className="min-h-32" {...field} />
+                            <Textarea
+                              placeholder="Your message"
+                              className="min-h-32"
+                              {...field}
+                            />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
 
-                    <Button type="submit" className="w-full" disabled={isSubmitting}>
+                    <Button
+                      type="submit"
+                      className="w-full"
+                      disabled={isSubmitting}
+                    >
                       {isSubmitting ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
@@ -272,5 +329,5 @@ export default function Contact() {
         </div>
       </motion.div>
     </section>
-  )
+  );
 }

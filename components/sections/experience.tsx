@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import { useEffect, useRef } from "react"
-import { motion, useAnimation, useInView } from "framer-motion"
-import { Card, CardContent, CardHeader } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Briefcase } from "lucide-react"
+import { useEffect, useRef } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Briefcase } from "lucide-react";
 
 export default function Experience() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
-  const controls = useAnimation()
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const controls = useAnimation();
 
   useEffect(() => {
     if (isInView) {
-      controls.start("visible")
+      controls.start("visible");
     }
-  }, [isInView, controls])
+  }, [isInView, controls]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -25,7 +25,7 @@ export default function Experience() {
         staggerChildren: 0.1,
       },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
@@ -36,7 +36,7 @@ export default function Experience() {
         duration: 0.5,
       },
     },
-  }
+  };
 
   const experiences = [
     {
@@ -49,7 +49,14 @@ export default function Experience() {
         "Implemented robust authentication flows and collaborated closely with backend teams to integrate RESTful APIs.",
         "Migrated legacy PHP applications to Next.js, significantly improving scalability, performance, and maintainability.",
       ],
-      skills: ["React.js", "Next.js", "TailwindCSS", "Material UI", "RESTful APIs", "Authentication"],
+      skills: [
+        "React.js",
+        "Next.js",
+        "TailwindCSS",
+        "Material UI",
+        "RESTful APIs",
+        "Authentication",
+      ],
     },
     {
       company: "Freelance",
@@ -62,7 +69,14 @@ export default function Experience() {
         "Implemented e-commerce solutions using Shopify, WooCommerce, and custom platforms.",
         "Provided ongoing maintenance, support, and feature enhancements for client projects.",
       ],
-      skills: ["React.js", "Next.js", "WordPress", "Shopify", "E-commerce", "UI/UX Design"],
+      skills: [
+        "React.js",
+        "Next.js",
+        "WordPress",
+        "Shopify",
+        "E-commerce",
+        "UI/UX Design",
+      ],
     },
     {
       company: "Napollo LLC",
@@ -74,10 +88,10 @@ export default function Experience() {
       ],
       skills: ["WordPress", "Shopify", "HTML/CSS", "JavaScript"],
     },
-  ]
+  ];
 
   return (
-    <section id="experience" className="w-full py-16 md:py-24 bg-muted/30">
+    <section id="experience" className="w-full py-8 md:py-12 bg-muted/30">
       <motion.div
         ref={ref}
         className="section-container"
@@ -86,7 +100,9 @@ export default function Experience() {
         animate={controls}
       >
         <motion.div variants={itemVariants} className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Work Experience</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            Work Experience
+          </h2>
           <div className="w-20 h-1 bg-primary mx-auto"></div>
         </motion.div>
 
@@ -105,7 +121,10 @@ export default function Experience() {
                         <p className="text-muted-foreground">{exp.company}</p>
                       </div>
                     </div>
-                    <Badge variant="outline" className="md:self-start px-3 py-1">
+                    <Badge
+                      variant="outline"
+                      className="md:self-start px-3 py-1"
+                    >
                       {exp.period}
                     </Badge>
                   </div>
@@ -121,7 +140,11 @@ export default function Experience() {
                   </ul>
                   <div className="flex flex-wrap gap-2 mt-4">
                     {exp.skills.map((skill) => (
-                      <Badge key={skill} variant="secondary" className="px-2 py-1 text-xs">
+                      <Badge
+                        key={skill}
+                        variant="secondary"
+                        className="px-2 py-1 text-xs"
+                      >
                         {skill}
                       </Badge>
                     ))}
@@ -133,5 +156,5 @@ export default function Experience() {
         </div>
       </motion.div>
     </section>
-  )
+  );
 }
