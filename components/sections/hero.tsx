@@ -82,10 +82,15 @@ export default function Hero() {
               </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
+              <Link href="#contact">
+                Contact Me <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            {/* <Button size="lg" variant="outline" asChild>
               <a href="/resume.pdf" download>
                 Download CV <Download className="ml-2 h-4 w-4" />
               </a>
-            </Button>
+            </Button> */}
           </motion.div>
 
           <motion.div variants={itemVariants} className="flex gap-4">
