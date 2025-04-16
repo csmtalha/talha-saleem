@@ -1,22 +1,27 @@
-"use client"
+"use client";
 
-import { usePathname, useSearchParams } from "next/navigation"
-import { useEffect } from "react"
+import { usePathname, useSearchParams } from "next/navigation";
+import { useEffect, Suspense } from "react";
 
-export function Analytics() {
-  const pathname = usePathname()
-  const searchParams = useSearchParams()
+function AnalyticsInner() {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     if (pathname) {
-      // This is where you would typically add your analytics code
-      // For example, with Google Analytics:
-      // window.gtag('config', 'GA_MEASUREMENT_ID', {
-      //   page_path: pathname,
-      // })
-      console.log(`Page view: ${pathname}${searchParams ? `?${searchParams}` : ""}`)
+      console.log(
+        `Page view: ${pathname}${searchParams ? `?${searchParams}` : ""}`
+      );
     }
-  }, [pathname, searchParams])
+  }, [pathname, searchParams]);
 
-  return null
+  return null;
+}
+
+export function Analytics() {
+  return (
+    <Suspense fallback={null}>
+      <AnalyticsInner />
+    </Suspense>
+  );
 }
