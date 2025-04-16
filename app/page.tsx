@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     "WordPress developer",
     "Frontend engineer",
   ],
+  verification: {
+    google: "DLA0_IP3Hsut84nJRmawwY7w18Tp7lAZeqGafn8IBH4",
+  },
 };
 
 export default function Home() {
