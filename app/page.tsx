@@ -6,6 +6,7 @@ import Projects from "@/components/sections/projects";
 import Skills from "@/components/sections/skills";
 import Contact from "@/components/sections/contact";
 import Footer from "@/components/sections/footer";
+import Header from "@/components/sections/header";
 
 export const metadata: Metadata = {
   title: "Talha Saleem | Full-Stack Developer",
@@ -26,6 +27,8 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center">
+      {" "}
+      <Header />
       <Hero />
       <About />
       <Experience />

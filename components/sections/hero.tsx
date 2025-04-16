@@ -6,6 +6,7 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Github, Linkedin } from "lucide-react";
 import Link from "next/link";
+import profilePic from "@/public/images/profile1.jpeg";
 
 export default function Hero() {
   const ref = useRef(null);
@@ -118,7 +119,7 @@ export default function Hero() {
           <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-primary/10 blur-3xl"></div>
           <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/20 shadow-xl">
             <Image
-              src="/placeholder.svg?height=600&width=600"
+              src={profilePic}
               alt="Talha Saleem"
               width={600}
               height={600}

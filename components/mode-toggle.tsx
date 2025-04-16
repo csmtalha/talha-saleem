@@ -1,27 +1,45 @@
-"use client"
-import { Moon, Sun } from "lucide-react"
-import { useTheme } from "next-themes"
+"use client";
 
-import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Switch } from "./ui/switch";
 
 export function ModeToggle() {
-  const { setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
+
+  // Handle change for the toggle switch
+  const handleToggle = (checked: boolean) => {
+    setTheme(checked ? "dark" : "light");
+  };
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>Light</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>Dark</DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>System</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )
+    <div className="flex items-center gap-4">
+      {/* Sun Icon - Only visible in light mode */}
+      <Sun
+        className={`h-[1.2rem] w-[1.2rem] ${
+          theme === "dark" ? "text-white" : "text-yellow-500"
+        }`}
+      />
+
+      {/* Switch to toggle themes */}
+      <Switch
+        checked={theme === "dark"} // Switch is checked if the theme is dark
+        onCheckedChange={handleToggle} // Properly passing the checked state to handleToggle
+        className="w-[40px] h-[20px] bg-gray-200 dark:bg-primary rounded-full relative"
+      >
+        <span
+          className={`absolute left-[2px] top-[2px] w-[16px] h-[16px] rounded-full bg-white transition-transform duration-300 ease-in-out ${
+            theme === "dark" ? "transform translate-x-[20px]" : ""
+          }`}
+        />
+      </Switch>
+
+      {/* Moon Icon - Only visible in dark mode */}
+      <Moon
+        className={`h-[1.2rem] w-[1.2rem] ${
+          theme === "light" ? "text-black" : "text-blue-500"
+        }`}
+      />
+    </div>
+  );
 }
