@@ -38,30 +38,29 @@ export default function Skills() {
   };
 
   const frontendSkills = [
-    { name: "React.js", level: 95 },
-    { name: "Next.js", level: 90 },
-    { name: "TypeScript", level: 85 },
-    { name: "TailwindCSS", level: 90 },
-    { name: "Material UI", level: 85 },
+    { name: "React.js", level: 85 },
+    { name: "Next.js", level: 85 },
+    { name: "TypeScript", level: 70 },
+    { name: "TailwindCSS", level: 80 },
     { name: "WordPress", level: 80 },
   ];
 
   const backendSkills = [
-    { name: "Node.js", level: 80 },
-    { name: "Nest.js", level: 75 },
-    { name: "Python/Django", level: 70 },
-    { name: "RESTful APIs", level: 85 },
-    { name: "PostgreSQL", level: 75 },
-    { name: "MongoDB", level: 70 },
+    { name: "Node.js", level: 60 },
+    { name: "Nest.js", level: 50 },
+    { name: "Python/Django", level: 40 },
+    { name: "PostgreSQL", level: 55 },
+    { name: "MongoDB", level: 55 },
   ];
 
   const otherSkills = [
     { name: "UI/UX Design", level: 85 },
     { name: "Performance Optimization", level: 80 },
     { name: "Responsive Design", level: 90 },
-    { name: "SEO", level: 75 },
+    { name: "SEO", level: 70 },
     { name: "Git/GitHub", level: 85 },
-    { name: "CI/CD", level: 70 },
+    { name: "CI/CD", level: 60 },
+    { name: "Docker", level: 50 },
   ];
 
   return (

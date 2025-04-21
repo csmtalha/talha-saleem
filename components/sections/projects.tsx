@@ -53,7 +53,7 @@ export default function Projects() {
       title: "Tours & Travels",
       description:
         "A dynamic travel CMS using Next.js and Firebase for seamless content management.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/images/projects/ibrahim-travels.png",
       tags: [
         "Next.js",
         "Firebase",
@@ -64,13 +64,13 @@ export default function Projects() {
       details:
         "Developed a dynamic travel CMS using Next.js and Firebase for seamless content management. Integrated Firebase Firestore for scalable data storage and retrieval of travel information. Implemented Firebase Cloud Functions to integrate Google APIs for enhanced functionality. Deployed and managed the application with Firebase Hosting for fast content delivery. Optimized performance using Next.js for fast client-side rendering and SEO benefits. Designed responsive UI/UX with Next.js for a smooth cross-device experience. Automated content updates using Firebase functions to reduce manual effort.",
       github: "https://github.com/csmtalha",
-      demo: "#",
+      demo: "https://alibrahimtravel.com/",
     },
     {
       title: "Business Insurance",
       description:
         "Migrated the business Insurance platform from PHP to Next.js, improving performance and scalability.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/images/projects/goldeninsurance.png",
       tags: [
         "Next.js",
         "JavaScript",
@@ -86,7 +86,7 @@ export default function Projects() {
       title: "Ship Navigation",
       description:
         "A web platform for operational planning, logistics, and ship navigation using React.js.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/images/projects/regent.png",
       tags: ["React.js", "Leaflet.js", "Logistics", "Route Planning"],
       details:
         "Developed a web platform for operational planning, logistics, and ship navigation using React.js. Integrated interactive maps with Leaflet.js for real-time spatial data and route visualization. Built vehicle and ship management features for efficient logistics and route planning.",
@@ -97,7 +97,7 @@ export default function Projects() {
       title: "Finance Automation",
       description:
         "Automated accounting tasks to improve efficiency and reduce errors using AWS Textract.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/images/projects/report.png",
       tags: ["React.js", "Redux", "Node.js", "AWS Textract", "PostgreSQL"],
       details:
         "Automated accounting tasks (payroll, invoicing, reporting) to improve efficiency and reduce errors. Integrated AWS Textract for accurate document data extraction. Developed custom regex for processing structured data from various documents. Used Lerna.js for managing multiple packages. Built new features with React.js, Redux, Node.js/Express, PostgreSQL, and Knex.js. Used Jenkins for deployment. Conducted document e2e testing to ensure reliability and functionality. Reduced manual task time, improved accuracy, and ensured scalability for large data volumes.",
@@ -108,7 +108,7 @@ export default function Projects() {
       title: "Mortgage App",
       description:
         "AI-powered mortgage application with admin dashboard, user management, and chat model integration.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/images/projects/mortgageapp.png",
       tags: [
         "Next.js",
         "TailwindCSS",
@@ -125,7 +125,7 @@ export default function Projects() {
       title: "Beauty Salon",
       description:
         "Converted Figma designs into a fully functional WordPress website with seamless design integration.",
-      image: "/placeholder.svg?height=600&width=800",
+      image: "/images/projects/salvation.png",
       tags: ["WordPress", "Figma", "Custom Theme", "Responsive Design"],
       details:
         "Converted Figma designs into a fully functional WordPress website. Ensured seamless design integration for a consistent look and feel. Optimized the user experience for ease of navigation and responsiveness. Implemented custom WordPress theme and plugins to meet specific client requirements. Ensured mobile-first design approach for optimal viewing on all devices.",
@@ -192,7 +192,7 @@ export default function Projects() {
                   >
                     View Details
                   </Button>
-                  <div className="flex gap-2">
+                  {/* <div className="flex gap-2">
                     <Button variant="ghost" size="icon" asChild>
                       <a
                         href={project.github}
@@ -213,78 +213,62 @@ export default function Projects() {
                         <span className="sr-only">Live Demo</span>
                       </a>
                     </Button>
-                  </div>
+                  </div> */}
                 </CardFooter>
               </Card>
             </motion.div>
           ))}
         </div>
+        <Dialog
+          open={!!selectedProject}
+          onOpenChange={() => setSelectedProject(null)}
+        >
+          {selectedProject && (
+            <DialogContent className="max-w-[95vw] sm:max-w-[90vw] md:max-w-3xl max-h-[90vh] overflow-y-auto">
+              <DialogHeader>
+                <DialogTitle className="text-xl sm:text-2xl font-bold">
+                  {selectedProject.title}
+                </DialogTitle>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-4 top-4"
+                  onClick={() => setSelectedProject(null)}
+                >
+                  <X className="h-4 w-4" />
+                  <span className="sr-only">Close</span>
+                </Button>
+              </DialogHeader>
+              <div className="relative aspect-video w-full overflow-hidden rounded-md">
+                <Image
+                  src={selectedProject.image || "/placeholder.svg"}
+                  alt={selectedProject.title}
+                  width={800}
+                  height={450}
+                  className="object-cover w-full h-full"
+                  priority
+                />
+              </div>
+              <div className="space-y-4">
+                <DialogDescription className="text-sm sm:text-base text-foreground">
+                  {selectedProject.details}
+                </DialogDescription>
+                <div className="flex flex-wrap gap-2">
+                  {selectedProject.tags.map((tag, i) => (
+                    <Badge
+                      key={i}
+                      variant="secondary"
+                      className="px-2 py-1 text-xs sm:text-sm"
+                    >
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </DialogContent>
+          )}
+        </Dialog>
       </motion.div>
-
-      <Dialog
-        open={!!selectedProject}
-        onOpenChange={() => setSelectedProject(null)}
-      >
-        {selectedProject && (
-          <DialogContent className="max-w-3xl">
-            <DialogHeader>
-              <DialogTitle className="text-2xl font-bold">
-                {selectedProject.title}
-              </DialogTitle>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute right-4 top-4"
-                onClick={() => setSelectedProject(null)}
-              >
-                <X className="h-4 w-4" />
-                <span className="sr-only">Close</span>
-              </Button>
-            </DialogHeader>
-            <div className="relative h-64 md:h-80 overflow-hidden rounded-md">
-              <Image
-                src={selectedProject.image || "/placeholder.svg"}
-                alt={selectedProject.title}
-                width={800}
-                height={600}
-                className="object-cover w-full h-full"
-              />
-            </div>
-            <DialogDescription className="text-base text-foreground">
-              {selectedProject.details}
-            </DialogDescription>
-            <div className="flex flex-wrap gap-2 mt-4">
-              {selectedProject.tags.map((tag, i) => (
-                <Badge key={i} variant="secondary" className="px-2 py-1">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-            <div className="flex justify-between mt-6">
-              <Button asChild>
-                <a
-                  href={selectedProject.demo}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Live Demo
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
-              <Button variant="outline" asChild>
-                <a
-                  href={selectedProject.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Source
-                  <Github className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
-            </div>
-          </DialogContent>
-        )}
-      </Dialog>
     </section>
   );
 }

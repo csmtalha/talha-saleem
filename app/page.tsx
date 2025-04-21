@@ -30,12 +30,11 @@ export default function Home() {
       {" "}
       <Header />
       <Hero />
-      <About />
-      <Experience />
       <Projects />
       <Skills />
+      <Experience />
+      <About />
       <Contact />
-      <Footer />
     </main>
   );
 }

@@ -58,8 +58,8 @@ export default function About() {
               <span className="font-semibold text-primary">
                 highly skilled Software Engineer
               </span>{" "}
-              with over 5 years of professional experience specializing in
-              modern front-end and full-stack development.
+              with over extensive years of professional experience specializing
+              in modern front-end and full-stack development.
             </p>
             <p className="text-lg">
               My expertise lies in building scalable, high-performance web
@@ -105,7 +105,9 @@ export default function About() {
                 <ul className="space-y-2">
                   <li className="flex items-start">
                     <span className="text-primary mr-2">•</span>
-                    <span>5+ years of professional development experience</span>
+                    <span>
+                      Extensive years of professional development experience
+                    </span>
                   </li>
                   <li className="flex items-start">
                     <span className="text-primary mr-2">•</span>
