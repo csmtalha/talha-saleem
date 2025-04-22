@@ -112,7 +112,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="w-full py-8 md:py-12 bg-background">
+    <section id="contact" className="w-full bg-background">
       <motion.div
         ref={ref}
         className="section-container"
@@ -216,7 +216,7 @@ export default function Contact() {
                         <span className="sr-only">LinkedIn</span>
                       </a>
                     </Button>
-                    <Button variant="outline" size="icon" asChild>
+                    {/* <Button variant="outline" size="icon" asChild>
                       <a href="#" target="_blank" rel="noopener noreferrer">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -232,7 +232,7 @@ export default function Contact() {
                         </svg>
                         <span className="sr-only">Twitter</span>
                       </a>
-                    </Button>
+                    </Button> */}
                   </div>
                 </div>
               </CardContent>

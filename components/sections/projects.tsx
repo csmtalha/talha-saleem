@@ -135,7 +135,7 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="w-full py-8 md:py-12 bg-background">
+    <section id="projects" className="w-full bg-background">
       <motion.div
         ref={ref}
         className="section-container"

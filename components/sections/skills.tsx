@@ -40,31 +40,32 @@ export default function Skills() {
   const frontendSkills = [
     { name: "React.js", level: 85 },
     { name: "Next.js", level: 85 },
-    { name: "TypeScript", level: 70 },
     { name: "TailwindCSS", level: 80 },
-    { name: "WordPress", level: 80 },
+    { name: "TypeScript", level: 75 },
+    { name: "Responsive Design", level: 90 },
+    { name: "UI/UX Design", level: 85 },
+    { name: "Performance Optimization", level: 80 },
   ];
 
   const backendSkills = [
-    { name: "Node.js", level: 60 },
-    { name: "Nest.js", level: 50 },
-    { name: "Python/Django", level: 40 },
-    { name: "PostgreSQL", level: 55 },
-    { name: "MongoDB", level: 55 },
+    { name: "Node.js", level: 65 },
+    { name: "Nest.js", level: 55 },
+    { name: "Python/Django", level: 50 },
+    { name: "PostgreSQL", level: 60 },
+    { name: "MongoDB", level: 60 },
+    { name: "Docker", level: 55 },
+    { name: "CI/CD", level: 60 },
   ];
 
   const otherSkills = [
-    { name: "UI/UX Design", level: 85 },
-    { name: "Performance Optimization", level: 80 },
-    { name: "Responsive Design", level: 90 },
-    { name: "SEO", level: 70 },
     { name: "Git/GitHub", level: 85 },
-    { name: "CI/CD", level: 60 },
-    { name: "Docker", level: 50 },
+    { name: "WordPress", level: 80 },
+    { name: "Shopify", level: 70 },
+    { name: "SEO", level: 70 },
   ];
 
   return (
-    <section id="skills" className="w-full py-8 md:py-12 bg-muted/30">
+    <section id="skills" className="w-full bg-muted/30">
       <motion.div
         ref={ref}
         className="section-container"

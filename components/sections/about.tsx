@@ -38,7 +38,7 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="w-full py-8 md:py-12 bg-background">
+    <section id="about" className="w-full  bg-background">
       <motion.div
         ref={ref}
         className="section-container"

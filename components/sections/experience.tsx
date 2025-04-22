@@ -102,7 +102,7 @@ export default function Experience() {
   ];
 
   return (
-    <section id="experience" className="w-full py-8 md:py-12 bg-muted/30">
+    <section id="experience" className="w-full bg-muted/30">
       <motion.div
         ref={ref}
         className="section-container"

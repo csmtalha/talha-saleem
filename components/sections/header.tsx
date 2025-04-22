@@ -57,9 +57,9 @@ const Header = () => {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => scrollToSection("projects")}
+            onClick={() => scrollToSection("about")}
           >
-            Projects
+            About
           </Button>
           <Button
             variant="ghost"
@@ -78,9 +78,9 @@ const Header = () => {
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => scrollToSection("about")}
+            onClick={() => scrollToSection("projects")}
           >
-            About
+            Projects
           </Button>
           <Button
             variant="ghost"
@@ -122,6 +122,13 @@ const Header = () => {
             <Button
               variant="ghost"
               size="sm"
+              onClick={() => scrollToSection("skills")}
+            >
+              Skills
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
               onClick={() => scrollToSection("experience")}
             >
               Experience
@@ -132,13 +139,6 @@ const Header = () => {
               onClick={() => scrollToSection("projects")}
             >
               Projects
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => scrollToSection("skills")}
-            >
-              Skills
             </Button>
             <Button
               variant="ghost"
