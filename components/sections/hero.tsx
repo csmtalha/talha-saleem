@@ -41,7 +41,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="w-full min-h-screen flex items-center justify-center bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
+    <section className="w-full min-h-screen mt-10 flex items-center justify-center bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] dark:opacity-[0.05]"></div>
       </div>
@@ -50,7 +50,6 @@ export default function Hero() {
         ref={ref}
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 z-10 flex flex-col md:flex-row items-center justify-between gap-12"
         variants={containerVariants}
-        initial="hidden"
         animate={controls}
       >
         <div className="flex-1 space-y-8">

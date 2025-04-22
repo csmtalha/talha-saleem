@@ -70,7 +70,7 @@ export default function Skills() {
         ref={ref}
         className="section-container"
         variants={containerVariants}
-        initial="hidden"
+        // initial="hidden"
         animate={controls}
       >
         <motion.div variants={itemVariants} className="mb-12 text-center">

@@ -107,7 +107,6 @@ export default function Experience() {
         ref={ref}
         className="section-container"
         variants={containerVariants}
-        initial="hidden"
         animate={controls}
       >
         <motion.div variants={itemVariants} className="mb-12 text-center">
