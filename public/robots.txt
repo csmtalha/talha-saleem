@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.protalha.com/
+
+# Sitemaps
+Sitemap: https://www.protalha.com/sitemap.xml
