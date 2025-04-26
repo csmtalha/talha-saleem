@@ -43,7 +43,10 @@ const Header = () => {
         scrolled ? "bg-muted/60 backdrop-blur border-b" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+      <div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center"
+        onClick={() => scrollToSection("hero")}
+      >
         <Image
           src={"/images/protalha-logo-light.svg"}
           alt="Logo"

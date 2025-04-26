@@ -41,7 +41,10 @@ export default function Hero() {
   };
 
   return (
-    <section className="w-full min-h-screen mt-10 flex items-center justify-center bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
+    <section
+      id="hero"
+      className="w-full min-h-screen mt-10 flex items-center justify-center bg-gradient-to-b from-background to-muted/30 relative overflow-hidden"
+    >
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] dark:opacity-[0.05]"></div>
       </div>
