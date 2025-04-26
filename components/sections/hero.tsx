@@ -6,7 +6,7 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Github, Linkedin } from "lucide-react";
 import Link from "next/link";
-import profilePic from "@/public/images/profile1.jpeg";
+import profilePic from "@/public/images/profilepic.jpeg";
 
 export default function Hero() {
   const ref = useRef(null);
@@ -58,7 +58,7 @@ export default function Hero() {
               <span className="gradient-text">Talha Saleem</span>
             </h1>
             <h2 className="text-3xl md:text-5xl font-bold mt-2">
-              Full-Stack Developer
+              Software Developer
             </h2>
           </motion.div>
 
@@ -66,30 +66,26 @@ export default function Hero() {
             variants={itemVariants}
             className="text-lg md:text-xl text-muted-foreground max-w-2xl"
           >
-            Crafting exceptional digital experiences with modern web
-            technologies. Specializing in{" "}
-            <span className="font-semibold text-primary">React</span>,
-            <span className="font-semibold text-primary"> Next.js</span>, and
-            <span className="font-semibold text-primary"> WordPress</span>{" "}
-            development.
+            Bringing Ideas to Life Through Thoughtful Web Design and
+            Development.{" "}
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
-            <Button size="lg" asChild>
+            {/* <Button size="lg" asChild>
               <Link href="#projects">
                 View My Work <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-            </Button>
+            </Button> */}
             <Button size="lg" variant="outline" asChild>
+              <a href="/files/talha-saleem.pdf" download>
+                Download CV <Download className="ml-2 h-4 w-4" />
+              </a>
+            </Button>
+            <Button size="lg" asChild>
               <Link href="#contact">
                 Contact Me <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            {/* <Button size="lg" variant="outline" asChild>
-              <a href="/resume.pdf" download>
-                Download CV <Download className="ml-2 h-4 w-4" />
-              </a>
-            </Button> */}
           </motion.div>
 
           <motion.div variants={itemVariants} className="flex gap-4">
@@ -125,8 +121,8 @@ export default function Hero() {
             <Image
               src={profilePic}
               alt="Talha Saleem"
-              width={600}
-              height={600}
+              width={700}
+              height={700}
               className="object-cover"
               priority
             />

@@ -50,62 +50,7 @@ export default function Projects() {
 
   const projects = [
     {
-      title: "Tours & Travels",
-      description:
-        "A dynamic travel CMS using Next.js and Firebase for seamless content management.",
-      image: "/images/projects/ibrahim-travels.png",
-      tags: [
-        "Next.js",
-        "Firebase",
-        "Firestore",
-        "Cloud Functions",
-        "Responsive Design",
-      ],
-      details:
-        "Developed a dynamic travel CMS using Next.js and Firebase for seamless content management. Integrated Firebase Firestore for scalable data storage and retrieval of travel information. Implemented Firebase Cloud Functions to integrate Google APIs for enhanced functionality. Deployed and managed the application with Firebase Hosting for fast content delivery. Optimized performance using Next.js for fast client-side rendering and SEO benefits. Designed responsive UI/UX with Next.js for a smooth cross-device experience. Automated content updates using Firebase functions to reduce manual effort.",
-      github: "https://github.com/csmtalha",
-      demo: "https://alibrahimtravel.com/",
-    },
-    {
-      title: "Business Insurance",
-      description:
-        "Migrated the business Insurance platform from PHP to Next.js, improving performance and scalability.",
-      image: "/images/projects/goldeninsurance.png",
-      tags: [
-        "Next.js",
-        "JavaScript",
-        "PHP Migration",
-        "Performance Optimization",
-      ],
-      details:
-        "Migrated the business Insurance platform from PHP to Next.js, improving performance and scalability. Enhanced maintainability by refactoring the platform with modern JavaScript technologies. Optimized the application for faster load times using Next.js static and client-side rendering. Improved the user experience with responsive design and seamless navigation. Collaborated with the team to ensure a smooth migration while minimizing disruptions.",
-      github: "https://github.com/csmtalha",
-      demo: "#",
-    },
-    {
-      title: "Ship Navigation",
-      description:
-        "A web platform for operational planning, logistics, and ship navigation using React.js.",
-      image: "/images/projects/regent.png",
-      tags: ["React.js", "Leaflet.js", "Logistics", "Route Planning"],
-      details:
-        "Developed a web platform for operational planning, logistics, and ship navigation using React.js. Integrated interactive maps with Leaflet.js for real-time spatial data and route visualization. Built vehicle and ship management features for efficient logistics and route planning.",
-      github: "https://github.com/csmtalha",
-      demo: "#",
-    },
-    {
-      title: "Finance Automation",
-      description:
-        "Automated accounting tasks to improve efficiency and reduce errors using AWS Textract.",
-      image: "/images/projects/report.png",
-      tags: ["React.js", "Redux", "Node.js", "AWS Textract", "PostgreSQL"],
-      details:
-        "Automated accounting tasks (payroll, invoicing, reporting) to improve efficiency and reduce errors. Integrated AWS Textract for accurate document data extraction. Developed custom regex for processing structured data from various documents. Used Lerna.js for managing multiple packages. Built new features with React.js, Redux, Node.js/Express, PostgreSQL, and Knex.js. Used Jenkins for deployment. Conducted document e2e testing to ensure reliability and functionality. Reduced manual task time, improved accuracy, and ensured scalability for large data volumes.",
-      github: "https://github.com/csmtalha",
-      demo: "#",
-    },
-    {
-      title: "Mortgage App",
+      title: "Mortgage Buddy",
       description:
         "AI-powered mortgage application with admin dashboard, user management, and chat model integration.",
       image: "/images/projects/mortgageapp.png",
@@ -122,7 +67,63 @@ export default function Projects() {
       demo: "#",
     },
     {
-      title: "Beauty Salon",
+      title: "AI Travels",
+      description:
+        "A dynamic travel CMS using Next.js and Firebase for seamless content management.",
+      image: "/images/projects/ibrahim-travels.png",
+      tags: [
+        "Next.js",
+        "Firebase",
+        "Firestore",
+        "Cloud Functions",
+        "Responsive Design",
+      ],
+      details:
+        "Developed a dynamic travel CMS using Next.js and Firebase for seamless content management. Integrated Firebase Firestore for scalable data storage and retrieval of travel information. Implemented Firebase Cloud Functions to integrate Google APIs for enhanced functionality. Deployed and managed the application with Firebase Hosting for fast content delivery. Optimized performance using Next.js for fast client-side rendering and SEO benefits. Designed responsive UI/UX with Next.js for a smooth cross-device experience. Automated content updates using Firebase functions to reduce manual effort.",
+      github: "https://github.com/csmtalha",
+      demo: "https://alibrahimtravel.com/",
+    },
+    {
+      title: "Golden Insurance",
+      description:
+        "Migrated the business Insurance platform from PHP to Next.js, improving performance and scalability.",
+      image: "/images/projects/goldeninsurance.png",
+      tags: [
+        "Next.js",
+        "JavaScript",
+        "PHP Migration",
+        "Performance Optimization",
+      ],
+      details:
+        "Migrated the business Insurance platform from PHP to Next.js, improving performance and scalability. Enhanced maintainability by refactoring the platform with modern JavaScript technologies. Optimized the application for faster load times using Next.js static and client-side rendering. Improved the user experience with responsive design and seamless navigation. Collaborated with the team to ensure a smooth migration while minimizing disruptions.",
+      github: "https://github.com/csmtalha",
+      demo: "#",
+    },
+    {
+      title: "Regent",
+      description:
+        "A web platform for operational planning, logistics, and ship navigation using React.js.",
+      image: "/images/projects/regent.png",
+      tags: ["React.js", "Leaflet.js", "Logistics", "Route Planning"],
+      details:
+        "Developed a web platform for operational planning, logistics, and ship navigation using React.js. Integrated interactive maps with Leaflet.js for real-time spatial data and route visualization. Built vehicle and ship management features for efficient logistics and route planning.",
+      github: "https://github.com/csmtalha",
+      demo: "#",
+    },
+    {
+      title: "Report Automation",
+      description:
+        "Automated accounting tasks to improve efficiency and reduce errors using AWS Textract.",
+      image: "/images/projects/report.png",
+      tags: ["React.js", "Redux", "Node.js", "AWS Textract", "PostgreSQL"],
+      details:
+        "Automated accounting tasks (payroll, invoicing, reporting) to improve efficiency and reduce errors. Integrated AWS Textract for accurate document data extraction. Developed custom regex for processing structured data from various documents. Used Lerna.js for managing multiple packages. Built new features with React.js, Redux, Node.js/Express, PostgreSQL, and Knex.js. Used Jenkins for deployment. Conducted document e2e testing to ensure reliability and functionality. Reduced manual task time, improved accuracy, and ensured scalability for large data volumes.",
+      github: "https://github.com/csmtalha",
+      demo: "#",
+    },
+
+    {
+      title: "Salvation Beauty Ink",
       description:
         "Converted Figma designs into a fully functional WordPress website with seamless design integration.",
       image: "/images/projects/salvation.png",

@@ -89,7 +89,7 @@ const Header = () => {
           >
             Contact
           </Button>
-          <ModeToggle />
+          {/* <ModeToggle /> */}
         </nav>
 
         {/* Mobile Menu Toggle */}
