@@ -4,8 +4,7 @@ import { Analytics } from "@/components/analytics";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import "@/app/globals.css";
-import Header from "@/components/sections/Header";
-import Footer from "@/components/sections/Footer";
+import Footer from "@/components/sections/footer";
 
 const inter = Inter({
   subsets: ["latin"],
