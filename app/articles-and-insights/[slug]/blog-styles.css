@@ -1,0 +1,12 @@
+/* Custom styles for Markdown content */
+.prose img {
+  border-radius: 0.5rem;
+  margin: 1.5rem auto;
+}
+
+.prose pre {
+  background-color: #1e293b;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+}

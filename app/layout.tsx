@@ -1,9 +1,11 @@
-import type React from "react";
+import type { ReactNode } from "react";
 import { Inter, Poppins } from "next/font/google";
 import { Analytics } from "@/components/analytics";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import "@/app/globals.css";
+import Header from "@/components/sections/Header";
+import Footer from "@/components/sections/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,17 +18,12 @@ const poppins = Poppins({
   variable: "--font-poppins",
 });
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased",
+          "min-h-screen flex flex-col bg-background font-sans antialiased",
           inter.variable,
           poppins.variable
         )}
@@ -37,7 +34,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <main className="flex-grow pt-20">{children}</main>{" "}
+          {/* Content pushes down */}
+          <Footer /> {/* Footer stays at the bottom */}
           <Analytics />
         </ThemeProvider>
       </body>

@@ -4,37 +4,64 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import Image from "next/image";
-import { Menu, X } from "lucide-react"; // Icons for menu toggle
+import { Menu, X } from "lucide-react";
+import { useRouter, usePathname } from "next/navigation";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [theme, setTheme] = useState("light");
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
 
-    const updateTheme = () => {
-      setTheme(localStorage.getItem("theme") || "light");
-    };
-
     window.addEventListener("scroll", handleScroll);
-    window.addEventListener("storage", updateTheme);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("storage", updateTheme);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
-      setMobileMenuOpen(false); // Close mobile menu on link click
+      setMobileMenuOpen(false);
     }
+  };
+
+  const handleNavigation = (section: string) => {
+    if (pathname === "/") {
+      // If we're on home page, scroll to section
+      scrollToSection(section);
+    } else {
+      // If we're on another page (like blog), navigate to home with hash
+      router.push(`/#${section}`);
+      // Wait for navigation to complete then scroll
+      setTimeout(() => {
+        const targetSection = document.getElementById(section);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+      setMobileMenuOpen(false);
+    }
+  };
+
+  const handleLogoClick = () => {
+    if (pathname !== "/") {
+      router.push("/");
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    setMobileMenuOpen(false);
+  };
+
+  const handleBlogClick = () => {
+    if (pathname !== "/articles-and-insights") {
+      router.push("/articles-and-insights");
+    }
+    setMobileMenuOpen(false);
   };
 
   return (
@@ -43,60 +70,53 @@ const Header = () => {
         scrolled ? "bg-muted/60 backdrop-blur border-b" : "bg-transparent"
       }`}
     >
-      <div
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center"
-        onClick={() => scrollToSection("hero")}
-      >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
         <Image
-          src={"/images/protalha-logo-light.svg"}
+          src="/images/protalha-logo-light.svg"
           alt="Logo"
           width={160}
           height={60}
-          className="z-50"
+          className="cursor-pointer"
+          onClick={handleLogoClick}
         />
 
-        {/* Desktop Nav */}
+        {/* Desktop Menu */}
         <nav className="hidden md:flex items-center gap-4">
+          {["about", "skills", "experience", "projects", "contact"].map(
+            (section) => (
+              <Button
+                key={section}
+                variant="ghost"
+                size="sm"
+                onClick={() => handleNavigation(section)}
+                className={
+                  pathname.startsWith("/articles-and-insights")
+                    ? "text-muted-foreground hover:text-foreground"
+                    : ""
+                }
+              >
+                {section.charAt(0).toUpperCase() + section.slice(1)}
+              </Button>
+            )
+          )}
           <Button
             variant="ghost"
             size="sm"
-            onClick={() => scrollToSection("about")}
+            onClick={handleBlogClick}
+            className={
+              pathname.startsWith("/articles-and-insights")
+                ? "font-semibold"
+                : ""
+            }
           >
-            About
+            Articles & Insights
           </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => scrollToSection("skills")}
-          >
-            Skills
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => scrollToSection("experience")}
-          >
-            Experience
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => scrollToSection("projects")}
-          >
-            Projects
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => scrollToSection("contact")}
-          >
-            Contact
-          </Button>
-          {/* <ModeToggle /> */}
+          <ModeToggle />
         </nav>
 
-        {/* Mobile Menu Toggle */}
-        <div className="md:hidden z-50">
+        {/* Mobile Menu Button */}
+        <div className="md:hidden flex items-center gap-2">
+          <ModeToggle />
           <Button
             variant="ghost"
             size="icon"
@@ -111,48 +131,39 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Nav */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-background border-t border-border shadow-sm">
           <div className="flex flex-col px-4 pb-4 space-y-2">
+            {["about", "skills", "experience", "projects", "contact"].map(
+              (section) => (
+                <Button
+                  key={section}
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => handleNavigation(section)}
+                  className={
+                    pathname.startsWith("/articles-and-insights")
+                      ? "text-muted-foreground hover:text-foreground"
+                      : ""
+                  }
+                >
+                  {section.charAt(0).toUpperCase() + section.slice(1)}
+                </Button>
+              )
+            )}
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => scrollToSection("about")}
+              onClick={handleBlogClick}
+              className={
+                pathname.startsWith("/articles-and-insights")
+                  ? "font-semibold"
+                  : ""
+              }
             >
-              About
+              Articles & Insights
             </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => scrollToSection("skills")}
-            >
-              Skills
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => scrollToSection("experience")}
-            >
-              Experience
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => scrollToSection("projects")}
-            >
-              Projects
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => scrollToSection("contact")}
-            >
-              Contact
-            </Button>
-            <div className="pt-2">
-              <ModeToggle />
-            </div>
           </div>
         </div>
       )}
