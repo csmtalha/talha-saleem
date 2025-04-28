@@ -74,16 +74,16 @@ export default function Hero() {
           </motion.p>
 
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
-            {/* <Button size="lg" asChild>
+            <Button size="lg" variant="outline" asChild>
               <Link href="#projects">
                 View My Work <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
-            </Button> */}
-            <Button size="lg" variant="outline" asChild>
+            </Button>
+            {/* <Button size="lg" variant="outline" asChild>
               <a href="/files/talha-saleem.pdf" download>
                 Download CV <Download className="ml-2 h-4 w-4" />
               </a>
-            </Button>
+            </Button> */}
             <Button size="lg" asChild>
               <Link href="#contact">
                 Contact Me <ArrowRight className="ml-2 h-4 w-4" />
