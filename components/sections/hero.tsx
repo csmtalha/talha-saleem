@@ -91,7 +91,7 @@ export default function Hero() {
             </Button>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="flex gap-4">
+          {/* <motion.div variants={itemVariants} className="flex gap-4">
             <Button variant="ghost" size="icon" asChild>
               <a
                 href="https://github.com/csmtalha"
@@ -112,7 +112,7 @@ export default function Hero() {
                 <span className="sr-only">LinkedIn</span>
               </a>
             </Button>
-          </motion.div>
+          </motion.div> */}
         </div>
 
         <motion.div

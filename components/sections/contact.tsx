@@ -128,8 +128,8 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <motion.div variants={itemVariants}>
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-8">
+          {/* <motion.div variants={itemVariants}>
             <Card>
               <CardContent className="p-6">
                 <h3 className="text-xl font-bold mb-6">Contact Information</h3>
@@ -215,7 +215,7 @@ export default function Contact() {
                         <span className="sr-only">LinkedIn</span>
                       </a>
                     </Button>
-                    {/* <Button variant="outline" size="icon" asChild>
+                    <Button variant="outline" size="icon" asChild>
                       <a href="#" target="_blank" rel="noopener noreferrer">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -231,12 +231,12 @@ export default function Contact() {
                         </svg>
                         <span className="sr-only">Twitter</span>
                       </a>
-                    </Button> */}
+                    </Button>
                   </div>
                 </div>
               </CardContent>
             </Card>
-          </motion.div>
+          </motion.div> */}
 
           <motion.div variants={itemVariants}>
             <Card>

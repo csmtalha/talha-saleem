@@ -53,7 +53,7 @@ export default function About() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <motion.div variants={itemVariants} className="space-y-6">
             <p className="text-lg">
-              I'm a{" "}
+              I am a{" "}
               <span className="font-semibold text-primary">
                 highly skilled Software Engineer
               </span>{" "}
@@ -67,7 +67,7 @@ export default function About() {
               accessible, and engaging user experiences across all devices.
             </p>
             <p className="text-lg">
-              I'm passionate about clean code, performance optimization, and
+              I am passionate about clean code, performance optimization, and
               staying at the cutting edge of web development technologies. My
               goal is to create digital experiences that are not only visually
               stunning but also technically excellent.
