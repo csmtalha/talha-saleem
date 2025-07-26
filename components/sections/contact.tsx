@@ -1,52 +1,15 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/components/ui/use-toast";
-import { Mail, MapPin, Phone } from "lucide-react";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-
-const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  subject: z
-    .string()
-    .min(5, { message: "Subject must be at least 5 characters." }),
-  message: z
-    .string()
-    .min(10, { message: "Message must be at least 10 characters." }),
-});
+import { Mail, MapPin } from "lucide-react";
 
 export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const controls = useAnimation();
-  const { toast } = useToast();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    },
-  });
 
   useEffect(() => {
     if (isInView) {
@@ -75,42 +38,6 @@ export default function Contact() {
     },
   };
 
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsSubmitting(true);
-
-    try {
-      const response = await fetch("/api/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values),
-      });
-
-      if (response.ok) {
-        toast({
-          title: "Message sent!",
-          description: "Thank you for your message. I'll get back to you soon.",
-        });
-        form.reset();
-      } else {
-        toast({
-          title: "Error",
-          description: "Something went wrong. Please try again.",
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      toast({
-        title: "Network error",
-        description: "Please check your internet connection.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  }
-
   return (
     <section
       id="contact"
@@ -137,37 +64,32 @@ export default function Contact() {
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Have a project in mind or want to discuss potential opportunities?
-            Feel free to reach out! I'm always excited to hear about new
+            Feel free to reach out! I am always excited to hear about new
             challenges.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-1 gap-8">
-          {/* <motion.div variants={itemVariants}>
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-6">Contact Information</h3>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <motion.div variants={itemVariants} whileHover={{ y: -5 }}>
+            <Card className="card-hover glass-effect border-0 shadow-lg">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-bold mb-8 gradient-text">
+                  Contact Information
+                </h3>
 
                 <div className="space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="bg-primary/10 p-3 rounded-full">
-                      <Phone className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium">Phone</h4>
-                      <p className="text-muted-foreground">+92-317-4353728</p>
-                    </div>
-                  </div>
-
                   <div className="flex items-start gap-4">
                     <div className="bg-primary/10 p-3 rounded-full">
                       <Mail className="h-5 w-5 text-primary" />
                     </div>
                     <div>
                       <h4 className="font-medium">Email</h4>
-                      <p className="text-muted-foreground">
+                      <a
+                        href="mailto:csmtalha@gmail.com"
+                        className="text-muted-foreground hover:text-primary transition-colors"
+                      >
                         csmtalha@gmail.com
-                      </p>
+                      </a>
                     </div>
                   </div>
 
@@ -183,13 +105,16 @@ export default function Contact() {
                 </div>
 
                 <div className="mt-8">
-                  <h3 className="text-xl font-bold mb-4">Follow Me</h3>
+                  <h3 className="text-xl font-bold mb-6 gradient-text">
+                    Follow Me
+                  </h3>
                   <div className="flex gap-4">
                     <Button variant="outline" size="icon" asChild>
                       <a
                         href="https://github.com/csmtalha"
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="hover:scale-110 transition-transform duration-200"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -211,6 +136,7 @@ export default function Contact() {
                         href="https://linkedin.com/in/csmtalha/"
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="hover:scale-110 transition-transform duration-200"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -229,116 +155,57 @@ export default function Contact() {
                         <span className="sr-only">LinkedIn</span>
                       </a>
                     </Button>
-                    <Button variant="outline" size="icon" asChild>
-                      <a href="#" target="_blank" rel="noopener noreferrer">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          className="h-5 w-5"
-                        >
-                          <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-                        </svg>
-                        <span className="sr-only">Twitter</span>
-                      </a>
-                    </Button>
                   </div>
                 </div>
               </CardContent>
             </Card>
-          </motion.div> */}
+          </motion.div>
 
           <motion.div variants={itemVariants} whileHover={{ y: -5 }}>
             <Card className="card-hover glass-effect border-0 shadow-lg">
               <CardContent className="p-8">
                 <h3 className="text-xl font-bold mb-8 gradient-text">
-                  Send Me a Message
+                  Get In Touch
                 </h3>
 
-                <Form {...form}>
-                  <form
-                    onSubmit={form.handleSubmit(onSubmit)}
-                    className="space-y-6"
-                  >
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Name</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Your name" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                <div className="space-y-6">
+                  <p className="text-muted-foreground leading-relaxed">
+                    I am always excited to hear about new opportunities and
+                    interesting projects. Feel free to reach out via email or
+                    connect with me on social media.
+                  </p>
 
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email</FormLabel>
-                            <FormControl>
-                              <Input placeholder="Your email" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-sm text-muted-foreground">
+                        Available for new opportunities
+                      </span>
                     </div>
 
-                    <FormField
-                      control={form.control}
-                      name="subject"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Subject</FormLabel>
-                          <FormControl>
-                            <Input
-                              placeholder="Subject of your message"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <span className="text-sm text-muted-foreground">
+                        Open to freelance projects
+                      </span>
+                    </div>
 
-                    <FormField
-                      control={form.control}
-                      name="message"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Message</FormLabel>
-                          <FormControl>
-                            <Textarea
-                              placeholder="Your message"
-                              className="min-h-32"
-                              {...field}
-                            />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    <div className="flex items-center gap-3">
+                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                      <span className="text-sm text-muted-foreground">
+                        Quick response time
+                      </span>
+                    </div>
+                  </div>
 
-                    <Button
-                      type="submit"
-                      variant="outline"
-                      className="w-full glass-effect hover:scale-105 transition-transform duration-300"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? "Sending..." : "Send Message"}
-                    </Button>
-                  </form>
-                </Form>
+                  <Button
+                    variant="outline"
+                    className="w-full glass-effect hover:scale-105 transition-transform duration-300"
+                    asChild
+                  >
+                    <a href="mailto:csmtalha@gmail.com">Send Email</a>
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </motion.div>
