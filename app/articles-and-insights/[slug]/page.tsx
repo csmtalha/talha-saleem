@@ -41,8 +41,8 @@ export default async function Post({ params }: Props) {
   // SEO Metadata
   const articleUrl = `https://protalha.com/articles-and-insights/${post.slug}`;
   const imageUrl = post.metadata.image || "/images/default-image.jpg"; // Default image if no image exists
-  const categories = post.metadata.categories.join(", ");
-  const tags = post.metadata.tags.join(", ");
+  const categories = post.metadata.categories?.join(", ") || "";
+  const tags = post.metadata.tags?.join(", ") || "";
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

@@ -4,6 +4,7 @@ import About from "@/components/sections/about";
 // import Experience from "@/components/sections/experience";
 import Projects from "@/components/sections/projects";
 import Skills from "@/components/sections/skills";
+import Blog from "@/components/sections/blog";
 import Contact from "@/components/sections/contact";
 import Header from "@/components/sections/header";
 import ScrollToTop from "@/components/scroll-to-top";
@@ -34,6 +35,7 @@ export default function Home() {
       <Skills />
       {/* <Experience /> */}
       <Projects />
+      <Blog />
       <Contact />
       <ScrollToTop />
     </main>

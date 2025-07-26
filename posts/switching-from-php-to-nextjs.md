@@ -1,12 +1,12 @@
 ---
-title: "🚀 Switching from PHP to Next.js: My Journey 🚀"
+title: "Switching from PHP to Next.js: My Journey"
 description: "A detailed look at my experience transitioning a legacy PHP application to Next.js, including the challenges, benefits, and outcomes of this modern migration."
 date: "2025-01-27"
 image: "/images/php-to-next.png"
 tags: ["NextJS", "PHP", "JavaScript", "TypeScript", "React", "WebDevelopment", "TechMigration", "SEO", "DeveloperExperience", "FrontendDevelopment"]
 ---
 
-# 🚀 Switching from PHP to Next.js: My Journey 🚀
+#Switching from PHP to Next.js: My Journey
 
 I recently transitioned a legacy PHP app to Next.js, and it's been a game-changer! 🌟
 

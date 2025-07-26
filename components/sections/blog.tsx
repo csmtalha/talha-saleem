@@ -1,38 +1,41 @@
-import { getAllPosts } from "@/lib/posts";
-import Link from "next/link";
-import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
+import { getAllPosts } from "@/lib/posts";
 
-export const metadata = {
-  title: "Articles & Insights - Talha Saleem",
-  description: "Articles, tutorials, and thoughts from Talha.",
-};
+export default function Blog() {
+  const posts = getAllPosts().slice(0, 3); // Show only latest 3 posts
 
-export default function BlogPage() {
-  const posts = getAllPosts();
+  if (posts.length === 0) {
+    return null; // Don't show section if no posts
+  }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
+    <section
+      id="blog"
+      className="section-container bg-gradient-to-b from-muted/20 to-background relative overflow-hidden"
+    >
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse-glow"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse-glow delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse-glow delay-2000"></div>
+        <div className="absolute top-20 right-20 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse-glow"></div>
+        <div className="absolute bottom-20 left-20 w-72 h-72 bg-purple-500/5 rounded-full blur-3xl animate-pulse-glow delay-1000"></div>
+        <div className="absolute top-1/2 left-1/3 w-96 h-96 bg-blue-500/3 rounded-full blur-3xl animate-pulse-glow delay-2000"></div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6 py-12 md:py-16 lg:py-20">
+      <div className="relative max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text-animated">
-            Articles & Insights ✍️
-          </h1>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 gradient-text">
+            Latest Articles & Insights
+          </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Sharing my thoughts, experiences, and insights on web development,
             technology trends, and the journey of building modern applications.
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12">
           {posts.map((post) => (
             <div key={post.slug}>
               <Link href={`/articles-and-insights/${post.slug}`}>
@@ -56,7 +59,7 @@ export default function BlogPage() {
                       {post.metadata.tags && (
                         <div className="flex flex-wrap gap-2 mb-4">
                           {post.metadata.tags
-                            .slice(0, 3)
+                            .slice(0, 2)
                             .map((tag: string, index: number) => (
                               <Badge
                                 key={index}
@@ -66,32 +69,32 @@ export default function BlogPage() {
                                 {tag}
                               </Badge>
                             ))}
-                          {post.metadata.tags.length > 3 && (
+                          {post.metadata.tags.length > 2 && (
                             <Badge variant="outline" className="text-xs">
-                              +{post.metadata.tags.length - 3} more
+                              +{post.metadata.tags.length - 2} more
                             </Badge>
                           )}
                         </div>
                       )}
 
                       {/* Title */}
-                      <h2 className="text-xl md:text-2xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
+                      <h3 className="text-lg md:text-xl font-bold mb-3 group-hover:text-primary transition-colors duration-300">
                         {post.metadata.title}
-                      </h2>
+                      </h3>
 
                       {/* Description */}
-                      <p className="text-muted-foreground mb-4 leading-relaxed">
+                      <p className="text-muted-foreground mb-4 leading-relaxed text-sm">
                         {post.metadata.description}
                       </p>
 
                       {/* Date */}
                       <div className="flex items-center justify-between">
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-xs text-muted-foreground">
                           {new Date(post.metadata.date).toLocaleDateString(
                             "en-US",
                             {
                               year: "numeric",
-                              month: "long",
+                              month: "short",
                               day: "numeric",
                             }
                           )}
@@ -99,8 +102,8 @@ export default function BlogPage() {
                         <div className="text-primary group-hover:translate-x-1 transition-transform duration-300">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            width="20"
-                            height="20"
+                            width="16"
+                            height="16"
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
@@ -121,16 +124,34 @@ export default function BlogPage() {
           ))}
         </div>
 
-        {posts.length === 0 && (
-          <div className="text-center py-16">
-            <div className="text-6xl mb-4">📝</div>
-            <h3 className="text-2xl font-semibold mb-2">No articles yet</h3>
-            <p className="text-muted-foreground">
-              I'm working on some great content. Check back soon!
-            </p>
-          </div>
-        )}
+        <div className="text-center">
+          <Button
+            variant="outline"
+            size="lg"
+            className="glass-effect hover:scale-105 transition-transform duration-300"
+            asChild
+          >
+            <Link href="/articles-and-insights">
+              View All Articles
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="ml-2"
+              >
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </Link>
+          </Button>
+        </div>
       </div>
-    </main>
+    </section>
   );
 }
