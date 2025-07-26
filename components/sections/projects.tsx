@@ -234,59 +234,99 @@ export default function Projects() {
           onOpenChange={() => setSelectedProject(null)}
         >
           {selectedProject && (
-            <>
-              <div
-                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
-                onClick={() => setSelectedProject(null)}
-              />
-              <DialogContent className="fixed inset-4 sm:inset-auto sm:max-w-[90vw] md:max-w-3xl sm:max-h-[90vh] md:max-h-[85vh] overflow-y-auto bg-background border rounded-lg shadow-xl z-50">
-                <DialogHeader className="sticky top-0 bg-background z-10 pb-4 border-b">
-                  <DialogTitle className="text-lg sm:text-xl md:text-2xl font-bold pr-8">
+            <DialogContent className="fixed inset-2 sm:inset-auto sm:max-w-[95vw] md:max-w-4xl lg:max-w-5xl sm:max-h-[95vh] overflow-hidden bg-background border-0 rounded-2xl shadow-2xl z-50 p-0">
+              {/* Header with gradient background */}
+              <div className="relative h-48 sm:h-64 overflow-hidden rounded-t-2xl">
+                <Image
+                  src={selectedProject.image || "/placeholder.svg"}
+                  alt={selectedProject.title}
+                  fill
+                  className="object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+
+                {/* Close button */}
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute top-4 right-4 bg-black/20 hover:bg-black/40 text-white backdrop-blur-sm border border-white/20"
+                  onClick={() => setSelectedProject(null)}
+                >
+                  <X className="h-5 w-5" />
+                  <span className="sr-only">Close</span>
+                </Button>
+
+                {/* Project title overlay */}
+                <div className="absolute bottom-6 left-6 right-6">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
                     {selectedProject.title}
-                  </DialogTitle>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="absolute right-2 top-2 sm:right-4 sm:top-4 hover:bg-muted"
-                    onClick={() => setSelectedProject(null)}
-                  >
-                    <X className="h-4 w-4" />
-                    <span className="sr-only">Close</span>
-                  </Button>
-                </DialogHeader>
+                  </h2>
+                  <p className="text-white/90 text-sm sm:text-base max-w-2xl">
+                    {selectedProject.description}
+                  </p>
+                </div>
+              </div>
 
-                <div className="space-y-4 p-4 sm:p-6">
-                  <div className="relative aspect-video w-full overflow-hidden rounded-md">
-                    <Image
-                      src={selectedProject.image || "/placeholder.svg"}
-                      alt={selectedProject.title}
-                      width={800}
-                      height={450}
-                      className="object-cover w-full h-full"
-                      priority
-                    />
-                  </div>
-
-                  <div className="space-y-4">
-                    <DialogDescription className="text-sm sm:text-base text-foreground leading-relaxed">
-                      {selectedProject.details}
-                    </DialogDescription>
-
-                    <div className="flex flex-wrap gap-2">
-                      {selectedProject.tags.map((tag, i) => (
-                        <Badge
-                          key={i}
-                          variant="secondary"
-                          className="px-2 py-1 text-xs sm:text-sm bg-primary/10 text-primary border-primary/20"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
+              {/* Content area */}
+              <div className="p-6 sm:p-8 space-y-6 max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-muted scrollbar-track-transparent">
+                {/* Tech stack section */}
+                <div className="space-y-3">
+                  <h3 className="text-lg font-semibold gradient-text">
+                    Tech Stack
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProject.tags.map((tag, i) => (
+                      <Badge
+                        key={i}
+                        variant="secondary"
+                        className="px-3 py-1.5 text-sm bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors"
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
                   </div>
                 </div>
-              </DialogContent>
-            </>
+
+                {/* Project details */}
+                <div className="space-y-3">
+                  <h3 className="text-lg font-semibold gradient-text">
+                    Project Overview
+                  </h3>
+                  <div className="prose prose-sm sm:prose-base max-w-none">
+                    <p className="text-muted-foreground leading-relaxed">
+                      {selectedProject.details}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Action buttons */}
+                {/* <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
+                  <Button variant="outline" className="flex-1 group" asChild>
+                    <a
+                      href={selectedProject.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <Github className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                      View Code
+                    </a>
+                  </Button>
+                  <Button className="flex-1 group" asChild>
+                    <a
+                      href={selectedProject.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2"
+                    >
+                      <ExternalLink className="h-4 w-4 group-hover:scale-110 transition-transform" />
+                      Live Demo
+                    </a>
+                  </Button>
+                </div> */}
+              </div>
+            </DialogContent>
           )}
         </Dialog>
       </motion.div>
