@@ -15,11 +15,21 @@ import {
 } from "@/components/ui/dialog";
 import { ExternalLink, Github, X } from "lucide-react";
 
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  details: string;
+  github: string;
+  demo: string;
+}
+
 export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const controls = useAnimation();
-  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   useEffect(() => {
     if (isInView) {
@@ -50,19 +60,21 @@ export default function Projects() {
 
   const projects = [
     {
-      title: "Mortgage Buddy",
+      title: "Mortgage Chatbot Platform",
       description:
-        "AI-powered mortgage application with admin dashboard, user management, and chat model integration.",
+        "Full-featured mortgage chatbot web application with multi-tenant architecture and enterprise SaaS solution.",
       image: "/images/projects/mortgageapp.png",
       tags: [
         "Next.js",
-        "TailwindCSS",
-        "shadcn/ui",
-        "AI Integration",
-        "User Management",
+        "Tailwind CSS",
+        "ShadCN UI",
+        "PostgreSQL",
+        "Prisma",
+        "REST APIs",
+        "Vercel",
       ],
       details:
-        "Developed an AI-powered mortgage application similar to ChatGPT with comprehensive admin dashboard, user management, and chat model integration. Built with Next.js, TailwindCSS, and shadcn/ui for a modern and responsive user interface. Implemented secure authentication and role-based access control. Integrated AI models for intelligent mortgage recommendations and assistance. Created an intuitive admin panel for managing users, monitoring conversations, and analyzing application data.",
+        "Built a full-featured mortgage chatbot web application from scratch with multi-tenant architecture and domain-level separation. Designed and implemented admin dashboard for managing users, investors, and chatbot settings with secure role-based access control for admins, investors, and end users. Connected with third-party chatbot APIs and developed custom REST APIs. Used ShadCN UI for consistent and scalable UI design. Managed investor onboarding, profile management, and chat engagement tracking. Deployed on Vercel with environment-specific configurations and CI/CD. Delivered as an enterprise SaaS solution, built for scalability and maintainability.",
       github: "https://github.com/csmtalha",
       demo: "#",
     },
@@ -136,85 +148,83 @@ export default function Projects() {
   ];
 
   return (
-    <section id="projects" className="w-full bg-background">
+    <section
+      id="projects"
+      className="w-full bg-gradient-to-b from-background to-muted/20 relative overflow-hidden"
+    >
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-dots-pattern opacity-[0.02]"></div>
+      <div className="absolute top-20 right-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 left-20 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"></div>
+
       <motion.div
         ref={ref}
-        className="section-container"
+        className="section-container relative z-10"
         variants={containerVariants}
         animate={controls}
       >
-        <motion.div variants={itemVariants} className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <motion.div
+          variants={itemVariants}
+          className="mb-12 md:mb-16 text-center"
+        >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 gradient-text">
             Featured Projects
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A selection of my recent work across various industries and
-            technologies.
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6"></div>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            A showcase of innovative solutions and creative implementations
+            across various industries and technologies.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {projects.map((project, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <Card className="h-full flex flex-col overflow-hidden group hover:shadow-lg transition-shadow duration-300 border-2 border-muted">
-                <div className="relative h-48 overflow-hidden">
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              whileHover={{ y: -5 }}
+              className="group"
+            >
+              <Card className="h-full flex flex-col overflow-hidden card-hover glass-effect border-0 shadow-lg">
+                <div className="relative h-48 sm:h-52 lg:h-48 overflow-hidden">
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
                     width={800}
                     height={600}
-                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                    <Button
+                      variant="secondary"
+                      size="sm"
+                      className="w-full"
+                      onClick={() => setSelectedProject(project)}
+                    >
+                      View Details
+                    </Button>
+                  </div>
                 </div>
                 <CardContent className="flex-grow p-6">
-                  <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                  <p className="text-muted-foreground mb-4">
+                  <h3 className="text-xl font-bold mb-3 text-glow">
+                    {project.title}
+                  </h3>
+                  <p className="text-muted-foreground mb-4 leading-relaxed">
                     {project.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, i) => (
                       <Badge
                         key={i}
-                        variant="outline"
-                        className="px-2 py-1 text-xs"
+                        variant="secondary"
+                        className="px-2 py-1 text-xs bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors"
                       >
                         {tag}
                       </Badge>
                     ))}
                   </div>
                 </CardContent>
-                <CardFooter className="p-6 pt-0 flex justify-between">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => setSelectedProject(project)}
-                  >
-                    View Details
-                  </Button>
-                  {/* <div className="flex gap-2">
-                    <Button variant="ghost" size="icon" asChild>
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <Github className="h-4 w-4" />
-                        <span className="sr-only">GitHub</span>
-                      </a>
-                    </Button>
-                    <Button variant="ghost" size="icon" asChild>
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="h-4 w-4" />
-                        <span className="sr-only">Live Demo</span>
-                      </a>
-                    </Button>
-                  </div> */}
-                </CardFooter>
               </Card>
             </motion.div>
           ))}
@@ -224,48 +234,59 @@ export default function Projects() {
           onOpenChange={() => setSelectedProject(null)}
         >
           {selectedProject && (
-            <DialogContent className="max-w-[95vw] sm:max-w-[90vw] md:max-w-3xl max-h-[90vh] overflow-y-auto">
-              <DialogHeader>
-                <DialogTitle className="text-xl sm:text-2xl font-bold">
-                  {selectedProject.title}
-                </DialogTitle>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="absolute right-4 top-4"
-                  onClick={() => setSelectedProject(null)}
-                >
-                  <X className="h-4 w-4" />
-                  <span className="sr-only">Close</span>
-                </Button>
-              </DialogHeader>
-              <div className="relative aspect-video w-full overflow-hidden rounded-md">
-                <Image
-                  src={selectedProject.image || "/placeholder.svg"}
-                  alt={selectedProject.title}
-                  width={800}
-                  height={450}
-                  className="object-cover w-full h-full"
-                  priority
-                />
-              </div>
-              <div className="space-y-4">
-                <DialogDescription className="text-sm sm:text-base text-foreground">
-                  {selectedProject.details}
-                </DialogDescription>
-                <div className="flex flex-wrap gap-2">
-                  {selectedProject.tags.map((tag, i) => (
-                    <Badge
-                      key={i}
-                      variant="secondary"
-                      className="px-2 py-1 text-xs sm:text-sm"
-                    >
-                      {tag}
-                    </Badge>
-                  ))}
+            <>
+              <div
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50"
+                onClick={() => setSelectedProject(null)}
+              />
+              <DialogContent className="fixed inset-4 sm:inset-auto sm:max-w-[90vw] md:max-w-3xl sm:max-h-[90vh] md:max-h-[85vh] overflow-y-auto bg-background border rounded-lg shadow-xl z-50">
+                <DialogHeader className="sticky top-0 bg-background z-10 pb-4 border-b">
+                  <DialogTitle className="text-lg sm:text-xl md:text-2xl font-bold pr-8">
+                    {selectedProject.title}
+                  </DialogTitle>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="absolute right-2 top-2 sm:right-4 sm:top-4 hover:bg-muted"
+                    onClick={() => setSelectedProject(null)}
+                  >
+                    <X className="h-4 w-4" />
+                    <span className="sr-only">Close</span>
+                  </Button>
+                </DialogHeader>
+
+                <div className="space-y-4 p-4 sm:p-6">
+                  <div className="relative aspect-video w-full overflow-hidden rounded-md">
+                    <Image
+                      src={selectedProject.image || "/placeholder.svg"}
+                      alt={selectedProject.title}
+                      width={800}
+                      height={450}
+                      className="object-cover w-full h-full"
+                      priority
+                    />
+                  </div>
+
+                  <div className="space-y-4">
+                    <DialogDescription className="text-sm sm:text-base text-foreground leading-relaxed">
+                      {selectedProject.details}
+                    </DialogDescription>
+
+                    <div className="flex flex-wrap gap-2">
+                      {selectedProject.tags.map((tag, i) => (
+                        <Badge
+                          key={i}
+                          variant="secondary"
+                          className="px-2 py-1 text-xs sm:text-sm bg-primary/10 text-primary border-primary/20"
+                        >
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </DialogContent>
+              </DialogContent>
+            </>
           )}
         </Dialog>
       </motion.div>

@@ -112,19 +112,33 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="w-full bg-background">
+    <section
+      id="contact"
+      className="w-full bg-gradient-to-b from-muted/20 to-background relative overflow-hidden"
+    >
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-dots-pattern opacity-[0.02]"></div>
+      <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"></div>
+
       <motion.div
         ref={ref}
-        className="section-container"
+        className="section-container relative z-10"
         variants={containerVariants}
         animate={controls}
       >
-        <motion.div variants={itemVariants} className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
-          <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <motion.div
+          variants={itemVariants}
+          className="mb-12 md:mb-16 text-center"
+        >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 gradient-text">
+            Get In Touch
+          </h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6"></div>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Have a project in mind or want to discuss potential opportunities?
-            Feel free to reach out!
+            Feel free to reach out! I'm always excited to hear about new
+            challenges.
           </p>
         </motion.div>
 
@@ -238,17 +252,19 @@ export default function Contact() {
             </Card>
           </motion.div> */}
 
-          <motion.div variants={itemVariants}>
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-6">Send Me a Message</h3>
+          <motion.div variants={itemVariants} whileHover={{ y: -5 }}>
+            <Card className="card-hover glass-effect border-0 shadow-lg">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-bold mb-8 gradient-text">
+                  Send Me a Message
+                </h3>
 
                 <Form {...form}>
                   <form
                     onSubmit={form.handleSubmit(onSubmit)}
                     className="space-y-6"
                   >
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                       <FormField
                         control={form.control}
                         name="name"
@@ -315,7 +331,8 @@ export default function Contact() {
 
                     <Button
                       type="submit"
-                      className="w-full"
+                      variant="outline"
+                      className="w-full glass-effect hover:scale-105 transition-transform duration-300"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? "Sending..." : "Send Message"}

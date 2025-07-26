@@ -43,48 +43,74 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="w-full min-h-screen mt-10 flex items-center justify-center bg-gradient-to-b from-background to-muted/30 relative overflow-hidden"
+      className="w-full min-h-screen  flex items-center justify-center bg-gradient-to-br from-background via-background to-primary/5 relative overflow-hidden"
     >
+      {/* Animated background elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] dark:opacity-[0.05]"></div>
+        <div className="absolute top-20 left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse-glow"></div>
+        <div
+          className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse-glow"
+          style={{ animationDelay: "1s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse-glow"
+          style={{ animationDelay: "2s" }}
+        ></div>
       </div>
 
       <motion.div
         ref={ref}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 z-10 flex flex-col md:flex-row items-center justify-between gap-12"
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 lg:py-16 z-10 flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16"
         variants={containerVariants}
         animate={controls}
       >
         <div className="flex-1 space-y-8">
           <motion.div variants={itemVariants}>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-              <span className="gradient-text">Talha Saleem</span>
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold tracking-tight">
+              <span className="gradient-text-animated">Talha Saleem</span>
             </h1>
-            <h2 className="text-3xl md:text-5xl font-bold mt-2">
-              Software Developer
+            <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mt-2 text-glow">
+              Senior Software Engineer
             </h2>
+            <div className="flex items-center gap-2 mt-4">
+              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+              <span className="text-sm text-muted-foreground">
+                Available for opportunities
+              </span>
+            </div>
           </motion.div>
 
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-muted-foreground max-w-2xl"
+            className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
           >
-            Bringing Ideas to Life Through Thoughtful Web Design and
-            Development.{" "}
+            Highly driven Senior Frontend Developer with over 3 years of
+            hands-on experience specializing in React.js, Next.js, and Tailwind
+            CSS. Proven expertise in building high-performance user interfaces
+            and deploying scalable applications.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
-            <Button size="lg" variant="outline" asChild>
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row gap-4"
+          >
+            <Button
+              size="lg"
+              variant="outline"
+              className="glass-effect hover:scale-105 transition-transform duration-300"
+              asChild
+            >
               <Link href="#projects">
                 View My Work <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            {/* <Button size="lg" variant="outline" asChild>
-              <a href="/files/talha-saleem.pdf" download>
-                Download CV <Download className="ml-2 h-4 w-4" />
-              </a>
-            </Button> */}
-            <Button size="lg" asChild>
+            <Button
+              size="lg"
+              variant="outline"
+              className="hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+              asChild
+            >
               <Link href="#contact">
                 Contact Me <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -117,10 +143,10 @@ export default function Hero() {
 
         <motion.div
           variants={itemVariants}
-          className="relative w-full max-w-md aspect-square"
+          className="relative w-full max-w-sm md:max-w-md aspect-square"
         >
-          <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 to-primary/10 blur-3xl"></div>
-          <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/20 shadow-xl">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 via-purple-500/20 to-blue-500/20 blur-3xl animate-pulse-glow"></div>
+          <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/30 shadow-2xl animate-float">
             <Image
               src={profilePic}
               alt="Talha Saleem"
@@ -129,7 +155,21 @@ export default function Hero() {
               className="object-cover"
               priority
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
           </div>
+          {/* Floating elements around the image */}
+          <div
+            className="absolute -top-4 -right-4 w-8 h-8 bg-primary/20 rounded-full animate-float"
+            style={{ animationDelay: "0.5s" }}
+          ></div>
+          <div
+            className="absolute -bottom-4 -left-4 w-6 h-6 bg-purple-500/20 rounded-full animate-float"
+            style={{ animationDelay: "1s" }}
+          ></div>
+          <div
+            className="absolute top-1/2 -right-8 w-4 h-4 bg-blue-500/20 rounded-full animate-float"
+            style={{ animationDelay: "1.5s" }}
+          ></div>
         </motion.div>
       </motion.div>
     </section>

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Hero from "@/components/sections/hero";
 import About from "@/components/sections/about";
-import Experience from "@/components/sections/experience";
+// import Experience from "@/components/sections/experience";
 import Projects from "@/components/sections/projects";
 import Skills from "@/components/sections/skills";
 import Contact from "@/components/sections/contact";
-import Footer from "@/components/sections/footer";
 import Header from "@/components/sections/header";
+import ScrollToTop from "@/components/scroll-to-top";
 
 export const metadata: Metadata = {
   title: "Talha Saleem | Full-Stack Developer",
@@ -32,9 +32,10 @@ export default function Home() {
       <Hero />
       <About />
       <Skills />
-      <Experience />
+      {/* <Experience /> */}
       <Projects />
       <Contact />
+      <ScrollToTop />
     </main>
   );
 }

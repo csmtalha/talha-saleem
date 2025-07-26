@@ -38,116 +38,177 @@ export default function Skills() {
   };
 
   const frontendSkills = [
-    { name: "React.js", level: 85 },
-    { name: "Next.js", level: 85 },
-    { name: "TailwindCSS", level: 80 },
-    { name: "TypeScript", level: 75 },
-    { name: "Responsive Design", level: 90 },
-    { name: "UI/UX Design", level: 85 },
-    { name: "Performance Optimization", level: 80 },
+    { name: "React.js", level: 90 },
+    { name: "Next.js", level: 90 },
+    { name: "TypeScript", level: 85 },
+    { name: "Tailwind CSS", level: 90 },
+    { name: "HTML/CSS", level: 95 },
+    { name: "JavaScript", level: 90 },
   ];
 
   const backendSkills = [
-    { name: "Node.js", level: 65 },
-    { name: "Nest.js", level: 55 },
-    { name: "Python/Django", level: 50 },
-    { name: "PostgreSQL", level: 60 },
     { name: "MongoDB", level: 60 },
-    { name: "Docker", level: 55 },
-    { name: "CI/CD", level: 60 },
+    { name: "Node.js", level: 70 },
+    { name: "NestJS", level: 70 },
+    { name: "Python", level: 60 },
+    { name: "Express", level: 60 },
+    { name: "PostgreSQL", level: 50 },
+    { name: "REST APIs", level: 70 },
+    { name: "Prisma", level: 70 },
   ];
 
   const otherSkills = [
-    { name: "Git/GitHub", level: 85 },
+    { name: "Git/GitHub", level: 90 },
+    { name: "Vercel", level: 85 },
     { name: "WordPress", level: 80 },
-    { name: "Shopify", level: 70 },
-    { name: "SEO", level: 70 },
+    { name: "Shopify", level: 75 },
+    { name: "Figma", level: 70 },
+    { name: "Jira", level: 75 },
   ];
 
   return (
-    <section id="skills" className="w-full bg-muted/30">
+    <section
+      id="skills"
+      className="w-full bg-gradient-to-b from-muted/30 to-background relative overflow-hidden"
+    >
+      {/* Background decoration */}
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
+      <div className="absolute top-1/4 left-10 w-32 h-32 bg-primary/10 rounded-full blur-2xl"></div>
+      <div className="absolute bottom-1/4 right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-2xl"></div>
+
       <motion.div
         ref={ref}
-        className="section-container"
+        className="section-container relative z-10"
         variants={containerVariants}
-        // initial="hidden"
         animate={controls}
       >
-        <motion.div variants={itemVariants} className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        <motion.div
+          variants={itemVariants}
+          className="mb-12 md:mb-16 text-center"
+        >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 gradient-text">
             Technical Skills
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto mb-6"></div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6"></div>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             My expertise spans across various technologies and frameworks in web
-            development.
+            development, with a focus on creating scalable and performant
+            solutions.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <motion.div variants={itemVariants}>
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-6 text-center">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+          <motion.div variants={itemVariants} whileHover={{ y: -5 }}>
+            <Card className="card-hover glass-effect border-0 shadow-lg">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-bold mb-8 text-center gradient-text">
                   Frontend Development
                 </h3>
                 <div className="space-y-6">
                   {frontendSkills.map((skill, index) => (
-                    <div key={index}>
-                      <div className="flex justify-between mb-2">
-                        <span className="font-medium">{skill.name}</span>
-                        <span className="text-muted-foreground">
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <div className="flex justify-between mb-3">
+                        <span className="font-medium text-glow">
+                          {skill.name}
+                        </span>
+                        <span className="text-muted-foreground font-semibold">
                           {skill.level}%
                         </span>
                       </div>
-                      <Progress value={skill.level} className="h-2" />
-                    </div>
+                      <Progress
+                        value={skill.level}
+                        className="h-3 bg-muted/50"
+                        style={
+                          {
+                            "--progress-background":
+                              "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%)",
+                          } as React.CSSProperties
+                        }
+                      />
+                    </motion.div>
                   ))}
                 </div>
               </CardContent>
             </Card>
           </motion.div>
 
-          <motion.div variants={itemVariants}>
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-6 text-center">
+          <motion.div variants={itemVariants} whileHover={{ y: -5 }}>
+            <Card className="card-hover glass-effect border-0 shadow-lg">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-bold mb-8 text-center gradient-text">
                   Backend Development
                 </h3>
                 <div className="space-y-6">
                   {backendSkills.map((skill, index) => (
-                    <div key={index}>
-                      <div className="flex justify-between mb-2">
-                        <span className="font-medium">{skill.name}</span>
-                        <span className="text-muted-foreground">
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <div className="flex justify-between mb-3">
+                        <span className="font-medium text-glow">
+                          {skill.name}
+                        </span>
+                        <span className="text-muted-foreground font-semibold">
                           {skill.level}%
                         </span>
                       </div>
-                      <Progress value={skill.level} className="h-2" />
-                    </div>
+                      <Progress
+                        value={skill.level}
+                        className="h-3 bg-muted/50"
+                        style={
+                          {
+                            "--progress-background":
+                              "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%)",
+                          } as React.CSSProperties
+                        }
+                      />
+                    </motion.div>
                   ))}
                 </div>
               </CardContent>
             </Card>
           </motion.div>
 
-          <motion.div variants={itemVariants}>
-            <Card>
-              <CardContent className="p-6">
-                <h3 className="text-xl font-bold mb-6 text-center">
+          <motion.div variants={itemVariants} whileHover={{ y: -5 }}>
+            <Card className="card-hover glass-effect border-0 shadow-lg">
+              <CardContent className="p-8">
+                <h3 className="text-xl font-bold mb-8 text-center gradient-text">
                   Other Skills
                 </h3>
                 <div className="space-y-6">
                   {otherSkills.map((skill, index) => (
-                    <div key={index}>
-                      <div className="flex justify-between mb-2">
-                        <span className="font-medium">{skill.name}</span>
-                        <span className="text-muted-foreground">
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <div className="flex justify-between mb-3">
+                        <span className="font-medium text-glow">
+                          {skill.name}
+                        </span>
+                        <span className="text-muted-foreground font-semibold">
                           {skill.level}%
                         </span>
                       </div>
-                      <Progress value={skill.level} className="h-2" />
-                    </div>
+                      <Progress
+                        value={skill.level}
+                        className="h-3 bg-muted/50"
+                        style={
+                          {
+                            "--progress-background":
+                              "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%)",
+                          } as React.CSSProperties
+                        }
+                      />
+                    </motion.div>
                   ))}
                 </div>
               </CardContent>
