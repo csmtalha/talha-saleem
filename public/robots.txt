@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.protalha.com/
+Host: https://www.talha-saleem.vercel.app/
 
 # Sitemaps
-Sitemap: https://www.protalha.com/sitemap.xml
+Sitemap: https://www.talha-saleem.vercel.app/sitemap.xml
