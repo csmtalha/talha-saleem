@@ -6,7 +6,7 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Github, Linkedin } from "lucide-react";
 import Link from "next/link";
-import profilePic from "@/public/images/profilepic.jpeg";
+import profilePic from "@/public/images/profilepic_1.1.jpeg";
 
 export default function Hero() {
   const ref = useRef(null);
@@ -85,10 +85,7 @@ export default function Hero() {
             variants={itemVariants}
             className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl leading-relaxed"
           >
-            Highly driven Senior Frontend Developer with over 3 years of
-            hands-on experience specializing in React.js, Next.js, and Tailwind
-            CSS. Proven expertise in building high-performance user interfaces
-            and deploying scalable applications.
+           Next.js SaaS Frontend Developer helping startups and businesses build modern websites, dashboards, and landing pages with clean UI and fast performance.
           </motion.p>
 
           <motion.div
