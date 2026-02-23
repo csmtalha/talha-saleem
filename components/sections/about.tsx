@@ -75,7 +75,7 @@ export default function About() {
               <span className="font-semibold gradient-text">
                 highly driven Senior Frontend Developer
               </span>{" "}
-              with over 3 years of hands-on experience specializing in React.js,
+              with over extensive years of hands-on experience specializing in React.js,
               Next.js, and Tailwind CSS.
             </motion.p>
             <motion.p
@@ -145,7 +145,7 @@ export default function About() {
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "Over 3 years of hands-on development experience",
+                    "Over extensive years of hands-on development experience",
                     "Proven expertise in building high-performance user interfaces",
                     "Bachelor's in Computer Science from University of Lahore",
                     "Employee of the Year (2024) at CloudPacer",
