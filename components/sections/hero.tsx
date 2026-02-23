@@ -6,7 +6,7 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download, Github, Linkedin } from "lucide-react";
 import Link from "next/link";
-import profilePic from "@/public/images/profilepic_1.1.jpeg";
+import profilePic from "@/public/images/profilepic_1.1.png";
 
 export default function Hero() {
   const ref = useRef(null);
