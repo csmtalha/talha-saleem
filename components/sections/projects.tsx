@@ -364,9 +364,12 @@ export default function Projects() {
                   <Image
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
-                    width={800}
-                    height={600}
+                    width={480}
+                    height={288}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 400px"
                     className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                    quality={82}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute bottom-4 left-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">

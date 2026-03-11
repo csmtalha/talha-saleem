@@ -85,8 +85,7 @@ export function ProjectDetailModal({
                 alt={project.title}
                 fill
                 className="object-cover"
-                sizes="(max-width: 640px) 100vw, 800px"
-                priority
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 896px"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
 

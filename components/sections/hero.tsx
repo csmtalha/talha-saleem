@@ -140,10 +140,12 @@ export default function Hero() {
             <Image
               src={profilePic}
               alt="Talha Saleem - Senior Software Engineer"
-              width={600}
-              height={600}
+              width={400}
+              height={400}
+              sizes="(max-width: 768px) 384px, 448px"
               className="object-cover w-full h-full"
               priority
+              quality={85}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
           </div>
