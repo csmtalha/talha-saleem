@@ -11,8 +11,9 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-center items-center">
           <div className="mb-4 md:mb-0">
             <p className="text-sm text-muted-foreground text-center">
-              &copy; {new Date().getFullYear()} Talha Saleem. All rights
-              reserved. | Crafted with ❤️ and Next.js
+              Talha Saleem | Senior Software Engineer | React & Next.js
+              <span className="hidden sm:inline"> • </span>
+              <span className="block sm:inline mt-1 sm:mt-0">&copy; {new Date().getFullYear()} All rights reserved. Crafted with 💻 and Next.js</span>
             </p>
           </div>
 

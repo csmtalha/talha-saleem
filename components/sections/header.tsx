@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
-import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
 
@@ -70,8 +69,8 @@ const Header = () => {
         scrolled ? "glass-effect border-b shadow-lg" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-        <div className="flex items-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center relative">
+        <div className="flex items-center min-w-[100px]">
           <h1
             className="text-xl font-bold gradient-text cursor-pointer hover:scale-105 transition-transform duration-200"
             onClick={handleLogoClick}
@@ -80,9 +79,9 @@ const Header = () => {
           </h1>
         </div>
 
-        {/* Desktop Menu */}
-        <nav className="hidden lg:flex items-center gap-6">
-          {["about", "skills", "projects", "contact"].map((section) => (
+        {/* Desktop Menu - centered */}
+        <nav className="hidden lg:flex items-center justify-center gap-6 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          {["case-studies", "services", "projects", "about", "availability", "contact"].map((section) => (
             <Button
               key={section}
               variant="ghost"
@@ -94,7 +93,7 @@ const Header = () => {
                   : ""
               }`}
             >
-              {section.charAt(0).toUpperCase() + section.slice(1)}
+              {section === "case-studies" ? "Case Studies" : section === "availability" ? "Hire" : section.charAt(0).toUpperCase() + section.slice(1)}
             </Button>
           ))}
           <Button
@@ -112,6 +111,8 @@ const Header = () => {
           <ModeToggle />
         </nav>
 
+        {/* Right: spacer for balance on desktop, mobile menu on small screens */}
+        <div className="flex items-center gap-2 min-w-[100px] justify-end">
         {/* Mobile Menu Button */}
         <div className="lg:hidden flex items-center gap-2">
           <ModeToggle />
@@ -128,13 +129,15 @@ const Header = () => {
             )}
           </Button>
         </div>
+        <div className="hidden lg:block w-[100px]" aria-hidden />
+        </div>
       </div>
 
       {/* Mobile Nav */}
       {mobileMenuOpen && (
         <div className="lg:hidden glass-effect border-t border-border shadow-lg">
-          <div className="flex flex-col px-4 py-4 space-y-3">
-            {["about", "skills", "projects", "contact"].map((section) => (
+          <div className="flex flex-col items-center px-4 py-4 space-y-3">
+            {["case-studies", "services", "projects", "about", "availability", "contact"].map((section) => (
               <Button
                 key={section}
                 variant="ghost"
@@ -146,7 +149,7 @@ const Header = () => {
                     : ""
                 }`}
               >
-                {section.charAt(0).toUpperCase() + section.slice(1)}
+                {section === "case-studies" ? "Case Studies" : section === "availability" ? "Hire" : section.charAt(0).toUpperCase() + section.slice(1)}
               </Button>
             ))}
             <Button

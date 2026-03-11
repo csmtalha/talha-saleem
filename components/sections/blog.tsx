@@ -27,11 +27,12 @@ export default function Blog() {
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 gradient-text">
-            Latest Articles & Insights
+            Articles & Insights
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Sharing my thoughts, experiences, and insights on web development,
-            technology trends, and the journey of building modern applications.
+            Next.js performance, migrating legacy apps to modern stacks, and
+            lessons from upgrades like Vue 2 to Vue 3 and more from building
+            production applications.
           </p>
         </div>
 

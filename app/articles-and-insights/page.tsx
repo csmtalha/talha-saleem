@@ -27,7 +27,7 @@ export default function BlogPage() {
             Articles & Insights ✍️
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Sharing my thoughts, experiences, and insights on web development,
+            Talha&apos;s thoughts, experiences, and insights on web development,
             technology trends, and the journey of building modern applications.
           </p>
         </div>
@@ -126,7 +126,7 @@ export default function BlogPage() {
             <div className="text-6xl mb-4">📝</div>
             <h3 className="text-2xl font-semibold mb-2">No articles yet</h3>
             <p className="text-muted-foreground">
-              I'm working on some great content. Check back soon!
+              New content is on the way. Check back soon!
             </p>
           </div>
         )}

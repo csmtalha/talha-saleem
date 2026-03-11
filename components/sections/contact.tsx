@@ -64,7 +64,7 @@ export default function Contact() {
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Have a project in mind or want to discuss potential opportunities?
-            Feel free to reach out! I am always excited to hear about new
+            Feel free to reach out! Talha is always excited to hear about new
             challenges.
           </p>
         </motion.div>
@@ -100,13 +100,14 @@ export default function Contact() {
                     <div>
                       <h4 className="font-medium">Location</h4>
                       <p className="text-muted-foreground">Lahore, Pakistan</p>
+                      <p className="text-xs text-primary mt-1">🕐 Available for remote work (PST overlap)</p>
                     </div>
                   </div>
                 </div>
 
                 <div className="mt-8">
                   <h3 className="text-xl font-bold mb-6 gradient-text">
-                    Follow Me
+                    Connect
                   </h3>
                   <div className="flex gap-4">
                     <Button variant="outline" size="icon" asChild>
@@ -170,9 +171,9 @@ export default function Contact() {
 
                 <div className="space-y-6">
                   <p className="text-muted-foreground leading-relaxed">
-                    I am always excited to hear about new opportunities and
+                    Talha is always excited to hear about new opportunities and
                     interesting projects. Feel free to reach out via email or
-                    connect with me on social media.
+                    connect on social media.
                   </p>
 
                   <div className="space-y-4">

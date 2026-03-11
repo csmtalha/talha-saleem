@@ -3,79 +3,60 @@
 import { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+import { Badge } from "@/components/ui/badge";
+
+const STACK = {
+  Frontend: ["React", "Next.js", "Vue.js", "TypeScript", "Tailwind CSS"],
+  Backend: ["Node.js", "NestJS", "Python", "Django", "PHP"],
+  Data: ["PostgreSQL", "Prisma"],
+  Platforms: ["WordPress", "Shopify", "AWS", "Vercel"],
+  Integrations: ["Stripe", "AI APIs", "WebSockets"],
+};
+
+const SPECIALTIES = [
+  "Multi-tenant applications",
+  "Production-level debugging",
+  "Legacy app migration",
+  "WordPress critical & fatal error debugging",
+];
+
+const INTERESTED_IN = [
+  "Python projects",
+  "AngularJS projects",
+];
 
 export default function Skills() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
   const controls = useAnimation();
 
   useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    }
+    if (isInView) controls.start("visible");
   }, [isInView, controls]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.06, delayChildren: 0.08 },
     },
   };
 
   const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 12, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: {
-        duration: 0.5,
-      },
+      transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
     },
   };
-
-  const frontendSkills = [
-    { name: "React.js", level: 90 },
-    { name: "Next.js", level: 90 },
-    { name: "TypeScript", level: 85 },
-    { name: "Tailwind CSS", level: 90 },
-    { name: "HTML/CSS", level: 95 },
-    { name: "JavaScript", level: 90 },
-  ];
-
-  const backendSkills = [
-    { name: "MongoDB", level: 60 },
-    { name: "Node.js", level: 70 },
-    { name: "NestJS", level: 70 },
-    { name: "Python", level: 60 },
-    { name: "Express", level: 60 },
-    { name: "PostgreSQL", level: 50 },
-    { name: "REST APIs", level: 70 },
-    { name: "Prisma", level: 70 },
-  ];
-
-  const otherSkills = [
-    { name: "Git/GitHub", level: 90 },
-    { name: "Vercel", level: 85 },
-    { name: "WordPress", level: 80 },
-    { name: "Shopify", level: 75 },
-    { name: "Figma", level: 70 },
-    { name: "Jira", level: 75 },
-  ];
 
   return (
     <section
       id="skills"
-      className="w-full bg-gradient-to-b from-muted/30 to-background relative overflow-hidden"
+      className="w-full bg-gradient-to-b from-background to-muted/30 relative overflow-hidden"
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]"></div>
-      <div className="absolute top-1/4 left-10 w-32 h-32 bg-primary/10 rounded-full blur-2xl"></div>
-      <div className="absolute bottom-1/4 right-10 w-40 h-40 bg-purple-500/10 rounded-full blur-2xl"></div>
-
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]" />
       <motion.div
         ref={ref}
         className="section-container relative z-10"
@@ -84,137 +65,87 @@ export default function Skills() {
       >
         <motion.div
           variants={itemVariants}
-          className="mb-12 md:mb-16 text-center"
+          className="text-center mb-12 md:mb-16"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 gradient-text">
-            Technical Skills
+            Skills & Expertise
           </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6"></div>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            My expertise spans across various technologies and frameworks in web
-            development, with a focus on creating scalable and performant
-            solutions.
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6" />
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            Technologies Talha uses, and where he adds the most value.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-          <motion.div variants={itemVariants} whileHover={{ y: -5 }}>
-            <Card className="card-hover glass-effect border-0 shadow-lg">
-              <CardContent className="p-8">
-                <h3 className="text-xl font-bold mb-8 text-center gradient-text">
-                  Frontend Development
-                </h3>
-                <div className="space-y-6">
-                  {frontendSkills.map((skill, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <div className="flex justify-between mb-3">
-                        <span className="font-medium text-glow">
-                          {skill.name}
-                        </span>
-                        <span className="text-muted-foreground font-semibold">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <Progress
-                        value={skill.level}
-                        className="h-3 bg-muted/50"
-                        style={
-                          {
-                            "--progress-background":
-                              "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%)",
-                          } as React.CSSProperties
-                        }
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div variants={itemVariants} whileHover={{ y: -5 }}>
-            <Card className="card-hover glass-effect border-0 shadow-lg">
-              <CardContent className="p-8">
-                <h3 className="text-xl font-bold mb-8 text-center gradient-text">
-                  Backend Development
-                </h3>
-                <div className="space-y-6">
-                  {backendSkills.map((skill, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <div className="flex justify-between mb-3">
-                        <span className="font-medium text-glow">
-                          {skill.name}
-                        </span>
-                        <span className="text-muted-foreground font-semibold">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <Progress
-                        value={skill.level}
-                        className="h-3 bg-muted/50"
-                        style={
-                          {
-                            "--progress-background":
-                              "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%)",
-                          } as React.CSSProperties
-                        }
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div variants={itemVariants} whileHover={{ y: -5 }}>
-            <Card className="card-hover glass-effect border-0 shadow-lg">
-              <CardContent className="p-8">
-                <h3 className="text-xl font-bold mb-8 text-center gradient-text">
-                  Other Skills
-                </h3>
-                <div className="space-y-6">
-                  {otherSkills.map((skill, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <div className="flex justify-between mb-3">
-                        <span className="font-medium text-glow">
-                          {skill.name}
-                        </span>
-                        <span className="text-muted-foreground font-semibold">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <Progress
-                        value={skill.level}
-                        className="h-3 bg-muted/50"
-                        style={
-                          {
-                            "--progress-background":
-                              "linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%)",
-                          } as React.CSSProperties
-                        }
-                      />
-                    </motion.div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 mb-10">
+          {Object.entries(STACK).map(([category, items]) => (
+            <motion.div key={category} variants={itemVariants}>
+              <Card className="h-full border-0 shadow-lg glass-effect overflow-hidden card-hover">
+                <CardContent className="p-6">
+                  <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-4">
+                    {category}
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {items.map((skill) => (
+                      <Badge
+                        key={skill}
+                        variant="secondary"
+                        className="text-xs bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors"
+                      >
+                        {skill}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
         </div>
+
+        <motion.div variants={itemVariants} className="space-y-6">
+          <Card className="border-0 shadow-lg glass-effect overflow-hidden border-l-4 border-l-primary">
+            <CardContent className="p-6">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">
+                Specialties
+              </h3>
+              <p className="text-muted-foreground text-sm mb-4">
+                Where he adds the most value on complex projects:
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {SPECIALTIES.map((item) => (
+                  <Badge
+                    key={item}
+                    variant="secondary"
+                    className="text-xs bg-primary/15 text-primary border-primary/30 hover:bg-primary/25"
+                  >
+                    {item}
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="border border-dashed border-primary/30 bg-primary/5 overflow-hidden">
+            <CardContent className="p-6">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">
+                Also interested in
+              </h3>
+              <p className="text-muted-foreground text-sm mb-4">
+                Talha is open to Python and AngularJS projects, reach out if you need a hand.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {INTERESTED_IN.map((item) => (
+                  <Badge
+                    key={item}
+                    variant="outline"
+                    className="text-xs border-primary/40 text-foreground/90"
+                  >
+                    {item}
+                  </Badge>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
       </motion.div>
     </section>
   );

@@ -3,17 +3,15 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, useAnimation, useInView } from "framer-motion";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { ExternalLink, Github, X } from "lucide-react";
+import { ProjectDetailModal } from "@/components/project-detail-modal";
+import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+
+const PROJECTS_PER_PAGE = 6;
+
+export type ProjectCategory = "all" | "webapps" | "wordpress" | "shopify" | "django" | "migrations";
 
 interface Project {
   title: string;
@@ -23,19 +21,35 @@ interface Project {
   details: string;
   github: string;
   demo: string;
+  category: Exclude<ProjectCategory, "all">;
 }
+
+const CATEGORIES: { id: ProjectCategory; label: string }[] = [
+  { id: "all", label: "All" },
+  { id: "webapps", label: "Web Applications" },
+  { id: "wordpress", label: "WordPress" },
+  { id: "shopify", label: "Shopify" },
+  { id: "django", label: "Django" },
+  { id: "migrations", label: "Migrations" },
+];
 
 export default function Projects() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const controls = useAnimation();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [activeCategory, setActiveCategory] = useState<ProjectCategory>("all");
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
     }
   }, [isInView, controls]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [activeCategory]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -58,94 +72,233 @@ export default function Projects() {
     },
   };
 
-  const projects = [
+  const projects: Project[] = [
+    // Web Applications (React / Next.js)
     {
-      title: "Mortgage Chatbot Platform",
-      description:
-        "Full-featured mortgage chatbot web application with multi-tenant architecture and enterprise SaaS solution.",
-      image: "/images/projects/mortgageapp.png",
-      tags: [
-        "Next.js",
-        "Tailwind CSS",
-        "ShadCN UI",
-        "PostgreSQL",
-        "Prisma",
-        "REST APIs",
-        "Vercel",
-      ],
+      title: "Al Ibrahim Travel",
+      description: "Dynamic travel CMS with Next.js and Firebase for content management and SEO.",
+      image: "/images/projects/alibrahimtravels.png",
+      tags: ["Next.js", "React", "Tailwind CSS", "Firebase"],
       details:
-        "Built a full-featured mortgage chatbot web application from scratch with multi-tenant architecture and domain-level separation. Designed and implemented admin dashboard for managing users, investors, and chatbot settings with secure role-based access control for admins, investors, and end users. Connected with third-party chatbot APIs and developed custom REST APIs. Used ShadCN UI for consistent and scalable UI design. Managed investor onboarding, profile management, and chat engagement tracking. Deployed on Vercel with environment-specific configurations and CI/CD. Delivered as an enterprise SaaS solution, built for scalability and maintainability.",
+        "Situation: The client needed a scalable travel platform to manage destinations, packages, and dynamic content with strong SEO performance.\n\nTask: Build a modern CMS-driven travel website with fast updates and optimized UX.\n\nAction: Developed a Next.js platform integrated with Firebase services including Firestore, Cloud Functions, and Hosting. Implemented responsive UI, optimized routing, and structured content for SEO.\n\nResult: Delivered a fast, SEO-friendly travel platform with efficient content management and scalable architecture.",
       github: "https://github.com/csmtalha",
-      demo: "#",
+      demo: "https://www.alibrahimtravel.com/",
+      category: "webapps",
     },
     {
-      title: "AI Travels",
-      description:
-        "A dynamic travel CMS using Next.js and Firebase for seamless content management.",
-      image: "/images/projects/ibrahim-travels.png",
-      tags: [
-        "Next.js",
-        "Firebase",
-        "Firestore",
-        "Cloud Functions",
-        "Responsive Design",
-      ],
+      title: "Creexio",
+      description: "Modern web application built with React and Next.js for scalability and performance.",
+      image: "/images/projects/creexio.png",
+      tags: ["React", "Next.js", "TypeScript"],
       details:
-        "Developed a dynamic travel CMS using Next.js and Firebase for seamless content management. Integrated Firebase Firestore for scalable data storage and retrieval of travel information. Implemented Firebase Cloud Functions to integrate Google APIs for enhanced functionality. Deployed and managed the application with Firebase Hosting for fast content delivery. Optimized performance using Next.js for fast client-side rendering and SEO benefits. Designed responsive UI/UX with Next.js for a smooth cross-device experience. Automated content updates using Firebase functions to reduce manual effort.",
+        "Situation: The business required a modern web application to present services professionally while supporting future product growth.\n\nTask: Build a scalable and maintainable web platform with strong performance and responsive UI.\n\nAction: Developed the application using React and Next.js with TypeScript. Designed reusable components, optimized layout responsiveness, and ensured clean architecture for maintainability.\n\nResult: Delivered a fast, scalable web application with a professional interface and improved user experience.",
       github: "https://github.com/csmtalha",
-      demo: "https://alibrahimtravel.com/",
-    },
-    {
-      title: "Golden Insurance",
-      description:
-        "Migrated the business Insurance platform from PHP to Next.js, improving performance and scalability.",
-      image: "/images/projects/goldeninsurance.png",
-      tags: [
-        "Next.js",
-        "JavaScript",
-        "PHP Migration",
-        "Performance Optimization",
-      ],
-      details:
-        "Migrated the business Insurance platform from PHP to Next.js, improving performance and scalability. Enhanced maintainability by refactoring the platform with modern JavaScript technologies. Optimized the application for faster load times using Next.js static and client-side rendering. Improved the user experience with responsive design and seamless navigation. Collaborated with the team to ensure a smooth migration while minimizing disruptions.",
-      github: "https://github.com/csmtalha",
-      demo: "#",
+      demo: "https://www.creexio.com/",
+      category: "webapps",
     },
     {
       title: "Regent",
-      description:
-        "A web platform for operational planning, logistics, and ship navigation using React.js.",
+      description: "Web platform for operational planning, logistics, and ship navigation with interactive maps.",
       image: "/images/projects/regent.png",
       tags: ["React.js", "Leaflet.js", "Logistics", "Route Planning"],
       details:
-        "Developed a web platform for operational planning, logistics, and ship navigation using React.js. Integrated interactive maps with Leaflet.js for real-time spatial data and route visualization. Built vehicle and ship management features for efficient logistics and route planning.",
+        "Situation: Logistics teams needed a platform to manage operations, routes, and ship navigation with spatial visualization.\n\nTask: Build an operational web platform with interactive maps and route planning capabilities.\n\nAction: Developed the platform using React.js and integrated Leaflet.js for interactive mapping and spatial visualization. Implemented features for route planning, vehicle tracking, and logistics management.\n\nResult: Delivered a functional operations platform enabling efficient planning, navigation, and route visualization.",
       github: "https://github.com/csmtalha",
       demo: "#",
+      category: "webapps",
     },
     {
-      title: "Report Automation",
-      description:
-        "Automated accounting tasks to improve efficiency and reduce errors using AWS Textract.",
-      image: "/images/projects/report.png",
-      tags: ["React.js", "Redux", "Node.js", "AWS Textract", "PostgreSQL"],
+      title: "Assignment Assistance",
+      description: "Next.js application for assignment assistance, streamlined workflows and modern UX.",
+      image: "/images/projects/assignment.png",
+      tags: ["Next.js", "React", "TypeScript"],
       details:
-        "Automated accounting tasks (payroll, invoicing, reporting) to improve efficiency and reduce errors. Integrated AWS Textract for accurate document data extraction. Developed custom regex for processing structured data from various documents. Used Lerna.js for managing multiple packages. Built new features with React.js, Redux, Node.js/Express, PostgreSQL, and Knex.js. Used Jenkins for deployment. Conducted document e2e testing to ensure reliability and functionality. Reduced manual task time, improved accuracy, and ensured scalability for large data volumes.",
+        "Situation: Students needed a streamlined platform to request academic assistance with efficient workflows.\n\nTask: Develop a modern application with clear user flows and scalable frontend architecture.\n\nAction: Built the platform using Next.js, React, and TypeScript with clean UI components and optimized workflows for submissions and tracking.\n\nResult: Delivered a user-friendly platform with improved navigation, clear workflows, and scalable architecture.",
       github: "https://github.com/csmtalha",
       demo: "#",
+      category: "webapps",
     },
-
+    {
+      title: "Solumatic Solution",
+      description: "Custom solution platform built with modern web technologies.",
+      image: "/images/projects/solumatic.png",
+      tags: ["Next.js", "React", "Web Application"],
+      details:
+        "Situation: The organization required a custom web solution to manage internal workflows and digital operations.\n\nTask: Build a reliable and scalable web platform with maintainable architecture.\n\nAction: Developed the application using modern web technologies including Next.js and React, focusing on modular components, performance, and clear user flows.\n\nResult: Delivered a scalable platform with maintainable codebase and improved operational efficiency.",
+      github: "https://github.com/csmtalha",
+      demo: "#",
+      category: "webapps",
+    },
+    {
+      title: "Mortgage Industry Chatbot",
+      description: "AI chatbot for mortgage customers, lead qualification and support at scale with multi-tenant SaaS.",
+      image: "/images/projects/mortgagemvp.png",
+      tags: ["Next.js", "Tailwind CSS", "ShadCN UI", "PostgreSQL", "Prisma", "Vercel", "SaaS"],
+      details:
+        "Situation: Mortgage companies needed an automated way to qualify leads and handle high volumes of customer inquiries.\n\nTask: Build a scalable SaaS chatbot platform supporting multiple investors and organizations.\n\nAction: Developed a multi-tenant chatbot system using Next.js, PostgreSQL, and Prisma. Implemented role-based access, admin dashboards, third-party chatbot API integrations, and REST APIs.\n\nResult: Delivered an enterprise SaaS chatbot platform enabling automated lead qualification, customer support, and scalable multi-tenant management.",
+      github: "https://github.com/csmtalha",
+      demo: "#",
+      category: "webapps",
+    },
+    {
+      title: "MedNotes",
+      description: "Converts doctor–patient conversations into structured medical reports. AI-powered documentation.",
+      image: "/images/projects/mednotemvp.png",
+      tags: ["MVP", "AI", "Healthcare", "Documentation"],
+      details:
+        "Situation: Doctors spend significant time manually documenting patient conversations into formal medical records.\n\nTask: Create an AI-powered solution to convert doctor–patient conversations into structured reports.\n\nAction: Designed an MVP system that processes conversation data and transforms it into structured medical documentation aligned with clinical workflows.\n\nResult: Delivered a prototype healthcare documentation tool that reduces manual work and improves reporting efficiency.",
+      github: "https://github.com/csmtalha",
+      demo: "#",
+      category: "webapps",
+    },
+    // WordPress
+    {
+      title: "Nordwood",
+      description: "Custom WordPress site with modern design and responsive experience.",
+      image: "/images/projects/thuka.png",
+      tags: ["WordPress", "Custom Theme", "Responsive Design"],
+      details:
+        "Situation: The client required a modern, responsive website to represent their brand and showcase services online.\n\nTask: Build a custom WordPress website with strong design consistency and easy content management.\n\nAction: Developed a custom WordPress theme with responsive layouts and structured content management.\n\nResult: Delivered a professional website with improved usability and flexible content updates.",
+      github: "https://github.com/csmtalha",
+      demo: "https://thuka.com/",
+      category: "wordpress",
+    },
+    {
+      title: "Fimi Pro",
+      description: "WordPress website with custom functionality and branding.",
+      image: "/images/projects/fimipro.png",
+      tags: ["WordPress", "Custom Theme", "Responsive Design"],
+      details:
+        "Situation: The company needed a branded website to showcase products and company information.\n\nTask: Develop a customizable WordPress site aligned with brand identity.\n\nAction: Built a custom WordPress theme and integrated responsive layouts and plugin functionality.\n\nResult: Delivered a responsive website enabling easy content management and improved online presence.",
+      github: "https://github.com/csmtalha",
+      demo: "https://fimipro.com/",
+      category: "wordpress",
+    },
+    {
+      title: "Chez Yiamme Catering",
+      description: "WordPress site for catering with menus, events, and booking.",
+      image: "/images/projects/chezyiammecatering.png",
+      tags: ["WordPress", "Catering", "Responsive Design"],
+      details:
+        "Situation: A catering business required a website to present menus, services, and events.\n\nTask: Build a structured and responsive WordPress platform for content and bookings.\n\nAction: Developed a WordPress site with organized menu sections, event pages, and mobile-friendly design.\n\nResult: Delivered a professional catering website improving customer engagement and service visibility.",
+      github: "https://github.com/csmtalha",
+      demo: "https://chezyiammecatering.com/",
+      category: "wordpress",
+    },
+    {
+      title: "Napollo",
+      description: "WordPress site for Napollo with clear navigation and accessibility.",
+      image: "/images/projects/napollo.png",
+      tags: ["WordPress", "Software Company", "Accessibility"],
+      details:
+        "Situation: A software company needed a clear and professional web presence.\n\nTask: Build a website that communicates services clearly and allows easy updates.\n\nAction: Developed a WordPress site with structured navigation, accessibility considerations, and clean UI.\n\nResult: Delivered a corporate website with clear information architecture and easy content management.",
+      github: "https://github.com/csmtalha",
+      demo: "https://napollo.com/",
+      category: "wordpress",
+    },
+    {
+      title: "Butler Engineering",
+      description: "Professional WordPress site showcasing services and expertise.",
+      image: "/images/projects/butlerengineer.png",
+      tags: ["WordPress", "Engineering", "Responsive Design"],
+      details:
+        "Situation: The engineering firm required a professional website to showcase expertise and services.\n\nTask: Develop a clean and responsive website aligned with their industry presence.\n\nAction: Built a custom WordPress website with structured service pages and responsive layouts.\n\nResult: Delivered a modern corporate website that effectively communicates the company's services.",
+      github: "https://github.com/csmtalha",
+      demo: "https://butlerme.com/",
+      category: "wordpress",
+    },
     {
       title: "Salvation Beauty Ink",
-      description:
-        "Converted Figma designs into a fully functional WordPress website with seamless design integration.",
-      image: "/images/projects/salvation.png",
+      description: "Figma-to-WordPress conversion with seamless design integration.",
+      image: "/images/projects/salvationbeauty.png",
       tags: ["WordPress", "Figma", "Custom Theme", "Responsive Design"],
       details:
-        "Converted Figma designs into a fully functional WordPress website. Ensured seamless design integration for a consistent look and feel. Optimized the user experience for ease of navigation and responsiveness. Implemented custom WordPress theme and plugins to meet specific client requirements. Ensured mobile-first design approach for optimal viewing on all devices.",
+        "Situation: The client had a Figma design that needed to be transformed into a fully functional website.\n\nTask: Convert the design into a responsive WordPress implementation.\n\nAction: Developed a custom WordPress theme based on the Figma design, ensuring pixel accuracy and mobile responsiveness.\n\nResult: Delivered a visually consistent website with seamless design implementation.",
+      github: "https://github.com/csmtalha",
+      demo: "https://salvationbeautyink.com/",
+      category: "wordpress",
+    },
+    // Shopify
+    {
+      title: "Pet One Shop",
+      description: "Shopify store with product catalog and checkout.",
+      image: "/images/projects/petoneshop.jpeg",
+      tags: ["Shopify", "E-commerce", "Liquid"],
+      details:
+        "Situation: The client required an online store to sell pet products.\n\nTask: Build and customize a Shopify store with product catalog and checkout functionality.\n\nAction: Configured the Shopify store, customized the theme, and set up product listings and checkout flows.\n\nResult: Delivered a fully functional ecommerce store enabling online product sales.",
       github: "https://github.com/csmtalha",
       demo: "#",
+      category: "shopify",
+    },
+    {
+      title: "Fit for A King",
+      description: "Shopify store for band merchandise and e-commerce.",
+      image: "/images/projects/fitforakingband.png",
+      tags: ["Shopify", "E-commerce", "Merchandise"],
+      details:
+        "Situation: A music band required an ecommerce store to sell merchandise to fans.\n\nTask: Build a Shopify store optimized for product sales and brand identity.\n\nAction: Customized Shopify theme, implemented merchandise catalog, and optimized checkout flow.\n\nResult: Delivered an ecommerce platform enabling fans to easily purchase band merchandise.",
+      github: "https://github.com/csmtalha",
+      demo: "https://fitforakingband.com/",
+      category: "shopify",
+    },
+    // {
+    //   title: "Best Machine FR",
+    //   description: "Shopify store for Best Machine (France) with localized e-commerce.",
+    //   image: "/placeholder.jpg",
+    //   tags: ["Shopify", "E-commerce", "Localization"],
+    //   details:
+    //     "Built the Best Machine France Shopify store with theme customization and localization.",
+    //   github: "https://github.com/csmtalha",
+    //   demo: "https://bestmachine-fr.com/",
+    //   category: "shopify",
+    // },
+    // Django
+    {
+      title: "Bigeq",
+      description: "Django ecommerce platform with product catalog, cart, and checkout.",
+      image: "/images/projects/Bigeq.png",
+      tags: ["Django", "Python", "E-commerce", "PostgreSQL"],
+      details:
+        "Situation: The client required a custom ecommerce platform with full control over backend functionality.\n\nTask: Develop a scalable ecommerce system with product management and checkout features.\n\nAction: Built the platform using Django and PostgreSQL, implementing product catalog, cart, checkout, and admin management.\n\nResult: Delivered a scalable ecommerce backend capable of supporting future integrations and frontend applications.",
+      github: "https://github.com/csmtalha",
+      demo: "#",
+      category: "django",
+    },
+    // Migrations
+    {
+      title: "Golden Insurance",
+      description: "PHP to Next.js migration, business insurance platform modernized for performance and scalability.",
+      image: "/images/php-to-next.png",
+      tags: ["Next.js", "PHP", "Migration", "Performance", "React"],
+      details:
+        "Situation: The legacy insurance platform built in PHP faced performance and maintainability limitations.\n\nTask: Modernize the application with a scalable frontend framework.\n\nAction: Migrated the system to Next.js, refactoring legacy code, improving routing, and optimizing frontend performance.\n\nResult: Delivered a modernized platform with improved performance, scalability, and user experience.",
+      github: "https://github.com/csmtalha",
+      demo: "#",
+      category: "migrations",
+    },
+    {
+      title: "ilerno",
+      description: "Vue 2 to Vue 3 migration, School & Learning Management system with dashboard, analytics, and operations.",
+      image: "/images/projects/ilerno.png",
+      tags: ["Vue 2", "Vue 3", "Migration", "Composition API", "Learning Management"],
+      details:
+        "Situation: The LMS platform built with Vue 2 required modernization and improved performance.\n\nTask: Upgrade the system to Vue 3 with modern architecture.\n\nAction: Migrated components to Vue 3 using the Composition API, refactored legacy logic, and optimized performance across dashboard and operations modules.\n\nResult: Delivered a modernized LMS platform with improved maintainability and performance.",
+      github: "https://github.com/csmtalha",
+      demo: "#",
+      category: "migrations",
     },
   ];
+
+  const filteredProjects =
+    activeCategory === "all"
+      ? projects
+      : projects.filter((p) => p.category === activeCategory);
+
+  const totalPages = Math.ceil(filteredProjects.length / PROJECTS_PER_PAGE) || 1;
+  const paginatedProjects = filteredProjects.slice(
+    (currentPage - 1) * PROJECTS_PER_PAGE,
+    currentPage * PROJECTS_PER_PAGE
+  );
 
   return (
     <section
@@ -168,17 +321,38 @@ export default function Projects() {
           className="mb-12 md:mb-16 text-center"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 gradient-text">
-            Featured Projects
+            Project Portfolio
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            A showcase of innovative solutions and creative implementations
-            across various industries and technologies.
+            Web applications, WordPress sites, and Shopify stores, with live links and technologies used.
           </p>
         </motion.div>
 
+        {/* Category tabs */}
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-wrap justify-center gap-2 mb-10"
+        >
+          {CATEGORIES.map((cat) => (
+            <Button
+              key={cat.id}
+              variant={activeCategory === cat.id ? "default" : "outline"}
+              size="sm"
+              onClick={() => setActiveCategory(cat.id)}
+              className={`rounded-full px-4 py-2 transition-all ${
+                activeCategory === cat.id
+                  ? "bg-gradient-to-r from-primary to-purple-500 text-primary-foreground shadow-md"
+                  : "hover:bg-muted/80"
+              }`}
+            >
+              {cat.label}
+            </Button>
+          ))}
+        </motion.div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {projects.map((project, index) => (
+          {paginatedProjects.map((project, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -195,15 +369,22 @@ export default function Projects() {
                     className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                  <div className="absolute bottom-4 left-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                     <Button
                       variant="secondary"
                       size="sm"
-                      className="w-full"
+                      className="flex-1"
                       onClick={() => setSelectedProject(project)}
                     >
-                      View Details
+                      Details
                     </Button>
+                    {project.demo && project.demo !== "#" && (
+                      <Button variant="secondary" size="sm" className="gap-1" asChild>
+                        <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                          Live <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      </Button>
+                    )}
                   </div>
                 </div>
                 <CardContent className="flex-grow p-6">
@@ -229,106 +410,44 @@ export default function Projects() {
             </motion.div>
           ))}
         </div>
-        <Dialog
+
+        {/* Pagination */}
+        {totalPages > 1 && (
+          <motion.div
+            variants={itemVariants}
+            className="flex items-center justify-center gap-2 sm:gap-4 mt-10"
+          >
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className="gap-1"
+            >
+              <ChevronLeft className="h-4 w-4" />
+              Prev
+            </Button>
+            <span className="text-sm text-muted-foreground px-2">
+              Page {currentPage} of {totalPages}
+            </span>
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+              className="gap-1"
+            >
+              Next
+              <ChevronRight className="h-4 w-4" />
+            </Button>
+          </motion.div>
+        )}
+
+        <ProjectDetailModal
+          project={selectedProject}
           open={!!selectedProject}
-          onOpenChange={() => setSelectedProject(null)}
-        >
-          {selectedProject && (
-            <DialogContent className="fixed inset-2 sm:inset-auto sm:max-w-[95vw] md:max-w-4xl lg:max-w-5xl sm:max-h-[95vh] overflow-hidden bg-background border-0 rounded-2xl shadow-2xl z-50 p-0">
-              {/* Header with gradient background */}
-              <div className="relative h-48 sm:h-64 overflow-hidden rounded-t-2xl">
-                <Image
-                  src={selectedProject.image || "/placeholder.svg"}
-                  alt={selectedProject.title}
-                  fill
-                  className="object-cover"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-
-                {/* Close button */}
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="absolute top-4 right-4 bg-black/20 hover:bg-black/40 text-white backdrop-blur-sm border border-white/20"
-                  onClick={() => setSelectedProject(null)}
-                >
-                  <X className="h-5 w-5" />
-                  <span className="sr-only">Close</span>
-                </Button>
-
-                {/* Project title overlay */}
-                <div className="absolute bottom-6 left-6 right-6">
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">
-                    {selectedProject.title}
-                  </h2>
-                  <p className="text-white/90 text-sm sm:text-base max-w-2xl">
-                    {selectedProject.description}
-                  </p>
-                </div>
-              </div>
-
-              {/* Content area */}
-              <div className="p-6 sm:p-8 space-y-6 max-h-[60vh] overflow-y-auto scrollbar-thin scrollbar-thumb-muted scrollbar-track-transparent">
-                {/* Tech stack section */}
-                <div className="space-y-3">
-                  <h3 className="text-lg font-semibold gradient-text">
-                    Tech Stack
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.tags.map((tag, i) => (
-                      <Badge
-                        key={i}
-                        variant="secondary"
-                        className="px-3 py-1.5 text-sm bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors"
-                      >
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Project details */}
-                <div className="space-y-3">
-                  <h3 className="text-lg font-semibold gradient-text">
-                    Project Overview
-                  </h3>
-                  <div className="prose prose-sm sm:prose-base max-w-none">
-                    <p className="text-muted-foreground leading-relaxed">
-                      {selectedProject.details}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Action buttons */}
-                {/* <div className="flex flex-col sm:flex-row gap-3 pt-4 border-t">
-                  <Button variant="outline" className="flex-1 group" asChild>
-                    <a
-                      href={selectedProject.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
-                    >
-                      <Github className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                      View Code
-                    </a>
-                  </Button>
-                  <Button className="flex-1 group" asChild>
-                    <a
-                      href={selectedProject.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2"
-                    >
-                      <ExternalLink className="h-4 w-4 group-hover:scale-110 transition-transform" />
-                      Live Demo
-                    </a>
-                  </Button>
-                </div> */}
-              </div>
-            </DialogContent>
-          )}
-        </Dialog>
+          onOpenChange={(open) => !open && setSelectedProject(null)}
+        />
       </motion.div>
     </section>
   );
