@@ -1,20 +1,21 @@
 import type { ReactNode } from "react";
-import { Inter, Poppins } from "next/font/google";
+import { Source_Sans_3, Plus_Jakarta_Sans } from "next/font/google";
 import { Analytics } from "@/components/analytics";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import "@/app/globals.css";
 import Footer from "@/components/sections/footer";
 
-const inter = Inter({
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
 });
 
-const poppins = Poppins({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-poppins",
+  weight: ["500", "600", "700"],
+  variable: "--font-heading",
 });
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -22,9 +23,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen flex flex-col bg-background font-sans antialiased",
-          inter.variable,
-          poppins.variable
+          "min-h-screen flex flex-col bg-background font-sans antialiased text-foreground",
+          sourceSans.variable,
+          plusJakarta.variable
         )}
       >
         <ThemeProvider

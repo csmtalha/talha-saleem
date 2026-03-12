@@ -60,8 +60,11 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "sans-serif"],
-        heading: ["var(--font-poppins)", "sans-serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        heading: ["var(--font-heading)", "var(--font-sans)", "sans-serif"],
+      },
+      fontSize: {
+        "balance": ["1.0625rem", { lineHeight: "1.6" }],
       },
       backgroundImage: {
         "grid-pattern":

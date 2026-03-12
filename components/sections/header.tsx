@@ -81,7 +81,7 @@ const Header = () => {
 
         {/* Desktop Menu - centered */}
         <nav className="hidden lg:flex items-center justify-center gap-6 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          {["case-studies", "services", "projects", "about", "availability", "contact"].map((section) => (
+          {["case-studies", "services", "projects", "about", "contact"].map((section) => (
             <Button
               key={section}
               variant="ghost"
