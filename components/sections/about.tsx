@@ -54,7 +54,7 @@ export default function About() {
         >
           Talha is a Lead Full Stack Engineer with 5+ years of experience building scalable SaaS
           products. Most recently, he led the development of a multi-tenant mortgage platform from
-          scratch to production—architecture, RBAC, Stripe billing, AI integration, and AWS
+          scratch to production-architecture, RBAC, Stripe billing, AI integration, and AWS
           infrastructure. Real customers use it daily.
         </motion.p>
         <motion.p

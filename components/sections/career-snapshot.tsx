@@ -5,11 +5,11 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 
 const HIGHLIGHTS = [
-  "Lead Full Stack Engineer — React, Next.js, Vue.js, Node.js, NestJS, AWS",
+  "Lead Full Stack Engineer - React, Next.js, Vue.js, Node.js, NestJS, AWS",
   "Led multi-tenant mortgage SaaS from scratch: architecture, RBAC, Stripe, AI, AWS",
   "Built 30+ production websites and applications across SaaS, startups, and enterprise",
   "Strong focus on scalable systems, performance, and shipping with founder-led teams",
-  "WordPress, Shopify, Django, and legacy migrations — remote, PST overlap",
+  "WordPress, Shopify, Django, and legacy migrations - remote, PST overlap",
 ];
 
 export default function CareerSnapshot() {

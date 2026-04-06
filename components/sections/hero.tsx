@@ -84,7 +84,7 @@ export default function Hero() {
             <p>
               I am a Lead Full Stack Engineer with 5+ years of experience building scalable SaaS
               products. Most recently, I led the development of a multi-tenant mortgage platform from
-              scratch to production—handling architecture, RBAC, Stripe billing, AI integration, and
+              scratch to production-handling architecture, RBAC, Stripe billing, AI integration, and
               AWS infrastructure. Real customers use it daily.
             </p>
             <p>
