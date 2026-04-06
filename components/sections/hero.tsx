@@ -62,10 +62,10 @@ export default function Hero() {
               <span className="gradient-text-animated">Talha Saleem</span>
             </h1>
             <p className="text-lg sm:text-xl text-foreground/90 font-medium">
-              Senior Software Engineer
+              Lead Full Stack Engineer
             </p>
             <p className="text-sm text-muted-foreground">
-              React • Next.js • Scalable Web Platforms
+              React · Next.js · Vue.js · Node.js · NestJS · AWS · WordPress & Shopify
             </p>
             <p className="flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1 text-sm text-muted-foreground pt-1">
               <span className="inline-flex items-center gap-1.5">
@@ -77,12 +77,22 @@ export default function Hero() {
             </p>
           </motion.div>
 
-          <motion.p
+          <motion.div
             variants={itemVariants}
-            className="text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed mx-auto lg:mx-0"
+            className="space-y-4 text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed mx-auto lg:mx-0 text-center lg:text-left"
           >
-            Building scalable web apps, SaaS platforms, and modern websites with React and Next.js.
-          </motion.p>
+            <p>
+              I am a Lead Full Stack Engineer with 5+ years of experience building scalable SaaS
+              products. Most recently, I led the development of a multi-tenant mortgage platform from
+              scratch to production—handling architecture, RBAC, Stripe billing, AI integration, and
+              AWS infrastructure. Real customers use it daily.
+            </p>
+            <p>
+              I work best with founder-led teams where shipping fast and building things that last
+              both matter. I am remote, available for PST overlap, and can start contributing from
+              week one.
+            </p>
+          </motion.div>
 
           <motion.div
             variants={itemVariants}
@@ -122,12 +132,12 @@ export default function Hero() {
             variants={itemVariants}
             className="text-xs text-muted-foreground/80 pt-1 max-w-md mx-auto lg:mx-0"
           >
-            6+ years experience · SaaS · Startups · Enterprise
+            5+ years experience · SaaS · Multi-tenant · Founder-led teams
           </motion.p>
 
           {/* SEO: hidden keywords for recruiters */}
           <div className="sr-only" aria-hidden>
-            React Developer • Next.js Developer • Senior Software Engineer • SaaS Frontend Engineer
+            Lead Full Stack Engineer • SaaS • Multi-tenant • React • Next.js • Vue.js • Node.js • NestJS • AWS
           </div>
         </div>
 
@@ -139,7 +149,7 @@ export default function Hero() {
           <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
             <Image
               src={profilePic}
-              alt="Talha Saleem - Senior Software Engineer"
+              alt="Talha Saleem - Lead Full Stack Engineer"
               width={400}
               height={400}
               sizes="(max-width: 768px) 384px, 448px"

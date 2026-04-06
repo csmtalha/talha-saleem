@@ -53,7 +53,7 @@ export default function CtaSection() {
           variants={itemVariants}
           className="text-lg text-muted-foreground mb-10 leading-relaxed"
         >
-          If you&apos;re looking for a Senior Software Engineer to build scalable web applications, SaaS platforms, or modern digital products—let&apos;s talk.
+          If you&apos;re looking for a Lead Full Stack Engineer to ship scalable SaaS, multi-tenant platforms, or modern digital products—let&apos;s talk.
         </motion.p>
         <motion.div
           variants={itemVariants}

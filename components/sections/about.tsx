@@ -52,18 +52,18 @@ export default function About() {
           variants={itemVariants}
           className="text-lg text-muted-foreground leading-relaxed mb-6"
         >
-          Talha is a Senior Software Engineer with 6+ years of experience building
-          scalable web applications and high-performance user interfaces. He specializes in
-          React and Next.js and has worked with startups, SaaS products, and
-          enterprise clients.
+          Talha is a Lead Full Stack Engineer with 5+ years of experience building scalable SaaS
+          products. Most recently, he led the development of a multi-tenant mortgage platform from
+          scratch to production—architecture, RBAC, Stripe billing, AI integration, and AWS
+          infrastructure. Real customers use it daily.
         </motion.p>
         <motion.p
           variants={itemVariants}
           className="text-lg text-muted-foreground leading-relaxed"
         >
-          He focuses on scalable frontend architecture, clean component systems,
-          and close collaboration with product and engineering teams to ship
-          reliable, maintainable software.
+          He works best with founder-led teams where shipping fast and building things that last
+          both matter. He is remote, available for PST overlap, and can start contributing from week
+          one.
         </motion.p>
       </motion.div>
     </section>

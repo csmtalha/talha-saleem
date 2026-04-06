@@ -17,21 +17,40 @@ import Header from "@/components/sections/header";
 import ScrollToTop from "@/components/scroll-to-top";
 
 export const metadata: Metadata = {
-  title: "Talha Saleem | Senior Software Engineer | React & Next.js",
+  title:
+    "Lead Full Stack Engineer | Scalable SaaS & Multi-Tenant Platforms | React · Next.js · Vue.js · Node.js · NestJS | AWS | WordPress & Shopify",
   description:
-    "Senior Software Engineer specializing in React and Next.js. Talha helps startups and businesses build high-performance web apps, SaaS dashboards, and modern websites. 6+ years experience. Available for remote roles, freelance, and startup MVPs.",
+    "Lead Full Stack Engineer with 5+ years building scalable SaaS. Led a multi-tenant mortgage platform from scratch—architecture, RBAC, Stripe, AI, AWS. Remote, PST overlap, founder-led teams. Week-one impact.",
   keywords: [
-    "Senior Software Engineer",
+    "Lead Full Stack Engineer",
+    "Multi-tenant SaaS",
     "React Developer",
     "Next.js Developer",
-    "SaaS Frontend Engineer",
+    "Vue.js",
+    "Node.js",
+    "NestJS",
+    "AWS",
+    "Stripe",
     "WordPress developer",
     "Shopify developer",
     "remote developer",
-    "freelance frontend",
   ],
   verification: {
     google: "DLA0_IP3Hsut84nJRmawwY7w18Tp7lAZeqGafn8IBH4",
+  },
+  openGraph: {
+    title:
+      "Lead Full Stack Engineer | Scalable SaaS & Multi-Tenant Platforms | React · Next.js · Vue.js · Node.js · NestJS | AWS | WordPress & Shopify",
+    description:
+      "Lead Full Stack Engineer with 5+ years building scalable SaaS. Led a multi-tenant mortgage platform from scratch—architecture, RBAC, Stripe, AI, AWS. Remote, PST overlap, founder-led teams.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title:
+      "Lead Full Stack Engineer | Scalable SaaS & Multi-Tenant Platforms | React · Next.js · Vue.js · Node.js · NestJS | AWS | WordPress & Shopify",
+    description:
+      "Lead Full Stack Engineer with 5+ years building scalable SaaS. Multi-tenant mortgage platform, RBAC, Stripe, AI, AWS. Remote, PST overlap.",
   },
 };
 

@@ -13,7 +13,7 @@ export default function Footer() {
           </div>
           <div>
             <p className="text-sm text-muted-foreground text-center">
-              Talha Saleem | Senior Software Engineer | React & Next.js
+              Talha Saleem | Lead Full Stack Engineer | React · Next.js · Vue.js · Node.js · NestJS
               <span className="hidden sm:inline"> • </span>
               <span className="block sm:inline mt-1 sm:mt-0">&copy; {new Date().getFullYear()} All rights reserved. Crafted with 💻 and Next.js</span>
             </p>

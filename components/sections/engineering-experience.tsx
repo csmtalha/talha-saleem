@@ -80,8 +80,8 @@ export default function EngineeringExperience() {
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6" />
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            As a Senior Software Engineer, Talha focuses on frontend architecture,
-            component systems, APIs, performance, and collaboration.
+            As a Lead Full Stack Engineer, Talha focuses on full-stack architecture, SaaS delivery,
+            APIs, integrations, performance, and collaboration with founder-led teams.
           </p>
         </motion.div>
 
