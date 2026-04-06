@@ -188,7 +188,7 @@ export default function Projects() {
     {
       title: "Napollo",
       description: "WordPress site for Napollo with clear navigation and accessibility.",
-      image: "/images/projects/napollo.png",
+      image: "/images/projects/Napollo.png",
       tags: ["WordPress", "Software Company", "Accessibility"],
       details:
         "Situation: A software company needed a clear and professional web presence.\n\nTask: Build a website that communicates services clearly and allows easy updates.\n\nAction: Developed a WordPress site with structured navigation, accessibility considerations, and clean UI.\n\nResult: Delivered a corporate website with clear information architecture and easy content management.",
