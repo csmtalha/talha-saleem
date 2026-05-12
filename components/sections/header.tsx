@@ -81,7 +81,7 @@ const Header = () => {
 
         {/* Desktop Menu - centered */}
         <nav className="hidden lg:flex items-center justify-center gap-6 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          {["case-studies", "services", "projects", "about", "contact"].map((section) => (
+          {["case-studies", "services", "projects", "about", "book", "contact"].map((section) => (
             <Button
               key={section}
               variant="ghost"
@@ -93,7 +93,13 @@ const Header = () => {
                   : ""
               }`}
             >
-              {section === "case-studies" ? "Case Studies" : section === "availability" ? "Hire" : section.charAt(0).toUpperCase() + section.slice(1)}
+              {section === "case-studies"
+                ? "Case Studies"
+                : section === "availability"
+                  ? "Hire"
+                  : section === "book"
+                    ? "Book"
+                    : section.charAt(0).toUpperCase() + section.slice(1)}
             </Button>
           ))}
           <Button
@@ -137,7 +143,15 @@ const Header = () => {
       {mobileMenuOpen && (
         <div className="lg:hidden glass-effect border-t border-border shadow-lg">
           <div className="flex flex-col items-center px-4 py-4 space-y-3">
-            {["case-studies", "services", "projects", "about", "availability", "contact"].map((section) => (
+            {[
+              "case-studies",
+              "services",
+              "projects",
+              "about",
+              "book",
+              "availability",
+              "contact",
+            ].map((section) => (
               <Button
                 key={section}
                 variant="ghost"
@@ -149,7 +163,13 @@ const Header = () => {
                     : ""
                 }`}
               >
-                {section === "case-studies" ? "Case Studies" : section === "availability" ? "Hire" : section.charAt(0).toUpperCase() + section.slice(1)}
+                {section === "case-studies"
+                ? "Case Studies"
+                : section === "availability"
+                  ? "Hire"
+                  : section === "book"
+                    ? "Book"
+                    : section.charAt(0).toUpperCase() + section.slice(1)}
               </Button>
             ))}
             <Button
