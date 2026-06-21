@@ -1,10 +1,26 @@
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
 import { Source_Sans_3, Plus_Jakarta_Sans } from "next/font/google";
 import { Analytics } from "@/components/analytics";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import "@/app/globals.css";
 import Footer from "@/components/sections/footer";
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://talha.creexio.com"),
+  title: {
+    default: "Talha Saleem | Lead Full Stack Engineer",
+    template: "%s | Talha Saleem",
+  },
+  description:
+    "Lead Full Stack Engineer with 5+ years building scalable SaaS & multi-tenant platforms. React, Next.js, Vue.js, Node.js, NestJS, AWS, Stripe.",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
+};
 
 const sourceSans = Source_Sans_3({
   subsets: ["latin"],

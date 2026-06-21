@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const articleUrl = `https://talha-saleem.vercel.app/articles-and-insights/${post.slug}`;
+  const articleUrl = `https://talha.creexio.com/articles-and-insights/${post.slug}`;
   const imageUrl = post.metadata.image || "/images/default-image.jpg";
 
   return {
@@ -83,7 +83,7 @@ export default async function Post({ params }: Props) {
   const contentHtml = processedContent.toString();
 
   // SEO Metadata
-  const articleUrl = `https://talha-saleem.vercel.app/articles-and-insights/${post.slug}`;
+  const articleUrl = `https://talha.creexio.com/articles-and-insights/${post.slug}`;
   const imageUrl = post.metadata.image || "/images/default-image.jpg"; // Default image if no image exists
   const categories = post.metadata.categories?.join(", ") || "";
   const tags = post.metadata.tags?.join(", ") || "";

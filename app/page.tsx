@@ -18,40 +18,50 @@ import Header from "@/components/sections/header";
 import ScrollToTop from "@/components/scroll-to-top";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.talha-saleem.vercel.app"),
+  metadataBase: new URL("https://talha.creexio.com"),
   title:
-    "Lead Full Stack Engineer | Scalable SaaS & Multi-Tenant Platforms | React · Next.js · Vue.js · Node.js · NestJS | AWS | WordPress & Shopify",
+    "Talha Saleem | Lead Full Stack Engineer — React, Next.js, Node.js, AWS",
   description:
-    "Lead Full Stack Engineer with 5+ years building scalable SaaS. Led a multi-tenant mortgage platform from scratch-architecture, RBAC, Stripe, AI, AWS. Remote, PST overlap, founder-led teams. Week-one impact. Author of the Kindle book AI Productivity for Businesses: Practical Operations-AI productivity for teams and operations.",
+    "Lead Full Stack Engineer with 5+ years building scalable SaaS & multi-tenant platforms. React, Next.js, Vue.js, Node.js, NestJS, AWS, Stripe. Remote, PST overlap. Author: AI Productivity for Businesses (Kindle).",
   keywords: [
     "Lead Full Stack Engineer",
+    "Full Stack Developer",
     "Multi-tenant SaaS",
     "React Developer",
     "Next.js Developer",
-    "Vue.js",
-    "Node.js",
+    "Vue.js Developer",
+    "Node.js Developer",
     "NestJS",
     "AWS",
-    "Stripe",
+    "Stripe integration",
     "WordPress developer",
     "Shopify developer",
     "remote developer",
+    "Talha Saleem",
     "AI Productivity for Businesses",
-    "AI productivity for businesses",
     "AI for operations",
     "business AI Kindle",
     "practical AI workflows",
-    "Talha Saleem author",
+    "SaaS architecture",
+    "RBAC",
   ],
+  authors: [{ name: "Talha Saleem", url: "https://talha.creexio.com" }],
+  creator: "Talha Saleem",
   verification: {
     google: "DLA0_IP3Hsut84nJRmawwY7w18Tp7lAZeqGafn8IBH4",
   },
+  alternates: {
+    canonical: "https://talha.creexio.com",
+  },
   openGraph: {
     title:
-      "Lead Full Stack Engineer | Scalable SaaS & Multi-Tenant Platforms | React · Next.js · Vue.js · Node.js · NestJS | AWS | WordPress & Shopify",
+      "Talha Saleem | Lead Full Stack Engineer — React, Next.js, Node.js, AWS",
     description:
-      "Lead Full Stack Engineer with 5+ years building scalable SaaS. Multi-tenant platforms, RBAC, Stripe, AI, AWS. Author: AI Productivity for Businesses: Practical Operations (Kindle). Remote, PST overlap.",
+      "Lead Full Stack Engineer with 5+ years building scalable SaaS. Multi-tenant platforms, RBAC, Stripe, AI, AWS. Author: AI Productivity for Businesses (Kindle). Remote, PST overlap.",
+    url: "https://talha.creexio.com",
+    siteName: "Talha Saleem — Portfolio",
     type: "website",
+    locale: "en_US",
     images: [
       {
         url: BOOK_COVER.src,
@@ -64,16 +74,47 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title:
-      "Lead Full Stack Engineer | Scalable SaaS & Multi-Tenant Platforms | React · Next.js · Vue.js · Node.js · NestJS | AWS | WordPress & Shopify",
+      "Talha Saleem | Lead Full Stack Engineer — React, Next.js, Node.js, AWS",
     description:
       "Lead Full Stack Engineer, scalable SaaS & AI in production. Author: AI Productivity for Businesses (Kindle). Remote, PST overlap.",
     images: [BOOK_COVER.src],
   },
 };
 
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Talha Saleem",
+  url: "https://talha.creexio.com",
+  jobTitle: "Lead Full Stack Engineer",
+  description:
+    "Lead Full Stack Engineer with 5+ years building scalable SaaS and multi-tenant platforms. React, Next.js, Vue.js, Node.js, NestJS, AWS, Stripe.",
+  sameAs: [
+    "https://www.linkedin.com/in/talhasaleem-dev",
+    "https://github.com/csmtalha",
+  ],
+  knowsAbout: [
+    "React",
+    "Next.js",
+    "Vue.js",
+    "Node.js",
+    "NestJS",
+    "AWS",
+    "Stripe",
+    "SaaS Architecture",
+    "Multi-tenant Platforms",
+    "WordPress",
+    "Shopify",
+  ],
+};
+
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
       <Header />
       <Hero />
       <Stats />

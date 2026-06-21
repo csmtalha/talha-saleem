@@ -1,9 +1,8 @@
-# *
 User-agent: *
 Allow: /
 
 # Host
-Host: https://www.talha-saleem.vercel.app/
+Host: https://talha.creexio.com
 
 # Sitemaps
-Sitemap: https://www.talha-saleem.vercel.app/sitemap.xml
+Sitemap: https://talha.creexio.com/sitemap.xml

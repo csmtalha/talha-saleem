@@ -5,8 +5,19 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 export const metadata = {
-  title: "Articles & Insights - Talha Saleem",
-  description: "Articles, tutorials, and thoughts from Talha.",
+  title: "Articles & Insights",
+  description:
+    "Engineering articles, tutorials, and insights from Talha Saleem — covering Next.js, React, Node.js, SaaS architecture, AI tooling, and modern web development.",
+  alternates: {
+    canonical: "https://talha.creexio.com/articles-and-insights",
+  },
+  openGraph: {
+    title: "Articles & Insights | Talha Saleem",
+    description:
+      "Engineering articles, tutorials, and insights from Talha Saleem — covering Next.js, React, Node.js, SaaS architecture, AI tooling, and modern web development.",
+    url: "https://talha.creexio.com/articles-and-insights",
+    type: "website",
+  },
 };
 
 export default function BlogPage() {
