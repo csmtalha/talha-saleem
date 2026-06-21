@@ -7,15 +7,15 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const MVP_PROJECTS = [
-  {
-    title: "Mortgage Industry Chatbot",
-    description:
-      "AI chatbot designed to help mortgage customers with questions and lead qualification.",
-    image: "/images/projects/mortgagemvp.png",
-    tags: ["Next.js", "Tailwind CSS", "ShadCN UI", "PostgreSQL", "Prisma", "Vercel", "SaaS"],
-    details:
-      "Full-featured mortgage chatbot with multi-tenant architecture, admin dashboard, and role-based access. Integrated third-party chatbot APIs and custom REST APIs. Deployed on Vercel as an enterprise SaaS solution.",
-  },
+  // {
+  //   title: "Mortgage Industry Chatbot",
+  //   description:
+  //     "AI chatbot designed to help mortgage customers with questions and lead qualification.",
+  //   image: "/images/projects/mortgagemvp.png",
+  //   tags: ["Next.js", "Tailwind CSS", "ShadCN UI", "PostgreSQL", "Prisma", "Vercel", "SaaS"],
+  //   details:
+  //     "Full-featured mortgage chatbot with multi-tenant architecture, admin dashboard, and role-based access. Integrated third-party chatbot APIs and custom REST APIs. Deployed on Vercel as an enterprise SaaS solution.",
+  // },
   {
     title: "MedNotes",
     description:
@@ -24,6 +24,24 @@ const MVP_PROJECTS = [
     tags: ["MVP", "AI", "Healthcare", "Documentation"],
     details:
       "Turns doctor–patient conversations into structured, formal medical reports. Streamlines documentation and supports clinical workflow.",
+  },
+  {
+    title: "Loan Management System (LMS)",
+    description:
+      "Multi-branch loan management platform for a microfinance NBFC — covers the full lifecycle from KYC to SECP-style regulatory reporting.",
+    image: "/images/projects/lms.png",
+    tags: ["NestJS", "Next.js 16", "Prisma", "PostgreSQL", "TypeScript", "Multi-tenant", "@nestjs/schedule"],
+    details:
+      "5-phase system across 14 branches and 100+ field staff. Covers borrower registration, KYC, loan origination, multi-level approval, disbursement, EMI calculation, PAR bucket collections, nightly overdue cron, Excel/PDF regulatory exports, and a searchable audit trail.",
+  },
+  {
+    title: "Fleet Safety & FMCSA Compliance Platform",
+    description:
+      "Full-stack SaaS that helps trucking carriers monitor CSA scores, manage DataQs cases, and stay FMCSA compliant.",
+    image: "/images/projects/fleetsafety.png",
+    tags: ["NestJS", "React", "TypeScript", "PostgreSQL", "Multi-tenant", "SaaS", "FMCSA"],
+    details:
+      "Multi-tenant compliance platform with separate portals for staff and carriers. Covers DataQs and CPDP case management, evidence uploads, corrective action tracking, audit history, and automated email/SMS notifications. JWT auth with rotating refresh tokens.",
   },
 ];
 
@@ -78,7 +96,7 @@ export default function MvpProjects() {
           </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
+        <div className="grid gap-6 md:grid-cols-3 max-w-6xl mx-auto">
           {MVP_PROJECTS.map((project) => (
             <motion.div key={project.title} variants={itemVariants}>
               <Card className="h-full border-0 shadow-lg glass-effect card-hover overflow-hidden">

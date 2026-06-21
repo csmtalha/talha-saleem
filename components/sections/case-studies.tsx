@@ -10,52 +10,52 @@ import { ExternalLink } from "lucide-react";
 
 const CASE_STUDIES = [
   {
-    title: "Al Ibrahim Travel",
-    url: "https://www.alibrahimtravel.com/",
-    image: "/images/projects/alibrahimtravels.png",
+    title: "Neblo AI - Marketing Site",
+    url: "https://neblo.ai",
+    image: "/images/projects/neblo-ai.png",
     problem:
-      "Client needed a dynamic travel CMS to manage destinations, packages, and content with fast updates and strong SEO.",
+      "An early-stage AI freight broker startup needed a complete marketing site balancing brand storytelling, SEO performance, and a live content-managed blog - fast.",
     solution:
-      "Built a Next.js travel platform with Firebase (Firestore, Cloud Functions, Hosting) for real-time content, Google APIs integration, and responsive UX.",
-    technologies: ["Next.js", "React", "Tailwind CSS", "Firebase", "Firestore"],
+      "Built with Next.js 16 App Router and Turbopack. Framer Motion v12 animations are isolated in client components so page.tsx files stay pure server components - zero hydration tax on initial load. Blog runs on Sanity CMS with ISR and live webhooks so posts go live within seconds of publishing. Auto-generated sitemap includes all blog posts dynamically. Transactional email via Resend, deployed on Vercel.",
+    technologies: ["Next.js 16", "Tailwind CSS v4", "Framer Motion", "Sanity CMS", "ISR", "Resend", "Vercel", "SSG"],
     outcome:
-      "A fast, SEO-optimized travel platform with scalable CMS architecture and improved content publishing workflow. Lighthouse 90+, faster page loads, and easier content updates for the team.",
+      "A fully static, SEO-optimized marketing site across 8 pages (Home, Features, Copilot, Blog, FAQ, Contact, Privacy, Terms) with a live CMS-driven blog and clean server/client component separation.",
   },
   {
-    title: "Creexio",
-    url: "https://www.creexio.com/",
-    image: "/images/projects/creexio.png",
+    title: "Fleet Safety & FMCSA Compliance Platform",
+    url: "",
+    image: "/images/projects/fleetsafety.png",
     problem:
-      "Business required a modern, scalable web application with a professional presence and reliable performance.",
+      "Trucking carriers managed FMCSA compliance, CSA score monitoring, and DataQs disputes through fragmented manual processes - creating compliance risk and wasted hours for operations teams.",
     solution:
-      "Developed a React/Next.js application with clean architecture, responsive design, and maintainable codebase.",
-    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+      "Built a full-stack multi-tenant SaaS platform with NestJS, TypeORM, and PostgreSQL on the backend and React + TypeScript + Tailwind CSS on the frontend. Implemented JWT auth with rotating refresh tokens, separate portals for GEIA staff and carrier clients, DataQs and CPDP case management with evidence uploads, corrective action plan tracking with audit history, and automated email/SMS notifications.",
+    technologies: ["NestJS", "TypeORM", "PostgreSQL", "React", "TypeScript", "Tailwind CSS", "JWT", "Multi-tenant"],
     outcome:
-      "A fast, scalable web application with improved performance and maintainable codebase. Supports business growth with a strong user experience.",
+      "A production SaaS platform enabling trucking companies to monitor CSA/BASIC scores, manage compliance cases end-to-end, and maintain full audit history - reducing compliance risk through domain-driven automation.",
   },
   {
-    title: "Butler Engineering",
-    url: "https://butlerme.com/",
-    image: "/images/projects/butlerengineer.png",
+    title: "Google Chat HR Assistant",
+    url: "",
+    image: "/images/projects/google-chat-hr-bot.png",
     problem:
-      "Engineering firm needed a professional website to showcase services and expertise with easy content updates.",
+      "Employees had to manually look up HR policies, leave balances, and payroll info across disconnected tools - creating delays and high volumes of repetitive HR queries.",
     solution:
-      "Delivered a custom WordPress site with tailored theme, clear information architecture, and mobile-first design.",
-    technologies: ["WordPress", "PHP", "Custom Theme", "Responsive Design"],
+      "Built a fully serverless AI HR assistant using 6 modular Google Apps Script files. A 2-call OpenAI GPT-4o-mini pipeline first extracts smart search queries from the user's question, then answers using live policy content from Notion API. Employee and leave data is pulled live from Google Sheets. Responses render as interactive Google Chat Cards v2 with buttons and quick replies - no frontend, no deployment.",
+    technologies: ["Google Apps Script", "OpenAI GPT-4o", "Notion API", "Google Sheets", "Google Chat Cards v2", "JWT"],
     outcome:
-      "A professional, accessible website that reflects the brand. Easier content updates for the team and stronger mobile presence.",
+      "Employees get instant answers to HR questions inside a tool they already use every day. Zero new apps, zero dashboards - semantic search across Notion policies with real employee data from Sheets.",
   },
   {
-    title: "Mortgage Industry Chatbot",
+    title: "Mortgage Buddy - SaaS Chatbot",
     url: "",
     image: "/images/projects/mortgagemvp.png",
     problem:
-      "Mortgage businesses needed a way to qualify leads and answer customer questions at scale, with multi-tenant support for multiple investors.",
+      "Mortgage companies needed to qualify leads and answer customer questions at scale, with isolated multi-tenant support for multiple investors.",
     solution:
-      "Built a full-featured mortgage chatbot web application with multi-tenant architecture, admin dashboard for users and investors, role-based access, and integration with third-party chatbot APIs and custom REST APIs. Deployed on Vercel as an enterprise SaaS solution.",
+      "Built a multi-tenant chatbot SaaS with Next.js, PostgreSQL, and Prisma. Implemented role-based access control, admin dashboards, third-party chatbot API integrations, and custom REST APIs. Each tenant gets isolated data and configuration. Deployed on Vercel.",
     technologies: ["Next.js", "Tailwind CSS", "ShadCN UI", "PostgreSQL", "Prisma", "REST APIs", "Vercel"],
     outcome:
-      "An enterprise SaaS chatbot platform that helps mortgage teams qualify leads and support customers, with scalable architecture and clear separation per tenant.",
+      "An enterprise SaaS platform enabling automated lead qualification and customer support at scale, with clean per-tenant data separation and a configurable admin layer.",
   },
 ];
 
@@ -124,7 +124,7 @@ export default function CaseStudies() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent md:from-transparent md:via-transparent md:to-transparent" />
                     <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6">
-                      <h3 className="text-xl md:text-2xl font-bold text-white drop-shadow-lg">
+                      <h3 className="text-xl md:text-2xl font-bold text-white drop-shadow-lg inline-block bg-black/50 backdrop-blur-sm px-3 py-1.5 rounded-lg">
                         {study.title}
                       </h3>
                       {study.url && (

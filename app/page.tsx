@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   title:
     "Lead Full Stack Engineer | Scalable SaaS & Multi-Tenant Platforms | React · Next.js · Vue.js · Node.js · NestJS | AWS | WordPress & Shopify",
   description:
-    "Lead Full Stack Engineer with 5+ years building scalable SaaS. Led a multi-tenant mortgage platform from scratch-architecture, RBAC, Stripe, AI, AWS. Remote, PST overlap, founder-led teams. Week-one impact. Author of the Kindle book AI Productivity for Businesses: Practical Operations—AI productivity for teams and operations.",
+    "Lead Full Stack Engineer with 5+ years building scalable SaaS. Led a multi-tenant mortgage platform from scratch-architecture, RBAC, Stripe, AI, AWS. Remote, PST overlap, founder-led teams. Week-one impact. Author of the Kindle book AI Productivity for Businesses: Practical Operations-AI productivity for teams and operations.",
   keywords: [
     "Lead Full Stack Engineer",
     "Multi-tenant SaaS",
