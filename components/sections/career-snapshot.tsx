@@ -13,7 +13,7 @@ const AUDIENCES = [
     tag: "For Hiring Teams",
     title: "A Lead Engineer Who Owns the Outcome",
     description:
-      "Led a multi-tenant SaaS from zero to production — architecture, RBAC, Stripe, AI integration, and AWS infrastructure. I don't just write features; I own the system. Available from week one, PST overlap.",
+      "Led a multi-tenant SaaS from zero to production - architecture, RBAC, Stripe, AI integration, and AWS infrastructure. I don't just write features; I own the system. Available from week one, PST overlap.",
     cta: "View Experience",
     href: "#engineering-experience",
     color: "from-primary/20 to-purple-500/20",
@@ -35,7 +35,7 @@ const AUDIENCES = [
     tag: "For Clients & Agencies",
     title: "One Engineer, the Whole Stack",
     description:
-      "React, Next.js, NestJS, WordPress, Shopify, AWS — I handle the full stack so you don't need five contractors. Clear communication, consistent delivery, no surprises.",
+      "React, Next.js, NestJS, WordPress, Shopify, AWS - I handle the full stack so you don't need five contractors. Clear communication, consistent delivery, no surprises.",
     cta: "View Services",
     href: "#services",
     color: "from-blue-500/20 to-cyan-500/20",
@@ -79,7 +79,7 @@ export default function CareerSnapshot() {
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6" />
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Whether you're hiring, building a product, or need a reliable engineer — here's the case.
+            Whether you're hiring, building a product, or need a reliable engineer - here's the case.
           </p>
         </motion.div>
 

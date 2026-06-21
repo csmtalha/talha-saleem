@@ -153,7 +153,7 @@ export default function Projects() {
     },
     {
       title: "Loan Management System (LMS)",
-      description: "Multi-branch LMS for a microfinance NBFC — full loan lifecycle from borrower registration to SECP-style regulatory reporting across 14 branches.",
+      description: "Multi-branch LMS for a microfinance NBFC - full loan lifecycle from borrower registration to SECP-style regulatory reporting across 14 branches.",
       image: "/images/projects/lms.png",
       tags: ["NestJS", "Next.js 16", "Prisma", "PostgreSQL", "TypeScript", "Tailwind CSS", "Multi-tenant", "SaaS"],
       details:

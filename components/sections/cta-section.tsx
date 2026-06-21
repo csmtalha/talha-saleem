@@ -56,11 +56,11 @@ export default function CtaSection() {
           className="text-lg text-muted-foreground mb-4 leading-relaxed"
         >
           Whether you need a Lead Engineer to own your SaaS architecture, a reliable contractor to
-          ship a product, or a technical co-builder for your startup — let&apos;s talk.
+          ship a product, or a technical co-builder for your startup - let&apos;s talk.
         </motion.p>
 
         <motion.p variants={itemVariants} className="text-sm text-muted-foreground/70 mb-10">
-          No lengthy intake forms. Just email or LinkedIn — I&apos;ll reply the same day.
+          No lengthy intake forms. Just email or LinkedIn - I&apos;ll reply the same day.
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">

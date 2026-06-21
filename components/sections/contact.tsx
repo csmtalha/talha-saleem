@@ -258,7 +258,7 @@ export default function Contact() {
                       />
                     </div>
 
-                    {/* reCAPTCHA v3 runs invisibly — no widget needed */}
+                    {/* reCAPTCHA v3 runs invisibly - no widget needed */}
 
                     {status === "error" && errorMsg && (
                       <div className="flex items-center gap-2 text-red-500 text-sm bg-red-500/10 rounded-lg px-4 py-3">

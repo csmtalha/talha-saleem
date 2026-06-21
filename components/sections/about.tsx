@@ -18,7 +18,7 @@ const TRAITS = [
   {
     icon: BookOpen,
     title: "I wrote a book on AI for business teams",
-    body: "\"AI Productivity for Businesses: Practical Operations\" — published on Kindle. I think deeply about how software and AI intersect in real workflows.",
+    body: "\"AI Productivity for Businesses: Practical Operations\" - published on Kindle. I think deeply about how software and AI intersect in real workflows.",
   },
   {
     icon: MapPin,
@@ -63,7 +63,7 @@ export default function About() {
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6" />
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Beyond the tech stack — the things that make collaboration actually work.
+            Beyond the tech stack - the things that make collaboration actually work.
           </p>
         </motion.div>
 

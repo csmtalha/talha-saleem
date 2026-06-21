@@ -93,7 +93,7 @@ export default function Hero() {
             className="space-y-3 text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed mx-auto lg:mx-0"
           >
             <p>
-              5+ years building production SaaS — most recently led a multi-tenant mortgage platform
+              5+ years building production SaaS - most recently led a multi-tenant mortgage platform
               from zero to production: architecture, RBAC, Stripe, AI, and AWS. Real customers use it daily.
             </p>
             <p>
@@ -135,7 +135,7 @@ export default function Hero() {
               <span className="px-2 py-0.5 rounded bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider">
                 Latest
               </span>
-              <span>Just shipped neblo.ai — AI freight broker platform</span>
+              <span>Just shipped neblo.ai - AI freight broker platform</span>
               <ExternalLink className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
           </motion.div>
@@ -171,7 +171,7 @@ export default function Hero() {
           <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
             <Image
               src={profilePic}
-              alt="Talha Saleem — Lead Full Stack Engineer"
+              alt="Talha Saleem - Lead Full Stack Engineer"
               width={400}
               height={400}
               sizes="(max-width: 768px) 384px, 448px"

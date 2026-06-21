@@ -15,7 +15,7 @@ const ENGAGEMENTS = [
 
 const DETAILS = [
   { icon: Globe, label: "Timezone", value: "Lahore, Pakistan (UTC+5)" },
-  { icon: Clock, label: "Overlap", value: "PST — 4–6 hrs daily" },
+  { icon: Clock, label: "Overlap", value: "PST - 4–6 hrs daily" },
   { icon: MessageSquare, label: "Response", value: "< 24 hrs, Mon–Fri" },
 ];
 
@@ -119,7 +119,7 @@ export default function Availability() {
 
             <div className="rounded-xl bg-primary/5 border border-primary/10 p-4">
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Happy to jump on a quick call to see if there&apos;s a fit — no commitment, just a conversation.
+                Happy to jump on a quick call to see if there&apos;s a fit - no commitment, just a conversation.
               </p>
             </div>
           </motion.div>

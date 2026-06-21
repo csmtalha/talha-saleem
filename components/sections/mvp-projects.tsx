@@ -28,7 +28,7 @@ const MVP_PROJECTS = [
   {
     title: "Loan Management System (LMS)",
     description:
-      "Multi-branch loan management platform for a microfinance NBFC — covers the full lifecycle from KYC to SECP-style regulatory reporting.",
+      "Multi-branch loan management platform for a microfinance NBFC - covers the full lifecycle from KYC to SECP-style regulatory reporting.",
     image: "/images/projects/lms.png",
     tags: ["NestJS", "Next.js 16", "Prisma", "PostgreSQL", "TypeScript", "Multi-tenant", "@nestjs/schedule"],
     details:

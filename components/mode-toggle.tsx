@@ -16,7 +16,7 @@ export function ModeToggle() {
   const handleToggle = () => {
     const newTheme = theme === "dark" ? "light" : "dark";
 
-    // View Transition API — quadrant reveal handled by CSS
+    // View Transition API - quadrant reveal handled by CSS
     if (typeof document !== "undefined" && "startViewTransition" in document) {
       (document as Document & { startViewTransition: (cb: () => void) => void }).startViewTransition(() => {
         setTheme(newTheme);
