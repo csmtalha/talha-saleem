@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+// useRef kept for the section scroll ref
 import Script from "next/script";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
@@ -13,11 +14,9 @@ import { Mail, MapPin, Clock, CheckCircle2, AlertCircle, Loader2 } from "lucide-
 declare global {
   interface Window {
     grecaptcha: {
-      render: (container: HTMLElement, opts: { sitekey: string }) => number;
-      getResponse: (widgetId?: number) => string;
-      reset: (widgetId?: number) => void;
+      ready: (cb: () => void) => void;
+      execute: (siteKey: string, opts: { action: string }) => Promise<string>;
     };
-    onRecaptchaLoad: () => void;
   }
 }
 
@@ -28,9 +27,6 @@ export default function Contact() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const controls = useAnimation();
 
-  const recaptchaContainerRef = useRef<HTMLDivElement>(null);
-  const widgetIdRef = useRef<number | null>(null);
-
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -38,18 +34,6 @@ export default function Contact() {
   useEffect(() => {
     if (isInView) controls.start("visible");
   }, [isInView, controls]);
-
-  const renderRecaptcha = () => {
-    if (
-      recaptchaContainerRef.current &&
-      window.grecaptcha &&
-      widgetIdRef.current === null
-    ) {
-      widgetIdRef.current = window.grecaptcha.render(recaptchaContainerRef.current, {
-        sitekey: process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!,
-      });
-    }
-  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -60,14 +44,22 @@ export default function Contact() {
     setStatus("loading");
     setErrorMsg("");
 
-    const recaptchaToken = window.grecaptcha?.getResponse(widgetIdRef.current ?? undefined);
-    if (!recaptchaToken) {
-      setStatus("error");
-      setErrorMsg("Please complete the reCAPTCHA.");
-      return;
-    }
-
     try {
+      // v3: execute silently and get token
+      const recaptchaToken = await new Promise<string>((resolve, reject) => {
+        window.grecaptcha.ready(async () => {
+          try {
+            const token = await window.grecaptcha.execute(
+              process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!,
+              { action: "contact" }
+            );
+            resolve(token);
+          } catch (err) {
+            reject(err);
+          }
+        });
+      });
+
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -75,13 +67,10 @@ export default function Contact() {
       });
       const data = await res.json();
 
-      if (!res.ok) {
-        throw new Error(data.error || "Something went wrong.");
-      }
+      if (!res.ok) throw new Error(data.error || "Something went wrong.");
 
       setStatus("success");
       setForm({ name: "", email: "", subject: "", message: "" });
-      window.grecaptcha?.reset(widgetIdRef.current ?? undefined);
     } catch (err: unknown) {
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "Failed to send. Please try again.");
@@ -103,12 +92,8 @@ export default function Contact() {
       className="w-full bg-gradient-to-b from-muted/20 to-background relative overflow-hidden"
     >
       <Script
-        src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit"
+        src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
         strategy="lazyOnload"
-        onLoad={() => {
-          window.onRecaptchaLoad = renderRecaptcha;
-          if (window.grecaptcha?.render) renderRecaptcha();
-        }}
       />
 
       <div className="absolute inset-0 bg-dots-pattern opacity-[0.02]" />
@@ -273,8 +258,7 @@ export default function Contact() {
                       />
                     </div>
 
-                    {/* reCAPTCHA */}
-                    <div ref={recaptchaContainerRef} className="min-h-[78px]" />
+                    {/* reCAPTCHA v3 runs invisibly — no widget needed */}
 
                     {status === "error" && errorMsg && (
                       <div className="flex items-center gap-2 text-red-500 text-sm bg-red-500/10 rounded-lg px-4 py-3">

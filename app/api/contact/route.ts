@@ -8,9 +8,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Please fill in all required fields." }, { status: 400 });
   }
 
-  // Verify reCAPTCHA
+  // Verify reCAPTCHA v3
   if (!recaptchaToken) {
-    return NextResponse.json({ error: "Please complete the reCAPTCHA." }, { status: 400 });
+    return NextResponse.json({ error: "reCAPTCHA token missing." }, { status: 400 });
   }
 
   const recaptchaRes = await fetch(
@@ -19,7 +19,9 @@ export async function POST(req: Request) {
   );
   const recaptchaData = await recaptchaRes.json();
 
-  if (!recaptchaData.success) {
+  // v3: success + score >= 0.5 required
+  if (!recaptchaData.success || recaptchaData.score < 0.5) {
+    console.warn("reCAPTCHA v3 failed:", recaptchaData);
     return NextResponse.json({ error: "reCAPTCHA verification failed. Please try again." }, { status: 400 });
   }
 
