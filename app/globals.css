@@ -246,3 +246,23 @@
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   }
 }
+
+/* ── Theme transition: quadrant reveal from top-right corner ── */
+::view-transition-old(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  animation: theme-quadrant-reveal 0.55s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  mix-blend-mode: normal;
+}
+
+@keyframes theme-quadrant-reveal {
+  from {
+    clip-path: circle(0% at top right);
+  }
+  to {
+    clip-path: circle(150% at top right);
+  }
+}
