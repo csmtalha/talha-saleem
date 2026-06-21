@@ -2,6 +2,30 @@
 
 import { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
+import { BookOpen, Coffee, MapPin, Zap } from "lucide-react";
+
+const TRAITS = [
+  {
+    icon: Zap,
+    title: "I move fast and communicate clearly",
+    body: "No disappearing acts, no vague updates. You'll always know where things stand.",
+  },
+  {
+    icon: Coffee,
+    title: "I care about the product, not just the ticket",
+    body: "I'll flag if something doesn't make sense, suggest a better approach, and push back constructively.",
+  },
+  {
+    icon: BookOpen,
+    title: "I wrote a book on AI for business teams",
+    body: "\"AI Productivity for Businesses: Practical Operations\" — published on Kindle. I think deeply about how software and AI intersect in real workflows.",
+  },
+  {
+    icon: MapPin,
+    title: "Remote-first, async-friendly",
+    body: "Based in Lahore, Pakistan. Comfortable with PST overlap, Slack-first teams, and async code reviews.",
+  },
+];
 
 export default function About() {
   const ref = useRef(null);
@@ -14,19 +38,11 @@ export default function About() {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: 0.1 },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
   };
-
   const itemVariants = {
     hidden: { y: 16, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
-    },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
   };
 
   return (
@@ -37,34 +53,37 @@ export default function About() {
       <div className="absolute inset-0 bg-dots-pattern opacity-[0.02]" />
       <motion.div
         ref={ref}
-        className="section-container relative z-10 max-w-3xl mx-auto text-center"
+        className="section-container relative z-10"
         variants={containerVariants}
         animate={controls}
       >
-        <motion.h2
-          variants={itemVariants}
-          className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 gradient-text"
-        >
-          About Talha
-        </motion.h2>
-        <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-8" />
-        <motion.p
-          variants={itemVariants}
-          className="text-lg text-muted-foreground leading-relaxed mb-6"
-        >
-          Talha is a Lead Full Stack Engineer with 5+ years of experience building scalable SaaS
-          products. Most recently, he led the development of a multi-tenant mortgage platform from
-          scratch to production-architecture, RBAC, Stripe billing, AI integration, and AWS
-          infrastructure. Real customers use it daily.
-        </motion.p>
-        <motion.p
-          variants={itemVariants}
-          className="text-lg text-muted-foreground leading-relaxed"
-        >
-          He works best with founder-led teams where shipping fast and building things that last
-          both matter. He is remote, available for PST overlap, and can start contributing from week
-          one.
-        </motion.p>
+        <motion.div variants={itemVariants} className="text-center mb-12 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 gradient-text">
+            What It&apos;s Like Working With Me
+          </h2>
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6" />
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            Beyond the tech stack — the things that make collaboration actually work.
+          </p>
+        </motion.div>
+
+        <div className="grid gap-6 sm:grid-cols-2 max-w-4xl mx-auto">
+          {TRAITS.map((t) => (
+            <motion.div
+              key={t.title}
+              variants={itemVariants}
+              className="flex gap-4 p-6 rounded-2xl bg-card/50 border border-border/50 hover:border-primary/20 hover:bg-card/80 transition-colors duration-300"
+            >
+              <div className="rounded-xl bg-primary/10 p-3 h-fit text-primary shrink-0">
+                <t.icon className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="font-semibold mb-1.5">{t.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{t.body}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
     </section>
   );

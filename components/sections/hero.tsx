@@ -4,9 +4,17 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Briefcase, Mail, Phone } from "lucide-react";
+import { ArrowRight, Briefcase, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import profilePic from "@/public/images/hero-dp.png";
+
+const INDUSTRIES = [
+  "SaaS Platforms",
+  "Fintech & Compliance",
+  "Freight & Logistics",
+  "Healthcare Tech",
+  "E-commerce",
+];
 
 export default function Hero() {
   const ref = useRef(null);
@@ -14,16 +22,14 @@ export default function Hero() {
   const controls = useAnimation();
 
   useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    }
+    if (isInView) controls.start("visible");
   }, [isInView, controls]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+      transition: { staggerChildren: 0.12, delayChildren: 0.05 },
     },
   };
 
@@ -32,7 +38,7 @@ export default function Hero() {
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
     },
   };
 
@@ -56,44 +62,46 @@ export default function Hero() {
         variants={containerVariants}
         animate={controls}
       >
+        {/* Left */}
         <div className="flex-1 space-y-6 text-center lg:text-left">
-          <motion.div variants={itemVariants} className="space-y-2">
+
+          {/* Status */}
+          <motion.div variants={itemVariants} className="flex justify-center lg:justify-start">
+            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-sm font-medium">
+              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+              Available for remote work · PST overlap
+            </span>
+          </motion.div>
+
+          {/* Name + tagline */}
+          <motion.div variants={itemVariants} className="space-y-3">
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               <span className="gradient-text-animated">Talha Saleem</span>
             </h1>
-            <p className="text-lg sm:text-xl text-foreground/90 font-medium">
-              Lead Full Stack Engineer
+            <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-foreground/90 leading-tight">
+              I build SaaS products that{" "}
+              <span className="gradient-text">ship, scale, and stick.</span>
             </p>
             <p className="text-sm text-muted-foreground">
-              React · Next.js · Vue.js · Node.js · NestJS · AWS · WordPress & Shopify
-            </p>
-            <p className="flex flex-wrap items-center justify-center lg:justify-start gap-x-3 gap-y-1 text-sm text-muted-foreground pt-1">
-              <span className="inline-flex items-center gap-1.5">
-                <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-                Available for remote (PST)
-              </span>
-              <span aria-hidden className="text-muted-foreground/50">·</span>
-              <span>📍 Lahore, Pakistan</span>
+              Lead Full Stack Engineer · React · Next.js · NestJS · AWS · WordPress & Shopify
             </p>
           </motion.div>
 
+          {/* Pitch */}
           <motion.div
             variants={itemVariants}
-            className="space-y-4 text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed mx-auto lg:mx-0 text-center lg:text-left"
+            className="space-y-3 text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed mx-auto lg:mx-0"
           >
             <p>
-              I am a Lead Full Stack Engineer with 5+ years of experience building scalable SaaS
-              products. Most recently, I led the development of a multi-tenant mortgage platform from
-              scratch to production-handling architecture, RBAC, Stripe billing, AI integration, and
-              AWS infrastructure. Real customers use it daily.
+              5+ years building production SaaS — most recently led a multi-tenant mortgage platform
+              from zero to production: architecture, RBAC, Stripe, AI, and AWS. Real customers use it daily.
             </p>
             <p>
-              I work best with founder-led teams where shipping fast and building things that last
-              both matter. I am remote, available for PST overlap, and can start contributing from
-              week one.
+              I work best with founder-led teams where shipping fast and building things that last both matter.
             </p>
           </motion.div>
 
+          {/* CTAs */}
           <motion.div
             variants={itemVariants}
             className="flex flex-wrap gap-3 justify-center lg:justify-start"
@@ -104,43 +112,57 @@ export default function Hero() {
               asChild
             >
               <Link href="#case-studies">
-                View Case Studies
+                View My Work
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="glass-effect" asChild>
               <Link href="#contact" className="flex items-center gap-2">
                 <Briefcase className="h-4 w-4" />
-                Hire Me
+                Work With Me
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="glass-effect" asChild>
-              <Link href="#contact" className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
-                Book a Call
-              </Link>
-            </Button>
-            {/* <Button size="lg" variant="outline" className="glass-effect" asChild>
-              <Link href="#contact" className="flex items-center gap-2">
-                <Mail className="h-4 w-4" />
-                Contact Me
-              </Link>
-            </Button> */}
           </motion.div>
 
-          <motion.p
-            variants={itemVariants}
-            className="text-xs text-muted-foreground/80 pt-1 max-w-md mx-auto lg:mx-0"
-          >
-            5+ years experience · SaaS · Multi-tenant · Founder-led teams
-          </motion.p>
+          {/* Recent launch */}
+          <motion.div variants={itemVariants}>
+            <a
+              href="https://neblo.ai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"
+            >
+              <span className="px-2 py-0.5 rounded bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider">
+                Latest
+              </span>
+              <span>Just shipped neblo.ai — AI freight broker platform</span>
+              <ExternalLink className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
+          </motion.div>
 
-          {/* SEO: hidden keywords for recruiters */}
+          {/* Industry trust bar */}
+          <motion.div variants={itemVariants} className="pt-1">
+            <p className="text-xs text-muted-foreground/60 uppercase tracking-wider mb-2 text-center lg:text-left">
+              Industries served
+            </p>
+            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
+              {INDUSTRIES.map((item) => (
+                <span
+                  key={item}
+                  className="px-3 py-1 rounded-full bg-muted/60 text-xs text-muted-foreground border border-border/50"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+          </motion.div>
+
           <div className="sr-only" aria-hidden>
-            Lead Full Stack Engineer • SaaS • Multi-tenant • React • Next.js • Vue.js • Node.js • NestJS • AWS
+            Lead Full Stack Engineer · SaaS · Multi-tenant · React · Next.js · Vue.js · Node.js · NestJS · AWS
           </div>
         </div>
 
+        {/* Right: Photo */}
         <motion.div
           variants={itemVariants}
           className="relative w-full max-w-sm md:max-w-md aspect-square shrink-0"
@@ -149,7 +171,7 @@ export default function Hero() {
           <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
             <Image
               src={profilePic}
-              alt="Talha Saleem - Lead Full Stack Engineer"
+              alt="Talha Saleem — Lead Full Stack Engineer"
               width={400}
               height={400}
               sizes="(max-width: 768px) 384px, 448px"
@@ -159,6 +181,38 @@ export default function Hero() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
           </div>
+
+          {/* Floating badge: experience */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1, duration: 0.4 }}
+            className="absolute -bottom-4 -left-4 bg-background border border-border shadow-xl rounded-2xl px-4 py-3 flex items-center gap-3"
+          >
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary font-bold">
+              5+
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground leading-none">Years building</p>
+              <p className="text-sm font-semibold leading-tight">SaaS products</p>
+            </div>
+          </motion.div>
+
+          {/* Floating badge: projects */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.2, duration: 0.4 }}
+            className="absolute -top-4 -right-4 bg-background border border-border shadow-xl rounded-2xl px-4 py-3 flex items-center gap-3"
+          >
+            <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-600 font-bold">
+              30+
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground leading-none">Products</p>
+              <p className="text-sm font-semibold leading-tight">shipped</p>
+            </div>
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>

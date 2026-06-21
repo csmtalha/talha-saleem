@@ -77,15 +77,15 @@ export default function Home() {
       <Header />
       <Hero />
       <Stats />
-      <CaseStudies />
-      <MvpProjects />
       <CareerSnapshot />
+      <CaseStudies />
       <Services />
-      <Availability />
+      <MvpProjects />
       <Projects />
       <About />
       <Skills />
       <EngineeringExperience />
+      <Availability />
       <Blog />
       <BookPromo />
       <Contact />
