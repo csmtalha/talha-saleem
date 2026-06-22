@@ -10,7 +10,7 @@ import EngineeringExperience from "@/components/sections/engineering-experience"
 import About from "@/components/sections/about";
 import Skills from "@/components/sections/skills";
 import Blog from "@/components/sections/blog";
-import BookPromo, { BOOK_COVER } from "@/components/sections/book-promo";
+import BookPromo from "@/components/sections/book-promo";
 import Availability from "@/components/sections/availability";
 import Contact from "@/components/sections/contact";
 import CtaSection from "@/components/sections/cta-section";
@@ -64,10 +64,10 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: BOOK_COVER.src,
-        width: BOOK_COVER.width,
-        height: BOOK_COVER.height,
-        alt: "AI Productivity for Businesses: Practical Operations - Kindle ebook cover",
+        url: "/images/hero-dp.png",
+        width: 1200,
+        height: 630,
+        alt: "Talha Saleem — Lead Full Stack Engineer",
       },
     ],
   },
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
       "Talha Saleem | Lead Full Stack Engineer — React, Next.js, Node.js, AWS",
     description:
       "Lead Full Stack Engineer, scalable SaaS & AI in production. Author: AI Productivity for Businesses (Kindle). Remote, PST overlap.",
-    images: [BOOK_COVER.src],
+    images: ["/images/hero-dp.png"],
   },
 };
 
