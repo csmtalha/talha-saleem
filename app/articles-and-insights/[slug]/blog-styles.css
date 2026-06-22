@@ -10,3 +10,50 @@
   padding: 1rem;
   overflow-x: auto;
 }
+
+/* Tables */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.95rem;
+  overflow: hidden;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.prose thead tr {
+  background-color: rgba(99, 102, 241, 0.15);
+}
+
+.prose thead th {
+  padding: 0.75rem 1.25rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.prose tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background-color 0.15s ease;
+}
+
+.prose tbody tr:last-child {
+  border-bottom: none;
+}
+
+.prose tbody tr:hover {
+  background-color: rgba(99, 102, 241, 0.06);
+}
+
+.prose tbody td {
+  padding: 0.75rem 1.25rem;
+  vertical-align: middle;
+}
+
+.prose tbody td strong {
+  color: hsl(var(--primary));
+}

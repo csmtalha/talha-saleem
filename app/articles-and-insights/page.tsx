@@ -7,14 +7,14 @@ import { Badge } from "@/components/ui/badge";
 export const metadata = {
   title: "Articles & Insights",
   description:
-    "Engineering articles, tutorials, and insights from Talha Saleem — covering Next.js, React, Node.js, SaaS architecture, AI tooling, and modern web development.",
+    "Engineering articles, tutorials, and insights from Talha Saleem - covering Next.js, React, Node.js, SaaS architecture, AI tooling, and modern web development.",
   alternates: {
     canonical: "https://talha.creexio.com/articles-and-insights",
   },
   openGraph: {
     title: "Articles & Insights | Talha Saleem",
     description:
-      "Engineering articles, tutorials, and insights from Talha Saleem — covering Next.js, React, Node.js, SaaS architecture, AI tooling, and modern web development.",
+      "Engineering articles, tutorials, and insights from Talha Saleem - covering Next.js, React, Node.js, SaaS architecture, AI tooling, and modern web development.",
     url: "https://talha.creexio.com/articles-and-insights",
     type: "website",
   },
@@ -51,7 +51,7 @@ export default function BlogPage() {
                   <CardContent className="p-0">
                     {/* Featured Image */}
                     {post.metadata.image && (
-                      <div className="relative h-48 overflow-hidden">
+                      <div className="relative h-[300px] overflow-hidden">
                         <Image
                           src={post.metadata.image}
                           alt={post.metadata.title}

@@ -1,12 +1,13 @@
 import { getAllPosts } from "@/lib/posts";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
+import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
 import rehypeStringify from "rehype-stringify";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Metadata } from "next";
-import "./blog-styles.css"; // Optional for custom styling
+import "./blog-styles.css";
 
 type Props = {
   params: Promise<{
@@ -75,9 +76,10 @@ export default async function Post({ params }: Props) {
 
   // Enhanced Markdown processing with proper HTML sanitization
   const processedContent = await unified()
-    .use(remarkParse) // Parse Markdown
-    .use(remarkRehype) // Convert to HTML
-    .use(rehypeStringify) // Convert to string
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeStringify)
     .process(post.content);
 
   const contentHtml = processedContent.toString();
@@ -132,7 +134,7 @@ export default async function Post({ params }: Props) {
 
       {/* Featured Image */}
       {post.metadata.image && (
-        <div className="relative w-full h-96 mb-12 rounded-xl overflow-hidden">
+        <div className="relative w-full h-[600px] mb-12 rounded-xl overflow-hidden">
           <Image
             src={post.metadata.image}
             alt={post.metadata.title}

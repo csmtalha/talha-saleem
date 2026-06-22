@@ -20,7 +20,7 @@ import ScrollToTop from "@/components/scroll-to-top";
 export const metadata: Metadata = {
   metadataBase: new URL("https://talha.creexio.com"),
   title:
-    "Talha Saleem | Lead Full Stack Engineer — React, Next.js, Node.js, AWS",
+    "Talha Saleem | Lead Full Stack Engineer - React, Next.js, Node.js, AWS",
   description:
     "Lead Full Stack Engineer with 5+ years building scalable SaaS & multi-tenant platforms. React, Next.js, Vue.js, Node.js, NestJS, AWS, Stripe. Remote, PST overlap. Author: AI Productivity for Businesses (Kindle).",
   keywords: [
@@ -55,29 +55,29 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Talha Saleem | Lead Full Stack Engineer — React, Next.js, Node.js, AWS",
+      "Talha Saleem | Lead Full Stack Engineer - React, Next.js, Node.js, AWS",
     description:
       "Lead Full Stack Engineer with 5+ years building scalable SaaS. Multi-tenant platforms, RBAC, Stripe, AI, AWS. Author: AI Productivity for Businesses (Kindle). Remote, PST overlap.",
     url: "https://talha.creexio.com",
-    siteName: "Talha Saleem — Portfolio",
+    siteName: "Talha Saleem - Portfolio",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "/images/hero-dp.png",
+        url: "https://talha.creexio.com/images/profilepic.jpeg",
         width: 1200,
         height: 630,
-        alt: "Talha Saleem — Lead Full Stack Engineer",
+        alt: "Talha Saleem - Lead Full Stack Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title:
-      "Talha Saleem | Lead Full Stack Engineer — React, Next.js, Node.js, AWS",
+      "Talha Saleem | Lead Full Stack Engineer - React, Next.js, Node.js, AWS",
     description:
       "Lead Full Stack Engineer, scalable SaaS & AI in production. Author: AI Productivity for Businesses (Kindle). Remote, PST overlap.",
-    images: ["/images/hero-dp.png"],
+    images: ["https://talha.creexio.com/images/profilepic.jpeg"],
   },
 };
 
