@@ -4,7 +4,14 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Briefcase, ExternalLink } from "lucide-react";
+import { ArrowRight, Briefcase, Download, ExternalLink, FileText } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import Link from "next/link";
 import profilePic from "@/public/images/hero-dp.png";
 
@@ -122,6 +129,34 @@ export default function Hero() {
                 Work With Me
               </Link>
             </Button>
+
+            {/* Resume */}
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button size="lg" variant="outline" className="glass-effect">
+                  <FileText className="h-4 w-4 mr-2" />
+                  Resume
+                </Button>
+              </DialogTrigger>
+              <DialogContent className="max-w-4xl w-full h-[90vh] flex flex-col p-0 gap-0">
+                <DialogHeader className="flex flex-row items-center justify-between px-5 py-3 border-b shrink-0">
+                  <DialogTitle className="text-base font-semibold">Talha Saleem — Frontend CV</DialogTitle>
+                  <a
+                    href="/files/talha-saleem-cv-frontend.pdf"
+                    download="Talha-Saleem-CV.pdf"
+                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+                  >
+                    <Download className="h-3.5 w-3.5" />
+                    Download
+                  </a>
+                </DialogHeader>
+                <iframe
+                  src="/files/talha-saleem-cv-frontend.pdf#toolbar=0&navpanes=0"
+                  className="flex-1 w-full rounded-b-lg"
+                  title="Talha Saleem CV"
+                />
+              </DialogContent>
+            </Dialog>
           </motion.div>
 
           {/* Recent launch */}
