@@ -13,14 +13,12 @@ try {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   typescript: {
     ignoreBuildErrors: true,
   },
   images: {
     formats: ["image/avif", "image/webp"],
+    qualities: [75, 82, 85, 90],
     deviceSizes: [640, 750, 828, 1080, 1200],
     imageSizes: [256, 384, 480, 640],
   },

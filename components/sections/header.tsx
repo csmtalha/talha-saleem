@@ -1,189 +1,213 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Menu, X } from "lucide-react";
+import { Download, FileText, Menu, X } from "lucide-react";
 import { useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
+
+const NAV_ITEMS = [
+  { label: "Work", section: "case-studies" },
+  { label: "Services", section: "services" },
+  { label: "Projects", section: "projects" },
+  { label: "About", section: "about" },
+  { label: "Articles", href: "/articles-and-insights" },
+  { label: "Books", section: "book" },
+] as const;
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
   const router = useRouter();
   const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-      setMobileMenuOpen(false);
-    }
-  };
+  // Track active section via IntersectionObserver
+  useEffect(() => {
+    if (!isHome) return;
+    const ids = NAV_ITEMS.filter((i) => "section" in i).map((i) => (i as { section: string }).section);
+    const observers: IntersectionObserver[] = [];
 
-  const handleNavigation = (section: string) => {
-    if (pathname === "/") {
-      // If we're on home page, scroll to section
-      scrollToSection(section);
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { rootMargin: "-40% 0px -50% 0px" }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, [isHome]);
+
+  const scrollTo = useCallback((id: string) => {
+    setMobileOpen(false);
+    if (isHome) {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     } else {
-      // If we're on another page (like blog), navigate to home with hash
-      router.push(`/#${section}`);
-      // Wait for navigation to complete then scroll
-      setTimeout(() => {
-        const targetSection = document.getElementById(section);
-        if (targetSection) {
-          targetSection.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-      setMobileMenuOpen(false);
+      router.push(`/#${id}`);
     }
-  };
+  }, [isHome, router]);
 
-  const handleLogoClick = () => {
-    if (pathname !== "/") {
-      router.push("/");
-    } else {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-    setMobileMenuOpen(false);
-  };
-
-  const handleBlogClick = () => {
-    if (pathname !== "/articles-and-insights") {
-      router.push("/articles-and-insights");
-    }
-    setMobileMenuOpen(false);
-  };
+  const logoClick = useCallback(() => {
+    setMobileOpen(false);
+    if (isHome) window.scrollTo({ top: 0, behavior: "smooth" });
+    else router.push("/");
+  }, [isHome, router]);
 
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        scrolled ? "glass-effect border-b shadow-lg" : "bg-transparent"
+        scrolled ? "glass-effect border-b border-border/50 shadow-sm" : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center relative">
-        <div className="flex items-center min-w-[100px]">
-          <h1
-            className="text-xl font-bold gradient-text cursor-pointer hover:scale-105 transition-transform duration-200"
-            onClick={handleLogoClick}
-          >
-            Talha Saleem
-          </h1>
-        </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
 
-        {/* Desktop Menu - centered */}
-        <nav className="hidden lg:flex items-center justify-center gap-6 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          {["case-studies", "services", "projects", "about", "book", "contact"].map((section) => (
-            <Button
-              key={section}
-              variant="ghost"
-              size="sm"
-              onClick={() => handleNavigation(section)}
-              className={`text-sm font-medium hover:scale-105 transition-transform duration-200 ${
-                pathname.startsWith("/articles-and-insights")
-                  ? "text-muted-foreground hover:text-foreground"
-                  : ""
-              }`}
-            >
-              {section === "case-studies"
-                ? "Case Studies"
-                : section === "availability"
-                  ? "Hire"
-                  : section === "book"
-                    ? "Book"
-                    : section.charAt(0).toUpperCase() + section.slice(1)}
-            </Button>
-          ))}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleBlogClick}
-            className={`text-sm font-medium hover:scale-105 transition-transform duration-200 ${
-              pathname.startsWith("/articles-and-insights")
-                ? "font-semibold"
-                : ""
-            }`}
-          >
-            Articles & Insights
-          </Button>
-          <ModeToggle />
+        {/* Logo */}
+        <button
+          onClick={logoClick}
+          className="text-xl font-bold gradient-text hover:opacity-80 transition-opacity duration-200 shrink-0"
+        >
+          Talha Saleem
+        </button>
+
+        {/* Desktop nav */}
+        <nav className="hidden lg:flex items-center gap-1">
+          {NAV_ITEMS.map((item) => {
+            if ("href" in item) {
+              const active = pathname.startsWith(item.href);
+              return (
+                <Link
+                  key={item.label}
+                  href={item.href}
+                  className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 ${
+                    active
+                      ? "text-foreground bg-primary/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            }
+            const active = isHome && activeSection === item.section;
+            return (
+              <button
+                key={item.label}
+                onClick={() => scrollTo(item.section)}
+                className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors duration-200 ${
+                  active
+                    ? "text-foreground bg-primary/10"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+                }`}
+              >
+                {item.label}
+              </button>
+            );
+          })}
         </nav>
 
-        {/* Right: spacer for balance on desktop, mobile menu on small screens */}
-        <div className="flex items-center gap-2 min-w-[100px] justify-end">
-        {/* Mobile Menu Button */}
-        <div className="lg:hidden flex items-center gap-2">
+        {/* Desktop right */}
+        <div className="hidden lg:flex items-center gap-2 shrink-0">
+          <ModeToggle />
+          <a
+            href="/files/talha-saleem-cv-frontend.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors duration-200"
+          >
+            <FileText className="h-3.5 w-3.5" />
+            Resume
+          </a>
+          <Button
+            size="sm"
+            className="bg-gradient-to-r from-primary to-purple-500 hover:opacity-90 text-primary-foreground shadow-md"
+            onClick={() => scrollTo("contact")}
+          >
+            Hire Me
+          </Button>
+        </div>
+
+        {/* Mobile right */}
+        <div className="lg:hidden flex items-center gap-1">
           <ModeToggle />
           <Button
             variant="ghost"
             size="icon"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="hover:scale-105 transition-transform duration-200"
+            onClick={() => setMobileOpen((v) => !v)}
+            aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
+            {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </Button>
-        </div>
-        <div className="hidden lg:block w-[100px]" aria-hidden />
         </div>
       </div>
 
-      {/* Mobile Nav */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden glass-effect border-t border-border shadow-lg">
-          <div className="flex flex-col items-center px-4 py-4 space-y-3">
-            {[
-              "case-studies",
-              "services",
-              "projects",
-              "about",
-              "book",
-              "availability",
-              "contact",
-            ].map((section) => (
-              <Button
-                key={section}
-                variant="ghost"
-                size="sm"
-                onClick={() => handleNavigation(section)}
-                className={`text-sm font-medium justify-start ${
-                  pathname.startsWith("/articles-and-insights")
-                    ? "text-muted-foreground hover:text-foreground"
-                    : ""
-                }`}
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="lg:hidden glass-effect border-t border-border/50 shadow-lg">
+          <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col gap-1">
+            {NAV_ITEMS.map((item) => {
+              if ("href" in item) {
+                const active = pathname.startsWith(item.href);
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`px-4 py-2.5 rounded-md text-sm font-medium transition-colors ${
+                      active ? "text-foreground bg-primary/10" : "text-muted-foreground hover:text-foreground hover:bg-muted/60"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              }
+              return (
+                <button
+                  key={item.label}
+                  onClick={() => scrollTo(item.section)}
+                  className="px-4 py-2.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors text-left"
+                >
+                  {item.label}
+                </button>
+              );
+            })}
+
+            <div className="border-t border-border/50 mt-2 pt-3 flex flex-col gap-2">
+              <a
+                href="/files/talha-saleem-cv-frontend.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
               >
-                {section === "case-studies"
-                ? "Case Studies"
-                : section === "availability"
-                  ? "Hire"
-                  : section === "book"
-                    ? "Book"
-                    : section.charAt(0).toUpperCase() + section.slice(1)}
+                <FileText className="h-4 w-4" />
+                View Resume
+              </a>
+              <a
+                href="/files/talha-saleem-cv-frontend.pdf"
+                download="Talha-Saleem-CV.pdf"
+                className="flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
+              >
+                <Download className="h-4 w-4" />
+                Download CV
+              </a>
+              <Button
+                size="sm"
+                className="bg-gradient-to-r from-primary to-purple-500 hover:opacity-90 text-primary-foreground mt-1"
+                onClick={() => scrollTo("contact")}
+              >
+                Hire Me
               </Button>
-            ))}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleBlogClick}
-              className={`text-sm font-medium justify-start ${
-                pathname.startsWith("/articles-and-insights")
-                  ? "font-semibold"
-                  : ""
-              }`}
-            >
-              Articles & Insights
-            </Button>
+            </div>
           </div>
         </div>
       )}
