@@ -9,7 +9,7 @@ const REASONS = [
     icon: Zap,
     title: "Ship Fast",
     description:
-      "MVPs in 2–4 weeks. Full SaaS platforms in 6–10. No discovery theater, no bloated sprints — scoped tight, built lean, deployed to production.",
+      "MVPs in 2–4 weeks. Full SaaS platforms in 6–10. No discovery theater, no bloated sprints - scoped tight, built lean, deployed to production.",
     color: "text-yellow-500",
     bg: "bg-yellow-500/10",
   },
@@ -17,7 +17,7 @@ const REASONS = [
     icon: Brain,
     title: "Domain Expertise",
     description:
-      "Six industries deep — fintech, freight, healthcare, real estate, e-commerce, HR tech. I understand the regulatory constraints, data models, and edge cases before writing a line of code.",
+      "Six industries deep - fintech, freight, healthcare, real estate, e-commerce, HR tech. I understand the regulatory constraints, data models, and edge cases before writing a line of code.",
     color: "text-purple-500",
     bg: "bg-purple-500/10",
   },
@@ -25,7 +25,7 @@ const REASONS = [
     icon: ShieldCheck,
     title: "Production-Ready by Default",
     description:
-      "Multi-tenancy, RBAC, audit trails, nightly crons, and examiner-ready exports are first-class citizens — not afterthoughts bolted on before launch.",
+      "Multi-tenancy, RBAC, audit trails, nightly crons, and examiner-ready exports are first-class citizens - not afterthoughts bolted on before launch.",
     color: "text-green-500",
     bg: "bg-green-500/10",
   },
@@ -33,7 +33,7 @@ const REASONS = [
     icon: Users,
     title: "No Juniors. No Handoffs.",
     description:
-      "You talk directly to the engineer building your product. Every decision, every tradeoff, every line of code — owned end-to-end by a senior who has shipped to real clients.",
+      "You talk directly to the engineer building your product. Every decision, every tradeoff, every line of code - owned end-to-end by a senior who has shipped to real clients.",
     color: "text-blue-500",
     bg: "bg-blue-500/10",
   },
@@ -41,7 +41,7 @@ const REASONS = [
     icon: Code2,
     title: "Full-Stack, Truly",
     description:
-      "NestJS APIs, Next.js frontends, PostgreSQL schemas, AWS deployments, Stripe billing, CI/CD — one engineer across the entire stack, not a frontend dev pretending.",
+      "NestJS APIs, Next.js frontends, PostgreSQL schemas, AWS deployments, Stripe billing, CI/CD - one engineer across the entire stack, not a frontend dev pretending.",
     color: "text-primary",
     bg: "bg-primary/10",
   },
@@ -49,7 +49,7 @@ const REASONS = [
     icon: Clock,
     title: "PST Overlap. Fast Replies.",
     description:
-      "Based in Lahore, available with US/EU timezone overlap. Async-first but responsive — most messages answered within a few hours, not a few days.",
+      "Based in Lahore, available with US/EU timezone overlap. Async-first but responsive - most messages answered within a few hours, not a few days.",
     color: "text-orange-500",
     bg: "bg-orange-500/10",
   },
