@@ -18,9 +18,9 @@ const BOOKS = [
     id: "ai-productivity",
     title: "AI Productivity for Businesses: Practical Operations",
     description:
-      "A concise, practical guide to AI productivity for businesses — from day-to-day operations to workflows that compound. Ideal for leaders and builders who want actionable ideas, not hype.",
+      "A concise, practical guide to AI productivity for businesses - from day-to-day operations to workflows that compound. Ideal for leaders and builders who want actionable ideas, not hype.",
     bullets: [
-      "Maps how teams can improve productivity with AI in real business contexts — operations, handoffs, and execution.",
+      "Maps how teams can improve productivity with AI in real business contexts - operations, handoffs, and execution.",
       "Grounded framing for decision-makers evaluating AI tools, SOPs, and internal adoption without drowning in buzzwords.",
       "Written for builders and operators who care about shipping.",
     ],
@@ -98,7 +98,7 @@ export default function BookPromo() {
             Published on Amazon
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Two books on the things that slow engineers down — AI adoption and staying sharp under pressure.
+            Two books on the things that slow engineers down - AI adoption and staying sharp under pressure.
           </p>
         </header>
 
@@ -112,7 +112,7 @@ export default function BookPromo() {
               <div className="flex items-center justify-center bg-muted/50 px-8 pt-8 pb-6">
                 <Image
                   src={book.cover.src}
-                  alt={`${book.title} — Kindle ebook cover`}
+                  alt={`${book.title} - Kindle ebook cover`}
                   width={book.cover.width}
                   height={book.cover.height}
                   className="h-56 w-auto rounded-md shadow-lg object-cover"

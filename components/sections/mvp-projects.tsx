@@ -7,41 +7,32 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const MVP_PROJECTS = [
-  // {
-  //   title: "Mortgage Industry Chatbot",
-  //   description:
-  //     "AI chatbot designed to help mortgage customers with questions and lead qualification.",
-  //   image: "/images/projects/mortgagemvp.png",
-  //   tags: ["Next.js", "Tailwind CSS", "ShadCN UI", "PostgreSQL", "Prisma", "Vercel", "SaaS"],
-  //   details:
-  //     "Full-featured mortgage chatbot with multi-tenant architecture, admin dashboard, and role-based access. Integrated third-party chatbot APIs and custom REST APIs. Deployed on Vercel as an enterprise SaaS solution.",
-  // },
+  {
+    title: "Datalyze",
+    description:
+      "Self-serve analytics SaaS - upload any file, get AI-powered charts and insights instantly. Stripe billing, three-tier subscriptions, OpenAI GPT-4.",
+    image: "/images/projects/datalyzer.png",
+    tags: ["Next.js", "Supabase", "OpenAI GPT-4", "Stripe", "Recharts", "Plotly.js", "TypeScript", "SaaS"],
+    details:
+      "Users upload CSV, XLSX, PDF, DOCX, JSON files and receive auto-generated charts, correlation analysis, outlier detection, and GPT-4 trend summaries. Stripe handles Free / Pro ($12/mo) / Team ($29/mo) plans with per-user usage limits, file size gates, and PDF/Excel export. Supabase Auth with Google OAuth and server-side session refresh.",
+  },
+  {
+    title: "RecruitIQ",
+    description:
+      "Multi-tenant AI recruitment platform - resume parsing, candidate ranking, Kanban pipeline, RAG HR chatbot, onboarding workflows, and analytics.",
+    image: "/images/projects/reqiq.png",
+    tags: ["Next.js 15", "FastAPI", "PostgreSQL", "pgvector", "GPT-4o", "LangChain", "Docker", "RBAC"],
+    details:
+      "7 production feature systems in one platform. GPT-4o parses resumes from PDF/DOCX, scores candidates against job descriptions, and ranks them by match percentage. Kanban drag-and-drop pipeline. RAG chatbot ingests policy PDFs and answers HR questions with source citations via pgvector + LangChain. Onboarding templates with task tracking. Time-to-hire analytics with CSV export. Full RBAC with 4 roles.",
+  },
   {
     title: "MedNotes",
     description:
-      "System that converts doctor–patient conversations into structured medical reports.",
+      "Records doctor–patient visits via browser audio, transcribes with Whisper, and generates structured SOAP notes with ICD-10 codes automatically.",
     image: "/images/projects/mednotemvp.png",
-    tags: ["MVP", "AI", "Healthcare", "Documentation"],
+    tags: ["Next.js", "FastAPI", "OpenAI Whisper", "GPT-4", "PostgreSQL", "Docker", "Cloud Run", "Healthcare AI"],
     details:
-      "Turns doctor–patient conversations into structured, formal medical reports. Streamlines documentation and supports clinical workflow.",
-  },
-  {
-    title: "Loan Management System (LMS)",
-    description:
-      "Multi-branch loan management platform for a microfinance NBFC - covers the full lifecycle from KYC to SECP-style regulatory reporting.",
-    image: "/images/projects/lms.png",
-    tags: ["NestJS", "Next.js 16", "Prisma", "PostgreSQL", "TypeScript", "Multi-tenant", "@nestjs/schedule"],
-    details:
-      "5-phase system across 14 branches and 100+ field staff. Covers borrower registration, KYC, loan origination, multi-level approval, disbursement, EMI calculation, PAR bucket collections, nightly overdue cron, Excel/PDF regulatory exports, and a searchable audit trail.",
-  },
-  {
-    title: "Fleet Safety & FMCSA Compliance Platform",
-    description:
-      "Full-stack SaaS that helps trucking carriers monitor CSA scores, manage DataQs cases, and stay FMCSA compliant.",
-    image: "/images/projects/fleetsafety.png",
-    tags: ["NestJS", "React", "TypeScript", "PostgreSQL", "Multi-tenant", "SaaS", "FMCSA"],
-    details:
-      "Multi-tenant compliance platform with separate portals for staff and carriers. Covers DataQs and CPDP case management, evidence uploads, corrective action tracking, audit history, and automated email/SMS notifications. JWT auth with rotating refresh tokens.",
+      "Browser-based audio recording → Whisper transcription → GPT-4 SOAP note generation with ICD-10/CPT codes, medication warnings, and risk alerts. Full patient management with visit history. JWT auth with bcrypt. Deployed on Vercel + Cloud Run via Docker. Physicians get a complete structured clinical record from one voice recording.",
   },
 ];
 
@@ -88,11 +79,11 @@ export default function MvpProjects() {
           className="text-center mb-12 md:mb-16"
         >
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 gradient-text">
-            MVP & Innovation Projects
+            Products & SaaS Builds
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6" />
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Startup and innovation work, from chatbots to healthcare documentation.
+            Full production systems - monetized SaaS, AI platforms, and healthcare tooling shipped end-to-end.
           </p>
         </motion.div>
 

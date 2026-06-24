@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Hero from "@/components/sections/hero";
 import Stats from "@/components/sections/stats";
 import CareerSnapshot from "@/components/sections/career-snapshot";
+import WhyTalha from "@/components/sections/why-talha";
 import Services from "@/components/sections/services";
 import CaseStudies from "@/components/sections/case-studies";
 import Projects from "@/components/sections/projects";
@@ -20,30 +21,22 @@ import ScrollToTop from "@/components/scroll-to-top";
 export const metadata: Metadata = {
   metadataBase: new URL("https://talha.creexio.com"),
   title:
-    "Talha Saleem | Lead Full Stack Engineer - React, Next.js, Node.js, AWS",
+    "Talha Saleem | AI-Powered SaaS & Compliance Platforms | Fintech, Freight & Healthcare",
   description:
-    "Lead Full Stack Engineer with 5+ years building scalable SaaS & multi-tenant platforms. React, Next.js, Vue.js, Node.js, NestJS, AWS, Stripe. Remote, PST overlap. Author: AI Productivity for Businesses (Kindle).",
+    "I build multi-tenant SaaS platforms, AI automation pipelines, and compliance systems for fintech, freight, and healthcare companies. Production-ready. Shipped to real clients. Based in Lahore, Pakistan.",
   keywords: [
-    "Lead Full Stack Engineer",
-    "Full Stack Developer",
-    "Multi-tenant SaaS",
-    "React Developer",
-    "Next.js Developer",
-    "Vue.js Developer",
-    "Node.js Developer",
-    "NestJS",
-    "AWS",
-    "Stripe integration",
-    "WordPress developer",
-    "Shopify developer",
-    "remote developer",
+    "fintech SaaS development agency Pakistan",
+    "FMCSA compliance software development",
+    "multi-tenant NestJS SaaS development",
+    "AI automation for microfinance loan management",
+    "compliance platform development regulated industries",
+    "AI-powered SaaS agency",
+    "NestJS Next.js agency",
+    "loan management system development",
+    "freight compliance software",
+    "healthcare AI automation",
     "Talha Saleem",
     "AI Productivity for Businesses",
-    "AI for operations",
-    "business AI Kindle",
-    "practical AI workflows",
-    "SaaS architecture",
-    "RBAC",
   ],
   authors: [{ name: "Talha Saleem", url: "https://talha.creexio.com" }],
   creator: "Talha Saleem",
@@ -55,11 +48,11 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title:
-      "Talha Saleem | Lead Full Stack Engineer - React, Next.js, Node.js, AWS",
+      "Talha Saleem | AI-Powered SaaS & Compliance Platforms | Fintech, Freight & Healthcare",
     description:
-      "Lead Full Stack Engineer with 5+ years building scalable SaaS. Multi-tenant platforms, RBAC, Stripe, AI, AWS. Author: AI Productivity for Businesses (Kindle). Remote, PST overlap.",
+      "I build multi-tenant SaaS platforms, AI automation pipelines, and compliance systems for fintech, freight, and healthcare companies. Production-ready. Shipped to real clients.",
     url: "https://talha.creexio.com",
-    siteName: "Talha Saleem - Portfolio",
+    siteName: "Talha Saleem - AI SaaS Agency",
     type: "website",
     locale: "en_US",
     images: [
@@ -67,44 +60,49 @@ export const metadata: Metadata = {
         url: "https://talha.creexio.com/images/profilepic.jpeg",
         width: 1200,
         height: 630,
-        alt: "Talha Saleem - Lead Full Stack Engineer",
+        alt: "Talha Saleem - AI-Powered SaaS Agency",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title:
-      "Talha Saleem | Lead Full Stack Engineer - React, Next.js, Node.js, AWS",
+      "Talha Saleem | AI-Powered SaaS & Compliance Platforms",
     description:
-      "Lead Full Stack Engineer, scalable SaaS & AI in production. Author: AI Productivity for Businesses (Kindle). Remote, PST overlap.",
+      "Multi-tenant SaaS, AI automation, and compliance platforms for fintech, freight, and healthcare. Production-ready. Based in Lahore, Pakistan.",
     images: ["https://talha.creexio.com/images/profilepic.jpeg"],
   },
 };
 
 const personSchema = {
   "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Talha Saleem",
+  "@type": "ProfessionalService",
+  name: "Talha Saleem - AI SaaS Agency",
   url: "https://talha.creexio.com",
-  jobTitle: "Lead Full Stack Engineer",
+  founder: {
+    "@type": "Person",
+    name: "Talha Saleem",
+    jobTitle: "Lead Full Stack Engineer & Founder",
+    sameAs: [
+      "https://www.linkedin.com/in/talhasaleem-dev",
+      "https://github.com/csmtalha",
+    ],
+  },
   description:
-    "Lead Full Stack Engineer with 5+ years building scalable SaaS and multi-tenant platforms. React, Next.js, Vue.js, Node.js, NestJS, AWS, Stripe.",
-  sameAs: [
-    "https://www.linkedin.com/in/talhasaleem-dev",
-    "https://github.com/csmtalha",
-  ],
+    "I build multi-tenant SaaS platforms, AI automation pipelines, and compliance systems for fintech, freight, and healthcare companies. Production-ready. Based in Lahore, Pakistan.",
+  areaServed: "Worldwide",
   knowsAbout: [
-    "React",
-    "Next.js",
-    "Vue.js",
-    "Node.js",
+    "AI Automation",
+    "Multi-tenant SaaS",
+    "Compliance Platforms",
+    "Fintech Software",
+    "FMCSA Compliance",
+    "Loan Management Systems",
     "NestJS",
+    "Next.js",
+    "React",
     "AWS",
     "Stripe",
-    "SaaS Architecture",
-    "Multi-tenant Platforms",
-    "WordPress",
-    "Shopify",
   ],
 };
 
@@ -118,7 +116,8 @@ export default function Home() {
       <Header />
       <Hero />
       <Stats />
-      <CareerSnapshot />
+      <WhyTalha />
+      {/* <CareerSnapshot /> */}
       <CaseStudies />
       <Services />
       <MvpProjects />

@@ -8,54 +8,120 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 
-const CASE_STUDIES = [
-  {
-    title: "Neblo AI - Marketing Site",
-    url: "https://neblo.ai",
-    image: "/images/projects/neblo-ai.png",
-    problem:
-      "An early-stage AI freight broker startup needed a complete marketing site balancing brand storytelling, SEO performance, and a live content-managed blog - fast.",
-    solution:
-      "Built with Next.js 16 App Router and Turbopack. Framer Motion v12 animations are isolated in client components so page.tsx files stay pure server components - zero hydration tax on initial load. Blog runs on Sanity CMS with ISR and live webhooks so posts go live within seconds of publishing. Auto-generated sitemap includes all blog posts dynamically. Transactional email via Resend, deployed on Vercel.",
-    technologies: ["Next.js 16", "Tailwind CSS v4", "Framer Motion", "Sanity CMS", "ISR", "Resend", "Vercel", "SSG"],
-    outcome:
-      "A fully static, SEO-optimized marketing site across 8 pages (Home, Features, Copilot, Blog, FAQ, Contact, Privacy, Terms) with a live CMS-driven blog and clean server/client component separation.",
-  },
+interface CaseStudy {
+  title: string;
+  url: string;
+  image: string;
+  problem: string;
+  impact?: string;
+  solution: string;
+  outcome: string;
+  expertNote?: string;
+  technologies: string[];
+}
+
+const CASE_STUDIES: CaseStudy[] = [
   {
     title: "Fleet Safety & FMCSA Compliance Platform",
     url: "",
     image: "/images/projects/fleetsafety.png",
     problem:
-      "Trucking carriers managed FMCSA compliance, CSA score monitoring, and DataQs disputes through fragmented manual processes - creating compliance risk and wasted hours for operations teams.",
+      "Mid-size trucking carriers were managing FMCSA compliance, CSA scores, and DataQs disputes across spreadsheets and email threads — discovering violations only after the contest window had closed.",
+    impact:
+      "A single uncontested DataQs violation can raise a CSA score by 8–12 points. Carriers above FMCSA intervention thresholds face targeted roadside inspections and conditional safety ratings that can freeze fleet operations. The cost of inaction wasn't a fine — it was operational paralysis.",
     solution:
-      "Built a full-stack multi-tenant SaaS platform with NestJS, TypeORM, and PostgreSQL on the backend and React + TypeScript + Tailwind CSS on the frontend. Implemented JWT auth with rotating refresh tokens, separate portals for GEIA staff and carrier clients, DataQs and CPDP case management with evidence uploads, corrective action plan tracking with audit history, and automated email/SMS notifications.",
-    technologies: ["NestJS", "TypeORM", "PostgreSQL", "React", "TypeScript", "Tailwind CSS", "JWT", "Multi-tenant"],
+      "Built a multi-tenant NestJS + React SaaS platform that aggregates CSA scores across all BASIC categories, tracks DataQs dispute timelines with automated deadline reminders, and maintains a full audit history per carrier. JWT auth with multi-tenant data isolation keeps each carrier's compliance record private. Architected to serve multiple carriers from a single deployment.",
     outcome:
-      "A production SaaS platform enabling trucking companies to monitor CSA/BASIC scores, manage compliance cases end-to-end, and maintain full audit history - reducing compliance risk through domain-driven automation.",
+      "Dispute resolution workflows reduced from multi-day manual processes to under one hour. Carriers replaced 17+ disconnected spreadsheets with a single auditable source of truth. DataQs deadlines that were previously missed are now tracked automatically — giving safety officers time to respond rather than react.",
+    expertNote:
+      "FMCSA's data model is not intuitive. CSA scores are weighted differently across BASIC categories and DataQs has specific procedural windows tied to federal register citations. A developer without logistics compliance exposure would build the wrong schema. An AI code generator would produce a generic document tracker — not a multi-tenant platform built around federal safety management systems.",
+    technologies: ["NestJS", "TypeORM", "PostgreSQL", "React", "TypeScript", "Tailwind CSS", "JWT", "Multi-tenant"],
+  },
+  {
+    title: "Loan Management System — 14-Branch Microfinance NBFC",
+    url: "",
+    image: "/images/projects/lms.png",
+    problem:
+      "A Pakistani microfinance NBFC was running a growing loan portfolio across 14 branches with 100+ field officers on paper forms, WhatsApp, and disconnected spreadsheets. KYC was inconsistent, EMI schedules were miscalculated, and SECP reporting was a quarterly scramble.",
+    impact:
+      "Field officers were spending 40–60% of their day on manual data entry and chasing approval signatures — causing loan disbursements to take days instead of hours. At the regulatory level, SECP-compliant reporting required machine-readable accuracy that spreadsheets couldn't deliver reliably. Every new branch added compliance risk.",
+    solution:
+      "A five-phase NestJS + Next.js 16 platform deployed across all 14 branches and accessible to 100+ field agents via mobile-optimized web. Covers KYC with CNIC verification, loan origination with configurable product types, automated EMI schedule generation (reducing-balance), disbursement tracking, delinquency flagging, and SECP-style regulatory reporting via nightly cron jobs with examiner-ready audit trails.",
+    outcome:
+      "Loan disbursement time for returning borrowers dropped from days to under 3 minutes. 100+ field agents onboarded across all 14 branches within two weeks of launch. EMI disputes dropped to near zero. SECP reporting moved from a weeks-long manual scramble to automated nightly pipelines — a one-click export on demand.",
+    expertNote:
+      "Microfinance lending in Pakistan follows SECP NBFC regulations, not generic fintech conventions. Markup rate calculations differ from Western APR standards. KYC requires CNIC data formats. SECP reporting fields diverge from IFRS. A developer without this domain exposure would produce a system that passes a demo and fails an audit.",
+    technologies: ["NestJS", "Next.js 16", "PostgreSQL", "Prisma", "TypeScript", "Tailwind CSS", "SECP Reporting", "Multi-tenant"],
   },
   {
     title: "Google Chat HR Assistant",
     url: "",
     image: "/images/projects/google-chat-hr-bot.png",
     problem:
-      "Employees had to manually look up HR policies, leave balances, and payroll info across disconnected tools - creating delays and high volumes of repetitive HR queries.",
+      "Employees had to manually look up HR policies, leave balances, and payroll info across disconnected tools — creating delays and high volumes of repetitive HR queries.",
     solution:
-      "Built a fully serverless AI HR assistant using 6 modular Google Apps Script files. A 2-call OpenAI GPT-4o-mini pipeline first extracts smart search queries from the user's question, then answers using live policy content from Notion API. Employee and leave data is pulled live from Google Sheets. Responses render as interactive Google Chat Cards v2 with buttons and quick replies - no frontend, no deployment.",
-    technologies: ["Google Apps Script", "OpenAI GPT-4o", "Notion API", "Google Sheets", "Google Chat Cards v2", "JWT"],
+      "A fully serverless AI assistant using 6 modular Google Apps Script files. A 2-call GPT-4o-mini pipeline first extracts smart search queries from the user's question, then answers using live policy content from Notion API. Employee and leave data is pulled live from Google Sheets. Responses render as interactive Google Chat Cards v2 — no new app, no training, no deployment.",
     outcome:
-      "Employees get instant answers to HR questions inside a tool they already use every day. Zero new apps, zero dashboards - semantic search across Notion policies with real employee data from Sheets.",
+      "Employees get instant answers to HR questions inside a tool they already use every day. Zero new apps, zero dashboards — semantic search across Notion policies with real employee data from Sheets.",
+    technologies: ["Google Apps Script", "OpenAI GPT-4o", "Notion API", "Google Sheets", "Google Chat Cards v2"],
   },
   {
-    title: "Mortgage Buddy - SaaS Chatbot",
-    url: "",
-    image: "/images/projects/mortgagemvp.png",
+    title: "Neblo AI - Marketing Site",
+    url: "https://neblo.ai",
+    image: "/images/projects/neblo-ai.png",
     problem:
-      "Mortgage companies needed to qualify leads and answer customer questions at scale, with isolated multi-tenant support for multiple investors.",
+      "An early-stage AI freight broker startup needed a complete marketing site balancing brand storytelling, SEO performance, and a live content-managed blog — fast.",
     solution:
-      "Built a multi-tenant chatbot SaaS with Next.js, PostgreSQL, and Prisma. Implemented role-based access control, admin dashboards, third-party chatbot API integrations, and custom REST APIs. Each tenant gets isolated data and configuration. Deployed on Vercel.",
-    technologies: ["Next.js", "Tailwind CSS", "ShadCN UI", "PostgreSQL", "Prisma", "REST APIs", "Vercel"],
+      "Built with Next.js 16 App Router. Framer Motion v12 animations isolated in client components keep page.tsx files as pure server components — zero hydration tax on initial load. Blog runs on Sanity CMS with ISR and live webhooks so posts go live within seconds of publishing.",
     outcome:
-      "An enterprise SaaS platform enabling automated lead qualification and customer support at scale, with clean per-tenant data separation and a configurable admin layer.",
+      "A fully static, SEO-optimized site across 8 pages with a live CMS-driven blog and clean server/client separation. Auto-generated sitemap includes all blog posts dynamically.",
+    technologies: ["Next.js 16", "Tailwind CSS v4", "Framer Motion", "Sanity CMS", "ISR", "Resend", "Vercel"],
+  },
+  {
+    title: "Datalyze — Self-Serve Analytics SaaS",
+    url: "",
+    image: "/images/projects/datalyzer.png",
+    problem:
+      "Business teams needed to extract insights from CSV, Excel, and PDF files without writing code — but enterprise BI tools were too expensive and no-code tools broke above 10K rows.",
+    impact:
+      "Manual data analysis in spreadsheets meant hours of work per report, no audit trail, and zero collaboration. Teams were building one-off Excel macros that only the original author understood. Every analyst re-solving the same ETL problems from scratch.",
+    solution:
+      "Built a production SaaS on Next.js + Supabase. Users upload CSV, XLSX, PDF, DOCX, JSON files and receive auto-generated charts (bar, line, pie, scatter, histogram), correlation analysis, outlier detection, and GPT-4-powered trend summaries. Analytics run server-side to prevent data exposure. Three-tier Stripe billing gates features: file size limits (5MB / 50MB / 100MB), row caps (1K / 100K / 500K), PDF/Excel export, and team collaboration for up to 10 members. Google OAuth + email auth via Supabase with server-side JWT refresh.",
+    outcome:
+      "A live monetized SaaS — Stripe webhooks managing subscription state, per-user usage enforcement, saved project management, and PDF export — shipped end-to-end as a solo engineer.",
+    expertNote:
+      "Multi-file parsing is deceptively hard. CSV column type inference, Excel merged cells, PDF table extraction, and DOCX structure all require different parsing strategies. Plugging GPT-4 into raw file bytes produces garbage. The insight pipeline only works because column types are detected and normalized first — numeric columns get statistical summaries, categorical columns get frequency distributions, date columns get trend lines.",
+    technologies: ["Next.js", "Supabase", "PostgreSQL", "OpenAI GPT-4", "Stripe", "Recharts", "Plotly.js", "TypeScript"],
+  },
+  {
+    title: "RecruitIQ — AI-Powered Recruitment Platform",
+    url: "",
+    image: "/images/projects/datalyzer.png",
+    problem:
+      "HR teams were manually screening hundreds of resumes, copy-pasting candidate data into spreadsheets, and answering the same policy questions repeatedly — while using four separate tools that didn't talk to each other.",
+    impact:
+      "A recruiter processing 200 applications per week was spending 60% of their time on data entry and keyword matching rather than actual assessment. Interview scheduling lived in email. Onboarding checklists in Google Docs. Policy answers in a shared drive no one had time to search.",
+    solution:
+      "A multi-tenant FastAPI + Next.js 15 platform covering the full hiring lifecycle. Resume parser (PDF/DOCX → GPT-4o) extracts 12+ structured fields and creates or updates a candidate record automatically. Candidate ranking scores match percentage, strengths, weaknesses, and missing skills against the job description. Kanban drag-and-drop pipeline with react-beautiful-dnd. RAG-based HR chatbot: upload policy PDFs, store as pgvector embeddings, answer questions with source citations via LangChain. Employee onboarding templates with task categories (HR, IT, Training, Equipment) and due-date calculation from start date. Automated analytics: time-to-hire, pipeline conversion rates, recruiter performance, CSV/JSON export. Full RBAC: admin, recruiter, hiring manager, viewer. Dockerized with Docker Compose.",
+    outcome:
+      "Seven production-grade feature systems in a single platform: resume parsing, candidate ranking, interview scheduling, Kanban pipeline, RAG chatbot, onboarding workflows, and reporting — each with its own data model, API surface, and UI.",
+    expertNote:
+      "Semantic candidate search is not a keyword problem. A resume that says 'built distributed systems at scale' and a job that says 'microservices architecture' won't match on keywords but do on meaning. pgvector with OpenAI embeddings solves this — but only if the embedding input is normalized post-parse. Raw resume text fed to an embeddings model produces noisy vectors because formatting, whitespace, and filler text dominate the signal.",
+    technologies: ["Next.js 15", "FastAPI", "PostgreSQL", "pgvector", "OpenAI GPT-4o", "LangChain", "Docker", "Zustand", "TanStack Query"],
+  },
+  {
+    title: "MedNotes — AI Clinical Documentation",
+    url: "",
+    image: "/images/projects/mednotemvp.png",
+    problem:
+      "Physicians were spending 30–40% of their working day documenting patient visits — manually writing SOAP notes, looking up ICD-10 codes, and tracking follow-ups after each appointment.",
+    impact:
+      "Documentation burden was forcing clinics to limit daily patient slots. Rushed manual notes introduced errors and gaps that downstream billing and compliance teams had to fix. Physicians leaving at 8PM to finish charts was normalized.",
+    solution:
+      "Browser-based audio recording captures the patient visit. A FastAPI backend (Python 3.9+, SQLAlchemy 2.0, Docker) receives the audio and runs it through OpenAI Whisper for multi-language transcription. GPT-4 then generates a structured SOAP note (Subjective, Objective, Assessment, Plan), extracts ICD-10/CPT codes, flags medication interaction warnings, and identifies clinical risk alerts — all from a single API call chain. Patients are linked to a full visit history with status tracking. JWT auth with bcrypt, HTTP-only cookies. Frontend on Vercel, backend on Cloud Run.",
+    outcome:
+      "A physician captures a complete structured medical record — transcript, SOAP note, diagnosis codes, medication warnings, follow-up plan — from one voice recording. Zero manual typing. The full note is available before the patient leaves the room.",
+    technologies: ["Next.js", "FastAPI", "OpenAI Whisper", "GPT-4", "PostgreSQL", "SQLAlchemy", "Docker", "Vercel", "Cloud Run"],
   },
 ];
 
@@ -105,7 +171,7 @@ export default function CaseStudies() {
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6" />
           <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            See how problems were solved, problem, solution, tech stack, and outcome for each project.
+            Real problems, real constraints, measurable outcomes — from FMCSA compliance systems to AI-powered healthcare documentation.
           </p>
         </motion.div>
 
@@ -150,20 +216,48 @@ export default function CaseStudies() {
                     <div className="space-y-4">
                       <div>
                         <h4 className="text-sm font-semibold uppercase tracking-wider text-primary mb-1">
-                          Problem
+                          Client Problem
                         </h4>
                         <p className="text-muted-foreground text-sm leading-relaxed">
                           {study.problem}
                         </p>
                       </div>
+                      {study.impact && (
+                        <div>
+                          <h4 className="text-sm font-semibold uppercase tracking-wider text-primary mb-1">
+                            Business Impact Without a Solution
+                          </h4>
+                          <p className="text-muted-foreground text-sm leading-relaxed">
+                            {study.impact}
+                          </p>
+                        </div>
+                      )}
                       <div>
                         <h4 className="text-sm font-semibold uppercase tracking-wider text-primary mb-1">
-                          Solution
+                          What I Built
                         </h4>
                         <p className="text-muted-foreground text-sm leading-relaxed">
                           {study.solution}
                         </p>
                       </div>
+                      <div>
+                        <h4 className="text-sm font-semibold uppercase tracking-wider text-primary mb-1">
+                          Measurable Outcome
+                        </h4>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {study.outcome}
+                        </p>
+                      </div>
+                      {study.expertNote && (
+                        <div className="bg-primary/5 border border-primary/10 rounded-lg p-3">
+                          <h4 className="text-xs font-semibold uppercase tracking-wider text-primary mb-1">
+                            Why Deep Domain Expertise Mattered
+                          </h4>
+                          <p className="text-muted-foreground text-xs leading-relaxed italic">
+                            {study.expertNote}
+                          </p>
+                        </div>
+                      )}
                       <div>
                         <h4 className="text-sm font-semibold uppercase tracking-wider text-primary mb-2">
                           Technologies
@@ -179,14 +273,6 @@ export default function CaseStudies() {
                             </Badge>
                           ))}
                         </div>
-                      </div>
-                      <div>
-                        <h4 className="text-sm font-semibold uppercase tracking-wider text-primary mb-1">
-                          Outcome
-                        </h4>
-                        <p className="text-muted-foreground text-sm leading-relaxed">
-                          {study.outcome}
-                        </p>
                       </div>
                     </div>
                   </CardContent>

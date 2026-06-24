@@ -65,7 +65,7 @@ export default function CtaSection() {
 
         <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
           <Button size="lg" className="gap-2 bg-gradient-to-r from-primary to-purple-500 hover:opacity-90 shadow-lg" asChild>
-            <a href="mailto:csmtalha@gmail.com">
+            <a href="mailto:talha@creexio.com">
               <Mail className="h-5 w-5" />
               Email Me
               <ArrowRight className="h-4 w-4 ml-1" />

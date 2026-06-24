@@ -4,13 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 
 const STATS = [
-  { target: 30, suffix: "+", label: "Products Shipped", sub: "SaaS · Web · E-commerce" },
-  { target: 5, suffix: "+", label: "Years Experience", sub: "React · Next.js · Node.js" },
-  { target: 10, suffix: "+", label: "Tech Stacks", sub: "Frontend · Backend · Cloud" },
-  { target: 24, suffix: "h", label: "Response Time", sub: "Mon–Fri, PST overlap" },
+  { target: 6, suffix: "", label: "Industries Shipped", sub: "Fintech · Freight · Healthcare · Real Estate" },
+  { target: 5, suffix: "+", label: "Years in Production", sub: "Full-stack · SaaS · Compliance" },
+  { target: 100, suffix: "+", label: "Users Onboarded", sub: "Field agents · Operators · Clients" },
+  { target: 2, suffix: "", label: "Published AI Books", sub: "Kindle · Business AI · Productivity" },
 ];
 
-const CLIENTS = ["Startups", "SaaS Companies", "Agencies", "Enterprise", "Founder-led teams"];
+const CLIENTS = ["Fintech & NBFC", "Freight & Compliance", "Healthcare Tech", "Real Estate", "E-commerce"];
 
 function CountUp({ target, suffix, active }: { target: number; suffix: string; active: boolean }) {
   const [count, setCount] = useState(0);
@@ -65,7 +65,7 @@ export default function Stats() {
           variants={itemVariants}
           className="text-center text-xs font-semibold uppercase tracking-widest text-primary mb-10"
         >
-          By The Numbers
+          In Production
         </motion.p>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">

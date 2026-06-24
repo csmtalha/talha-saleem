@@ -133,7 +133,7 @@ const Header = () => {
             className="bg-gradient-to-r from-primary to-purple-500 hover:opacity-90 text-primary-foreground shadow-md"
             onClick={() => scrollTo("contact")}
           >
-            Hire Me
+            Conact Me
           </Button>
         </div>
 
@@ -205,7 +205,7 @@ const Header = () => {
                 className="bg-gradient-to-r from-primary to-purple-500 hover:opacity-90 text-primary-foreground mt-1"
                 onClick={() => scrollTo("contact")}
               >
-                Hire Me
+                Conact Me
               </Button>
             </div>
           </div>

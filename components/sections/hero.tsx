@@ -4,22 +4,15 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Briefcase, Download, ExternalLink, FileText } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+import { ArrowRight, Briefcase, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import profilePic from "@/public/images/hero-dp.png";
 
 const INDUSTRIES = [
-  "SaaS Platforms",
-  "Fintech & Compliance",
-  "Freight & Logistics",
+  "Fintech & NBFC",
+  "Freight & Compliance",
   "Healthcare Tech",
+  "Real Estate",
   "E-commerce",
 ];
 
@@ -76,7 +69,7 @@ export default function Hero() {
           <motion.div variants={itemVariants} className="flex justify-center lg:justify-start">
             <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-sm font-medium">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              Available for remote work · PST overlap
+              Open to new engagements · PST overlap
             </span>
           </motion.div>
 
@@ -86,11 +79,11 @@ export default function Hero() {
               <span className="gradient-text-animated">Talha Saleem</span>
             </h1>
             <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-foreground/90 leading-tight">
-              I build SaaS products that{" "}
-              <span className="gradient-text">ship, scale, and stick.</span>
+              I build AI systems that{" "}
+              <span className="gradient-text">ship to production.</span>
             </p>
             <p className="text-sm text-muted-foreground">
-              Lead Full Stack Engineer · React · Next.js · NestJS · AWS · WordPress & Shopify
+              AI Automation · Multi-tenant SaaS · Compliance Platforms · NestJS · Next.js · AWS
             </p>
           </motion.div>
 
@@ -100,11 +93,11 @@ export default function Hero() {
             className="space-y-3 text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed mx-auto lg:mx-0"
           >
             <p>
-              5+ years building production SaaS - most recently led a multi-tenant mortgage platform
-              from zero to production: architecture, RBAC, Stripe, AI, and AWS. Real customers use it daily.
+              From FMCSA compliance platforms to AI-powered loan origination - I&apos;ve delivered
+              full-stack production software for fintech, freight, healthcare, and real estate companies.
             </p>
             <p>
-              I work best with founder-led teams where shipping fast and building things that last both matter.
+              Six industries. Measurable outcomes. No handoffs to juniors.
             </p>
           </motion.div>
 
@@ -119,44 +112,16 @@ export default function Hero() {
               asChild
             >
               <Link href="#case-studies">
-                View My Work
+                See My Work
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="glass-effect" asChild>
               <Link href="#contact" className="flex items-center gap-2">
                 <Briefcase className="h-4 w-4" />
-                Work With Me
+                Get a Free Audit
               </Link>
             </Button>
-
-            {/* Resume */}
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button size="lg" variant="outline" className="glass-effect">
-                  <FileText className="h-4 w-4 mr-2" />
-                  Resume
-                </Button>
-              </DialogTrigger>
-              <DialogContent className="max-w-4xl w-full h-[90vh] flex flex-col p-0 gap-0">
-                <DialogHeader className="flex flex-row items-center justify-between px-5 py-3 border-b shrink-0">
-                  <DialogTitle className="text-base font-semibold">Talha Saleem — Frontend CV</DialogTitle>
-                  <a
-                    href="/files/talha-saleem-cv-frontend.pdf"
-                    download="Talha-Saleem-CV.pdf"
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
-                  >
-                    <Download className="h-3.5 w-3.5" />
-                    Download
-                  </a>
-                </DialogHeader>
-                <iframe
-                  src="/files/talha-saleem-cv-frontend.pdf#toolbar=0&navpanes=0"
-                  className="flex-1 w-full rounded-b-lg"
-                  title="Talha Saleem CV"
-                />
-              </DialogContent>
-            </Dialog>
           </motion.div>
 
           {/* Recent launch */}

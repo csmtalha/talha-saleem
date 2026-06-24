@@ -6,11 +6,11 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const STACK = {
-  Frontend: ["React", "Next.js", "Vue.js", "TypeScript", "Tailwind CSS"],
+  Frontend: ["React", "Next.js", "Vue.js", "TypeScript", "Tailwind CSS", "Headless CMS"],
   Backend: ["Node.js", "NestJS", "Python", "Django", "PHP"],
   Data: ["PostgreSQL", "Prisma"],
-  Platforms: ["WordPress", "Shopify", "AWS", "Vercel"],
-  Integrations: ["Stripe", "AI APIs", "WebSockets"],
+  Platforms: ["Strapi" ,"WordPress", "Shopify", "AWS", "Vercel", "Railway"],
+  Integrations: ["FAST API", "AI ","Stripe", "REST APIs", "WebSockets", "Google Script" ],
 };
 
 const SPECIALTIES = [

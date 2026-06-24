@@ -75,38 +75,28 @@ export default function Projects() {
   const projects: Project[] = [
     // Web Applications (React / Next.js)
     {
-      title: "Al Ibrahim Travel",
-      description: "Dynamic travel CMS with Next.js and Firebase for content management and SEO.",
-      image: "/images/projects/alibrahimtravels.png",
-      tags: ["Next.js", "React", "Tailwind CSS", "Firebase"],
+      title: "Datalyze",
+      description: "Production SaaS that turns uploaded files into AI-powered analytics dashboards. Stripe billing, multi-tier plans, OpenAI insights.",
+      image: "/images/projects/datalyzer.png",
+      tags: ["Next.js", "Supabase", "OpenAI GPT-4", "Stripe", "TypeScript", "Recharts", "SaaS"],
       details:
-        "Situation: The client needed a scalable travel platform to manage destinations, packages, and dynamic content with strong SEO performance.\n\nTask: Build a modern CMS-driven travel website with fast updates and optimized UX.\n\nAction: Developed a Next.js platform integrated with Firebase services including Firestore, Cloud Functions, and Hosting. Implemented responsive UI, optimized routing, and structured content for SEO.\n\nResult: Delivered a fast, SEO-friendly travel platform with efficient content management and scalable architecture.",
-      github: "https://github.com/csmtalha",
-      demo: "https://www.alibrahimtravel.com/",
-      category: "webapps",
-    },
-    {
-      title: "Creexio",
-      description: "Modern web application built with React and Next.js for scalability and performance.",
-      image: "/images/projects/creexio.png",
-      tags: ["React", "Next.js", "TypeScript"],
-      details:
-        "Situation: The business required a modern web application to present services professionally while supporting future product growth.\n\nTask: Build a scalable and maintainable web platform with strong performance and responsive UI.\n\nAction: Developed the application using React and Next.js with TypeScript. Designed reusable components, optimized layout responsiveness, and ensured clean architecture for maintainability.\n\nResult: Delivered a fast, scalable web application with a professional interface and improved user experience.",
-      github: "https://github.com/csmtalha",
-      demo: "https://www.creexio.com/",
-      category: "webapps",
-    },
-    {
-      title: "Regent",
-      description: "Web platform for operational planning, logistics, and ship navigation with interactive maps.",
-      image: "/images/projects/regent.png",
-      tags: ["React.js", "Leaflet.js", "Logistics", "Route Planning"],
-      details:
-        "Situation: Logistics teams needed a platform to manage operations, routes, and ship navigation with spatial visualization.\n\nTask: Build an operational web platform with interactive maps and route planning capabilities.\n\nAction: Developed the platform using React.js and integrated Leaflet.js for interactive mapping and spatial visualization. Implemented features for route planning, vehicle tracking, and logistics management.\n\nResult: Delivered a functional operations platform enabling efficient planning, navigation, and route visualization.",
+        "Situation: Business teams needed to extract insights from CSV, Excel, and PDF files without writing code or paying for enterprise BI tools.\n\nTask: Build a self-serve SaaS analytics platform with subscription billing, file parsing, and AI-generated insights.\n\nAction: Built with Next.js and Supabase Auth (email + Google OAuth). Users upload CSV, XLSX, PDF, DOCX, JSON files and receive auto-generated charts (bar, line, pie, scatter), correlation analysis, outlier detection, and GPT-4-powered trend summaries. Three-tier Stripe billing (Free / Pro $12/mo / Team $29/mo) gates features like PDF export, 100K+ row limits, and team collaboration. Analytics engine runs server-side to prevent payload exposure.\n\nResult: Delivered a full production SaaS with Stripe subscriptions, per-user usage limits, saved project management, and PDF/Excel export - shipping from zero to live in a single sprint.",
       github: "https://github.com/csmtalha",
       demo: "#",
       category: "webapps",
     },
+    {
+      title: "RecruitIQ",
+      description: "AI-powered multi-tenant HR recruitment platform - resume parsing, candidate ranking, Kanban pipeline, RAG chatbot, and onboarding workflows.",
+      image: "/images/projects/reqiq.png",
+      tags: ["Next.js", "FastAPI", "PostgreSQL", "pgvector", "OpenAI GPT-4o", "LangChain", "Docker", "Multi-tenant"],
+      details:
+        "Situation: HR teams wasted hours manually screening resumes, scheduling interviews, and answering policy questions across disconnected spreadsheets and wikis.\n\nTask: Build a production-grade multi-tenant recruitment SaaS with AI at every stage of the hiring pipeline.\n\nAction: Delivered 7 interconnected feature systems. FastAPI backend with SQLAlchemy 2.0, pgvector for semantic search, and OpenAI GPT-4o. Resume parsing extracts 12+ structured fields from PDF/DOCX. Candidate ranking scores match percentage, strengths, weaknesses, and missing skills. Kanban drag-and-drop pipeline with react-beautiful-dnd. RAG-based HR chatbot ingests policy documents and answers questions with source citations. Employee onboarding templates with task tracking. Automated analytics with time-to-hire metrics, pipeline conversion rates, and CSV export. Full RBAC: admin, recruiter, hiring manager, viewer.\n\nResult: A complete AI-driven recruiting stack - from resume ingestion to offer management - in a single multi-tenant platform with Docker Compose deployment and auto-generated Swagger docs.",
+      github: "https://github.com/csmtalha",
+      demo: "#",
+      category: "webapps",
+    },
+
     // {
     //   title: "Assignment Assistance",
     //   description: "Next.js application for assignment assistance, streamlined workflows and modern UX.",
@@ -129,24 +119,25 @@ export default function Projects() {
     //   demo: "#",
     //   category: "webapps",
     // },
+
     {
+      title: "MedNotes",
+      description: "Records doctor–patient visits via browser audio, transcribes with Whisper, and generates structured SOAP notes with ICD-10 codes - deployed on Vercel + Cloud Run.",
+      image: "/images/projects/mednotemvp.png",
+      tags: ["Next.js", "FastAPI", "OpenAI Whisper", "GPT-4", "PostgreSQL", "Docker", "Healthcare AI"],
+      details:
+        "Situation: Physicians spend 30–40% of their time on documentation - manually writing SOAP notes, extracting diagnosis codes, and tracking follow-ups after each patient visit.\n\nTask: Build a production healthcare documentation system that turns spoken visits into structured clinical records automatically.\n\nAction: Browser-based audio recording sends visit audio to a FastAPI backend (Python 3.9+, SQLAlchemy 2.0). OpenAI Whisper transcribes the conversation; GPT-4 generates SOAP notes (Subjective, Objective, Assessment, Plan) aligned with clinical workflows. Automatic ICD-10/CPT code suggestion, medication interaction warnings, and AI-powered risk alerts are extracted per visit. Patient management with full visit history. JWT auth with bcrypt. Deployed frontend on Vercel, backend on Cloud Run via Docker Compose.\n\nResult: Physicians capture a full structured medical record - transcript, SOAP note, diagnosis codes, and follow-up plan - from a single voice recording, with zero manual typing.",
+      github: "https://github.com/csmtalha",
+      demo: "#",
+      category: "webapps",
+    },
+        {
       title: "Mortgage Buddy",
       description: "AI chatbot for mortgage customers, lead qualification and support at scale with multi-tenant SaaS.",
       image: "/images/projects/mortgagemvp.png",
       tags: ["Next.js", "Tailwind CSS", "ShadCN UI", "PostgreSQL", "Prisma", "Vercel", "SaaS"],
       details:
         "Situation: Mortgage companies needed an automated way to qualify leads and handle high volumes of customer inquiries.\n\nTask: Build a scalable SaaS chatbot platform supporting multiple investors and organizations.\n\nAction: Developed a multi-tenant chatbot system using Next.js, PostgreSQL, and Prisma. Implemented role-based access, admin dashboards, third-party chatbot API integrations, and REST APIs.\n\nResult: Delivered an enterprise SaaS chatbot platform enabling automated lead qualification, customer support, and scalable multi-tenant management.",
-      github: "https://github.com/csmtalha",
-      demo: "#",
-      category: "webapps",
-    },
-    {
-      title: "MedNotes",
-      description: "Converts doctor–patient conversations into structured medical reports. AI-powered documentation.",
-      image: "/images/projects/mednotemvp.png",
-      tags: ["MVP", "AI", "Healthcare", "Documentation"],
-      details:
-        "Situation: Doctors spend significant time manually documenting patient conversations into formal medical records.\n\nTask: Create an AI-powered solution to convert doctor–patient conversations into structured reports.\n\nAction: Designed an MVP system that processes conversation data and transforms it into structured medical documentation aligned with clinical workflows.\n\nResult: Delivered a prototype healthcare documentation tool that reduces manual work and improves reporting efficiency.",
       github: "https://github.com/csmtalha",
       demo: "#",
       category: "webapps",
@@ -171,6 +162,17 @@ export default function Projects() {
         "Situation: Neblo AI, an early-stage freight broker automation startup, needed a complete marketing website balancing brand storytelling, SEO performance, and developer experience.\n\nTask: Design and build the full marketing site from scratch - Home, Features, Copilot, Blog, FAQ, Contact, Privacy, and Terms pages.\n\nAction: Built with Next.js 16 App Router and Turbopack, Tailwind CSS v4, and deployed on Vercel. Kept all page.tsx files as pure server components by isolating Framer Motion v12 animations in dedicated client components - achieving scroll-triggered animations with zero hydration tax. Integrated Sanity CMS for the blog with ISR and live webhooks so new posts go live within seconds of publishing in Sanity Studio without a rebuild. Added Resend for transactional email and an auto-generated sitemap that dynamically includes all blog posts for full SEO coverage.\n\nResult: Delivered a fully static, SEO-optimized marketing site with best-in-class performance, a live CMS-driven blog, and a clean architecture that separates server and client concerns.",
       github: "https://github.com/csmtalha",
       demo: "https://neblo.ai",
+      category: "webapps",
+    },
+        {
+      title: "Creexio",
+      description: "High-converting lead generation platform for a SaaS agency - Framer Motion animations, reCAPTCHA forms, blog, and SEO optimization.",
+      image: "/images/projects/creexio.png",
+      tags: ["Next.js", "Framer Motion", "Tailwind CSS", "Nodemailer", "reCAPTCHA", "SEO", "AOS"],
+      details:
+        "Situation: A web development agency needed a marketing platform that could generate inbound leads, showcase case studies, and support a growing blog - all with strong SEO and conversion-focused UX.\n\nTask: Build a production marketing site that functions as both a brand showcase and a lead capture engine.\n\nAction: Built with Next.js and Tailwind CSS v4. Framer Motion and AOS deliver scroll-triggered animations. Sticky mobile CTA rail and contact forms with Google reCAPTCHA reduce spam while keeping conversion friction low. Markdown-powered blog with gray-matter. Auto-generated sitemap. Nodemailer for transactional email delivery.\n\nResult: A live production platform with measurable inbound conversion - services, testimonials, process timeline, and tech stack all contributing to trust signals for prospective clients.",
+      github: "https://github.com/csmtalha",
+      demo: "https://www.creexio.com/",
       category: "webapps",
     },
     {
@@ -369,7 +371,7 @@ export default function Projects() {
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6"></div>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Web applications, WordPress sites, and Shopify stores, with live links and technologies used.
+            Production SaaS platforms, AI-powered tools, and full-stack systems - across fintech, healthcare, freight, and e-commerce.
           </p>
         </motion.div>
 
