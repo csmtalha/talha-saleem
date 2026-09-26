@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Mail, Github, Linkedin, ArrowRight } from "lucide-react";
+import { Mail, Github, Linkedin, ArrowRight, FileText } from "lucide-react";
 
 export default function CtaSection() {
   const ref = useRef(null);
@@ -40,7 +40,7 @@ export default function CtaSection() {
         <motion.div variants={itemVariants} className="flex justify-center mb-6">
           <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-sm font-medium">
             <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-            Open to new projects · Responds within 24 hrs
+            Open to remote roles · Replies within 24 hrs
           </span>
         </motion.div>
 
@@ -48,24 +48,24 @@ export default function CtaSection() {
           variants={itemVariants}
           className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 gradient-text leading-tight"
         >
-          Ready to ship something that matters?
+          Hiring a senior or lead full-stack engineer?
         </motion.h2>
 
         <motion.p
           variants={itemVariants}
           className="text-lg text-muted-foreground mb-4 leading-relaxed"
         >
-          Whether you need a Lead Engineer to own your SaaS architecture, a reliable contractor to
-          ship a product, or a technical co-builder for your startup - let&apos;s talk.
+          I&apos;m looking for a remote team where I can own features end to end, from schema and APIs
+          to UI, tests and deploys. If that sounds like your team, let&apos;s talk.
         </motion.p>
 
         <motion.p variants={itemVariants} className="text-sm text-muted-foreground/70 mb-10">
-          No lengthy intake forms. Just email or LinkedIn - I&apos;ll reply the same day.
+          Email or LinkedIn works best. My full CV is one click away.
         </motion.p>
 
         <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
           <Button size="lg" className="gap-2 bg-gradient-to-r from-primary to-purple-500 hover:opacity-90 shadow-lg" asChild>
-            <a href="mailto:talha@creexio.com">
+            <a href="mailto:csmtalha@gmail.com">
               <Mail className="h-5 w-5" />
               Email Me
               <ArrowRight className="h-4 w-4 ml-1" />
@@ -75,6 +75,12 @@ export default function CtaSection() {
             <a href="https://linkedin.com/in/csmtalha/" target="_blank" rel="noopener noreferrer">
               <Linkedin className="h-5 w-5" />
               LinkedIn
+            </a>
+          </Button>
+          <Button size="lg" variant="outline" className="gap-2 glass-effect" asChild>
+            <a href="/files/Talha-Saleem-CV.pdf" target="_blank" rel="noopener noreferrer">
+              <FileText className="h-5 w-5" />
+              Download CV
             </a>
           </Button>
           <Button size="lg" variant="outline" className="gap-2 glass-effect" asChild>

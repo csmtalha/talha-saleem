@@ -9,9 +9,9 @@ import Link from "next/link";
 
 const NAV_ITEMS = [
   { label: "Work", section: "case-studies" },
-  { label: "Services", section: "services" },
+  { label: "Experience", section: "experience" },
   { label: "Projects", section: "projects" },
-  { label: "About", section: "about" },
+  { label: "Skills", section: "skills" },
   { label: "Articles", href: "/articles-and-insights" },
   { label: "Books", section: "book" },
 ] as const;
@@ -120,7 +120,7 @@ const Header = () => {
         <div className="hidden lg:flex items-center gap-2 shrink-0">
           <ModeToggle />
           <a
-            href="/files/cv.pdf"
+            href="/files/Talha-Saleem-CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors duration-200"
@@ -133,7 +133,7 @@ const Header = () => {
             className="bg-gradient-to-r from-primary to-purple-500 hover:opacity-90 text-primary-foreground shadow-md"
             onClick={() => scrollTo("contact")}
           >
-            Conact Me
+            Contact Me
           </Button>
         </div>
 
@@ -184,7 +184,7 @@ const Header = () => {
 
             <div className="border-t border-border/50 mt-2 pt-3 flex flex-col gap-2">
               <a
-                href="/files/cv.pdf"
+                href="/files/Talha-Saleem-CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
@@ -193,7 +193,7 @@ const Header = () => {
                 View Resume
               </a>
               <a
-                href="/files/cv.pdf"
+                href="/files/Talha-Saleem-CV.pdf"
                 download="Talha-Saleem-CV.pdf"
                 className="flex items-center gap-2 px-4 py-2.5 rounded-md text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted/60 transition-colors"
               >
@@ -205,7 +205,7 @@ const Header = () => {
                 className="bg-gradient-to-r from-primary to-purple-500 hover:opacity-90 text-primary-foreground mt-1"
                 onClick={() => scrollTo("contact")}
               >
-                Conact Me
+                Contact Me
               </Button>
             </div>
           </div>

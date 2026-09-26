@@ -1,13 +1,9 @@
 import type { Metadata } from "next";
 import Hero from "@/components/sections/hero";
 import Stats from "@/components/sections/stats";
-import CareerSnapshot from "@/components/sections/career-snapshot";
-import WhyTalha from "@/components/sections/why-talha";
-import Services from "@/components/sections/services";
+import Experience from "@/components/sections/experience";
 import CaseStudies from "@/components/sections/case-studies";
 import Projects from "@/components/sections/projects";
-import MvpProjects from "@/components/sections/mvp-projects";
-import EngineeringExperience from "@/components/sections/engineering-experience";
 import About from "@/components/sections/about";
 import Skills from "@/components/sections/skills";
 import Blog from "@/components/sections/blog";
@@ -18,89 +14,85 @@ import CtaSection from "@/components/sections/cta-section";
 import Header from "@/components/sections/header";
 import ScrollToTop from "@/components/scroll-to-top";
 
+const TITLE = "Talha Saleem | Lead Full-Stack Engineer (React, Next.js, Node.js, NestJS)";
+const DESCRIPTION =
+  "Lead Full-Stack Engineer with 6+ years shipping TypeScript products end to end: React/Next.js, Node.js/NestJS, PostgreSQL, AI integrations, tests and AWS deploys. Open to remote senior and lead roles.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://talha.creexio.com"),
-  title:
-    "Talha Saleem | AI-Powered SaaS & Compliance Platforms | Fintech, Freight & Healthcare",
-  description:
-    "I build multi-tenant SaaS platforms, AI automation pipelines, and compliance systems for fintech, freight, and healthcare companies. Production-ready. Shipped to real clients. Based in Lahore, Pakistan.",
+  metadataBase: new URL("https://talha-saleem.vercel.app"),
+  title: TITLE,
+  description: DESCRIPTION,
   keywords: [
-    "fintech SaaS development agency Pakistan",
-    "FMCSA compliance software development",
-    "multi-tenant NestJS SaaS development",
-    "AI automation for microfinance loan management",
-    "compliance platform development regulated industries",
-    "AI-powered SaaS agency",
-    "NestJS Next.js agency",
-    "loan management system development",
-    "freight compliance software",
-    "healthcare AI automation",
     "Talha Saleem",
-    "AI Productivity for Businesses",
+    "Lead Full-Stack Engineer",
+    "Senior Full-Stack Engineer remote",
+    "Senior React Next.js developer",
+    "NestJS Node.js engineer",
+    "TypeScript full-stack engineer Pakistan",
+    "PostgreSQL Prisma Supabase",
+    "AI integration engineer RAG pgvector",
+    "multi-tenant SaaS engineer",
+    "remote software engineer PST overlap",
   ],
-  authors: [{ name: "Talha Saleem", url: "https://talha.creexio.com" }],
+  authors: [{ name: "Talha Saleem", url: "https://talha-saleem.vercel.app" }],
   creator: "Talha Saleem",
   verification: {
     google: "DLA0_IP3Hsut84nJRmawwY7w18Tp7lAZeqGafn8IBH4",
   },
   alternates: {
-    canonical: "https://talha.creexio.com",
+    canonical: "https://talha-saleem.vercel.app",
   },
   openGraph: {
-    title:
-      "Talha Saleem | AI-Powered SaaS & Compliance Platforms | Fintech, Freight & Healthcare",
-    description:
-      "I build multi-tenant SaaS platforms, AI automation pipelines, and compliance systems for fintech, freight, and healthcare companies. Production-ready. Shipped to real clients.",
-    url: "https://talha.creexio.com",
-    siteName: "Talha Saleem - AI SaaS Agency",
-    type: "website",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: "https://talha-saleem.vercel.app",
+    siteName: "Talha Saleem",
+    type: "profile",
     locale: "en_US",
     images: [
       {
-        url: "https://talha.creexio.com/images/profilepic.jpeg",
+        url: "https://talha-saleem.vercel.app/images/profilepic.jpeg",
         width: 1200,
         height: 630,
-        alt: "Talha Saleem - AI-Powered SaaS Agency",
+        alt: "Talha Saleem - Lead Full-Stack Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title:
-      "Talha Saleem | AI-Powered SaaS & Compliance Platforms",
-    description:
-      "Multi-tenant SaaS, AI automation, and compliance platforms for fintech, freight, and healthcare. Production-ready. Based in Lahore, Pakistan.",
-    images: ["https://talha.creexio.com/images/profilepic.jpeg"],
+    title: "Talha Saleem | Lead Full-Stack Engineer",
+    description: DESCRIPTION,
+    images: ["https://talha-saleem.vercel.app/images/profilepic.jpeg"],
   },
 };
 
 const personSchema = {
   "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "Talha Saleem - AI SaaS Agency",
-  url: "https://talha.creexio.com",
-  founder: {
-    "@type": "Person",
-    name: "Talha Saleem",
-    jobTitle: "Lead Full Stack Engineer & Founder",
-    sameAs: [
-      "https://www.linkedin.com/in/talhasaleem-dev",
-      "https://github.com/csmtalha",
-    ],
-  },
-  description:
-    "I build multi-tenant SaaS platforms, AI automation pipelines, and compliance systems for fintech, freight, and healthcare companies. Production-ready. Based in Lahore, Pakistan.",
-  areaServed: "Worldwide",
+  "@type": "Person",
+  name: "Talha Saleem",
+  url: "https://talha-saleem.vercel.app",
+  image: "https://talha-saleem.vercel.app/images/profilepic.jpeg",
+  jobTitle: "Lead Full-Stack Engineer",
+  worksFor: { "@type": "Organization", name: "Cloudpacer" },
+  alumniOf: { "@type": "CollegeOrUniversity", name: "University of Lahore" },
+  address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
+  email: "mailto:csmtalha@gmail.com",
+  sameAs: [
+    "https://www.linkedin.com/in/csmtalha",
+    "https://github.com/csmtalha",
+  ],
+  description: DESCRIPTION,
   knowsAbout: [
-    "AI Automation",
-    "Multi-tenant SaaS",
-    "Compliance Platforms",
-    "Fintech Software",
-    "FMCSA Compliance",
-    "Loan Management Systems",
-    "NestJS",
-    "Next.js",
+    "TypeScript",
     "React",
+    "Next.js",
+    "Node.js",
+    "NestJS",
+    "PostgreSQL",
+    "Prisma",
+    "Supabase",
+    "Retrieval-augmented generation",
+    "Multi-tenant SaaS",
     "AWS",
     "Stripe",
   ],
@@ -116,15 +108,11 @@ export default function Home() {
       <Header />
       <Hero />
       <Stats />
-      <WhyTalha />
-      {/* <CareerSnapshot /> */}
       <CaseStudies />
-      <Services />
-      <MvpProjects />
+      <Experience />
       <Projects />
-      <About />
       <Skills />
-      <EngineeringExperience />
+      <About />
       <Availability />
       <Blog />
       <BookPromo />

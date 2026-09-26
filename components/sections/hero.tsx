@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Briefcase, ExternalLink } from "lucide-react";
+import { ArrowRight, ExternalLink, FileText } from "lucide-react";
 import Link from "next/link";
 import profilePic from "@/public/images/hero-dp.png";
 
@@ -69,7 +69,7 @@ export default function Hero() {
           <motion.div variants={itemVariants} className="flex justify-center lg:justify-start">
             <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-sm font-medium">
               <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              Open to new engagements · PST overlap
+              Open to remote Senior / Lead Full-Stack roles · PST overlap
             </span>
           </motion.div>
 
@@ -79,11 +79,11 @@ export default function Hero() {
               <span className="gradient-text-animated">Talha Saleem</span>
             </h1>
             <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-foreground/90 leading-tight">
-              I build AI systems that{" "}
-              <span className="gradient-text">ship to production.</span>
+              Lead Full-Stack Engineer who{" "}
+              <span className="gradient-text">owns it end to end.</span>
             </p>
             <p className="text-sm text-muted-foreground">
-              AI Automation · Multi-tenant SaaS · Compliance Platforms · NestJS · Next.js · AWS
+              TypeScript · React / Next.js · Node.js / NestJS · PostgreSQL · AI integrations · AWS
             </p>
           </motion.div>
 
@@ -93,11 +93,12 @@ export default function Hero() {
             className="space-y-3 text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed mx-auto lg:mx-0"
           >
             <p>
-              From FMCSA compliance platforms to AI-powered loan origination - I&apos;ve delivered
-              full-stack production software for fintech, freight, healthcare, and real estate companies.
+              6+ years shipping production software. At Cloudpacer I designed and built a complete HRMS
+              (attendance, leave, payroll, performance), co-built a multi-tenant FMCSA compliance
+              platform for US carriers, and architected an AI proposal CRM on Supabase and pgvector.
             </p>
             <p>
-              Six industries. Measurable outcomes. No handoffs to juniors.
+              Schema to UI, tests to deploys. I leave systems better documented than I found them.
             </p>
           </motion.div>
 
@@ -117,10 +118,10 @@ export default function Hero() {
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="glass-effect" asChild>
-              <Link href="#contact" className="flex items-center gap-2">
-                <Briefcase className="h-4 w-4" />
-                Get a Free Audit
-              </Link>
+              <a href="/files/Talha-Saleem-CV.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                <FileText className="h-4 w-4" />
+                Download CV
+              </a>
             </Button>
           </motion.div>
 
@@ -135,7 +136,7 @@ export default function Hero() {
               <span className="px-2 py-0.5 rounded bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider">
                 Latest
               </span>
-              <span>Just shipped neblo.ai - AI freight broker platform</span>
+              <span>Recently shipped: neblo.ai marketing site (Next.js 16 + Sanity)</span>
               <ExternalLink className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
           </motion.div>
@@ -190,11 +191,11 @@ export default function Hero() {
             className="absolute -bottom-4 -left-4 bg-background border border-border shadow-xl rounded-2xl px-4 py-3 flex items-center gap-3"
           >
             <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary font-bold">
-              5+
+              6+
             </div>
             <div>
-              <p className="text-xs text-muted-foreground leading-none">Years building</p>
-              <p className="text-sm font-semibold leading-tight">SaaS products</p>
+              <p className="text-xs text-muted-foreground leading-none">Years shipping</p>
+              <p className="text-sm font-semibold leading-tight">production software</p>
             </div>
           </motion.div>
 
@@ -206,11 +207,11 @@ export default function Hero() {
             className="absolute -top-4 -right-4 bg-background border border-border shadow-xl rounded-2xl px-4 py-3 flex items-center gap-3"
           >
             <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-600 font-bold">
-              30+
+              2024
             </div>
             <div>
-              <p className="text-xs text-muted-foreground leading-none">Products</p>
-              <p className="text-sm font-semibold leading-tight">shipped</p>
+              <p className="text-xs text-muted-foreground leading-none">Employee of the Year</p>
+              <p className="text-sm font-semibold leading-tight">Cloudpacer</p>
             </div>
           </motion.div>
         </motion.div>

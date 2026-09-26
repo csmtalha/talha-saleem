@@ -9,7 +9,7 @@ const REASONS = [
     icon: Zap,
     title: "Ship Fast",
     description:
-      "MVPs in 2–4 weeks. Full SaaS platforms in 6–10. No discovery theater, no bloated sprints - scoped tight, built lean, deployed to production.",
+      "MVPs in 2-4 weeks. Full SaaS platforms in 6-10. No discovery theater, no bloated sprints - scoped tight, built lean, deployed to production.",
     color: "text-yellow-500",
     bg: "bg-yellow-500/10",
   },

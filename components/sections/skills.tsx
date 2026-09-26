@@ -6,23 +6,24 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 const STACK = {
-  Frontend: ["React", "Next.js", "Vue.js", "TypeScript", "Tailwind CSS", "Headless CMS"],
-  Backend: ["Node.js", "NestJS", "Python", "Django", "PHP"],
-  Data: ["PostgreSQL", "Prisma"],
-  Platforms: ["Strapi" ,"WordPress", "Shopify", "AWS", "Vercel", "Railway"],
-  Integrations: ["FAST API", "AI ","Stripe", "REST APIs", "WebSockets", "Google Script" ],
+  Frontend: ["TypeScript", "React", "Next.js (App Router, RSC, ISR)", "Vue 3", "Tailwind CSS", "shadcn/ui", "TanStack Query", "Zustand", "Framer Motion"],
+  Backend: ["Node.js", "NestJS", "Express", "FastAPI", "Django / DRF", "REST", "WebSockets", "Cron & background jobs"],
+  Data: ["PostgreSQL", "Prisma", "TypeORM", "SQLAlchemy", "Supabase (RLS, Edge Functions)", "pgvector", "Redis"],
+  "AI / LLM": ["Anthropic Claude", "OpenAI (GPT-4o, Whisper, embeddings)", "RAG with pgvector", "LangChain"],
+  "Testing & DevOps": ["Vitest", "Jest", "Playwright", "pytest", "GitHub Actions", "Docker", "AWS", "nginx + PM2", "Vercel"],
+  Integrations: ["Stripe", "SendGrid", "Resend", "Twilio", "Slack", "Google Workspace APIs", "Sanity CMS", "Firebase", "WordPress", "Shopify"],
 };
 
 const SPECIALTIES = [
-  "Multi-tenant applications",
-  "Production-level debugging",
-  "Legacy app migration",
-  "WordPress critical & fatal error debugging",
+  "Multi-tenant SaaS and RBAC",
+  "Row-level security and data isolation",
+  "Test suites that gate deploys",
+  "Legacy migrations (PHP, Framer, Vue 2 to modern stacks)",
 ];
 
 const INTERESTED_IN = [
-  "Python projects",
-  "AngularJS projects",
+  "Remote senior / lead full-stack roles",
+  "Product teams shipping AI features",
 ];
 
 export default function Skills() {
@@ -76,7 +77,7 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 mb-10">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-10">
           {Object.entries(STACK).map(([category, items]) => (
             <motion.div key={category} variants={itemVariants}>
               <Card className="h-full border-0 shadow-lg glass-effect overflow-hidden card-hover">
@@ -127,10 +128,10 @@ export default function Skills() {
           <Card className="border border-dashed border-primary/30 bg-primary/5 overflow-hidden">
             <CardContent className="p-6">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">
-                Also interested in
+                Looking for
               </h3>
               <p className="text-muted-foreground text-sm mb-4">
-                Talha is open to Python and AngularJS projects, reach out if you need a hand.
+                The kind of team and work Talha is looking for next.
               </p>
               <div className="flex flex-wrap gap-2">
                 {INTERESTED_IN.map((item) => (

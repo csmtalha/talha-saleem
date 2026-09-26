@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { BookOpen, ExternalLink } from "lucide-react";
 
-const SITE_ORIGIN = "https://talha.creexio.com";
+const SITE_ORIGIN = "https://talha-saleem.vercel.app";
 
 /** Still exported so page.tsx JSON-LD can reference it if needed */
 export const BOOK_COVER = {
@@ -31,7 +31,7 @@ const BOOKS = [
       "@context": "https://schema.org",
       "@type": "Book",
       name: "AI Productivity for Businesses: Practical Operations",
-      author: { "@type": "Person", name: "Talha Saleem", url: "https://talha.creexio.com" },
+      author: { "@type": "Person", name: "Talha Saleem", url: "https://talha-saleem.vercel.app" },
       image: `${SITE_ORIGIN}/images/AI-Business.jpg`,
       url: "https://www.amazon.com/dp/B0GX34T63R",
       inLanguage: "en",
@@ -55,7 +55,7 @@ const BOOKS = [
       "@context": "https://schema.org",
       "@type": "Book",
       name: "How to Stay Productive as a Developer: Real-World Strategies to Code Better and Avoid Burnout",
-      author: { "@type": "Person", name: "Talha Saleem", url: "https://talha.creexio.com" },
+      author: { "@type": "Person", name: "Talha Saleem", url: "https://talha-saleem.vercel.app" },
       image: `${SITE_ORIGIN}/images/how-to-stay-productive.jpg`,
       url: "https://www.amazon.com/How-Stay-Productive-Developer-Real-World-ebook/dp/B0FLNNZV6C/",
       inLanguage: "en",

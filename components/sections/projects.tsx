@@ -7,7 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ProjectDetailModal } from "@/components/project-detail-modal";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Github } from "lucide-react";
 
 const PROJECTS_PER_PAGE = 6;
 
@@ -75,126 +75,135 @@ export default function Projects() {
   const projects: Project[] = [
     // Web Applications (React / Next.js)
     {
-      title: "Datalyze",
-      description: "Production SaaS that turns uploaded files into AI-powered analytics dashboards. Stripe billing, multi-tier plans, OpenAI insights.",
-      image: "/images/projects/datalyzer.png",
-      tags: ["Next.js", "Supabase", "OpenAI GPT-4", "Stripe", "TypeScript", "Recharts", "SaaS"],
+      title: "AttendanceIQ - Complete HRMS",
+      description: "Company-wide HRMS: employees, attendance and shifts, leave, payroll, performance, learning, helpdesk and audit. 100 data models, 207 API routes, 202 test files.",
+      image: "/images/projects/attendanceiq.png",
+      tags: ["Next.js 16", "TypeScript", "Prisma", "PostgreSQL", "NextAuth", "Vitest", "GitHub Actions", "AWS"],
       details:
-        "Situation: Business teams needed to extract insights from CSV, Excel, and PDF files without writing code or paying for enterprise BI tools.\n\nTask: Build a self-serve SaaS analytics platform with subscription billing, file parsing, and AI-generated insights.\n\nAction: Built with Next.js and Supabase Auth (email + Google OAuth). Users upload CSV, XLSX, PDF, DOCX, JSON files and receive auto-generated charts (bar, line, pie, scatter), correlation analysis, outlier detection, and GPT-4-powered trend summaries. Three-tier Stripe billing (Free / Pro $12/mo / Team $29/mo) gates features like PDF export, 100K+ row limits, and team collaboration. Analytics engine runs server-side to prevent payload exposure.\n\nResult: Delivered a full production SaaS with Stripe subscriptions, per-user usage limits, saved project management, and PDF/Excel export - shipping from zero to live in a single sprint.",
-      github: "https://github.com/csmtalha",
+        "Situation: Cloudpacer ran HR across spreadsheets and disconnected tools. Attendance was exported from biometric devices and payroll was rebuilt by hand every month.\n\nTask: Design and build one HRMS covering the whole employee lifecycle, with payroll the finance team could trust.\n\nAction: Built it as primary engineer (361 of 403 commits) on Next.js 16, Prisma and PostgreSQL: employee records, attendance and shifts, leave, payroll, performance reviews, learning, asset and helpdesk requests, announcements and audit logs, with module-level permissions for Admin, HR, Manager and Employee. Attendance flows in from biometric devices (ADMS push or LAN pull) into an append-only punch log. The payroll engine matches the finance team's salary sheet for tax withholding and day-rate rules, and marking a run as paid is idempotent. Slack and web-push notifications, Excel/PDF exports.\n\nResult: 100 Prisma models, 207 API route handlers and 82 pages. 202 test files, including 41 integration suites against real Postgres, gate every deploy, and CI ships blue-green releases to AWS via SSM.",
+      github: "",
       demo: "#",
       category: "webapps",
     },
     {
-      title: "RecruitIQ",
-      description: "AI-powered multi-tenant HR recruitment platform - resume parsing, candidate ranking, Kanban pipeline, RAG chatbot, and onboarding workflows.",
-      image: "/images/projects/reqiq.png",
-      tags: ["Next.js", "FastAPI", "PostgreSQL", "pgvector", "OpenAI GPT-4o", "LangChain", "Docker", "Multi-tenant"],
+      title: "AI Proposal CRM",
+      description: "Lead CRM that drafts proposals grounded in past projects: Claude requirement breakdown, pgvector similarity search, Supabase with 80 row-level-security policies.",
+      image: "/images/projects/ai-proposal-crm.png",
+      tags: ["Next.js 16", "Supabase", "PostgreSQL RLS", "pgvector", "Anthropic Claude", "OpenAI Embeddings", "Playwright"],
       details:
-        "Situation: HR teams wasted hours manually screening resumes, scheduling interviews, and answering policy questions across disconnected spreadsheets and wikis.\n\nTask: Build a production-grade multi-tenant recruitment SaaS with AI at every stage of the hiring pipeline.\n\nAction: Delivered 7 interconnected feature systems. FastAPI backend with SQLAlchemy 2.0, pgvector for semantic search, and OpenAI GPT-4o. Resume parsing extracts 12+ structured fields from PDF/DOCX. Candidate ranking scores match percentage, strengths, weaknesses, and missing skills. Kanban drag-and-drop pipeline with react-beautiful-dnd. RAG-based HR chatbot ingests policy documents and answers questions with source citations. Employee onboarding templates with task tracking. Automated analytics with time-to-hire metrics, pipeline conversion rates, and CSV export. Full RBAC: admin, recruiter, hiring manager, viewer.\n\nResult: A complete AI-driven recruiting stack - from resume ingestion to offer management - in a single multi-tenant platform with Docker Compose deployment and auto-generated Swagger docs.",
-      github: "https://github.com/csmtalha",
-      demo: "#",
-      category: "webapps",
-    },
-
-    // {
-    //   title: "Assignment Assistance",
-    //   description: "Next.js application for assignment assistance, streamlined workflows and modern UX.",
-    //   image: "/images/projects/assignment.png",
-    //   tags: ["Next.js", "React", "TypeScript"],
-    //   details:
-    //     "Situation: Students needed a streamlined platform to request academic assistance with efficient workflows.\n\nTask: Develop a modern application with clear user flows and scalable frontend architecture.\n\nAction: Built the platform using Next.js, React, and TypeScript with clean UI components and optimized workflows for submissions and tracking.\n\nResult: Delivered a user-friendly platform with improved navigation, clear workflows, and scalable architecture.",
-    //   github: "https://github.com/csmtalha",
-    //   demo: "#",
-    //   category: "webapps",
-    // },
-    // {
-    //   title: "Solumatic Solution",
-    //   description: "Custom solution platform built with modern web technologies.",
-    //   image: "/images/projects/solumatic.png",
-    //   tags: ["Next.js", "React", "Web Application"],
-    //   details:
-    //     "Situation: The organization required a custom web solution to manage internal workflows and digital operations.\n\nTask: Build a reliable and scalable web platform with maintainable architecture.\n\nAction: Developed the application using modern web technologies including Next.js and React, focusing on modular components, performance, and clear user flows.\n\nResult: Delivered a scalable platform with maintainable codebase and improved operational efficiency.",
-    //   github: "https://github.com/csmtalha",
-    //   demo: "#",
-    //   category: "webapps",
-    // },
-
-    {
-      title: "MedNotes",
-      description: "Records doctor–patient visits via browser audio, transcribes with Whisper, and generates structured SOAP notes with ICD-10 codes - deployed on Vercel + Cloud Run.",
-      image: "/images/projects/mednotemvp.png",
-      tags: ["Next.js", "FastAPI", "OpenAI Whisper", "GPT-4", "PostgreSQL", "Docker", "Healthcare AI"],
-      details:
-        "Situation: Physicians spend 30–40% of their time on documentation - manually writing SOAP notes, extracting diagnosis codes, and tracking follow-ups after each patient visit.\n\nTask: Build a production healthcare documentation system that turns spoken visits into structured clinical records automatically.\n\nAction: Browser-based audio recording sends visit audio to a FastAPI backend (Python 3.9+, SQLAlchemy 2.0). OpenAI Whisper transcribes the conversation; GPT-4 generates SOAP notes (Subjective, Objective, Assessment, Plan) aligned with clinical workflows. Automatic ICD-10/CPT code suggestion, medication interaction warnings, and AI-powered risk alerts are extracted per visit. Patient management with full visit history. JWT auth with bcrypt. Deployed frontend on Vercel, backend on Cloud Run via Docker Compose.\n\nResult: Physicians capture a full structured medical record - transcript, SOAP note, diagnosis codes, and follow-up plan - from a single voice recording, with zero manual typing.",
-      github: "https://github.com/csmtalha",
-      demo: "#",
-      category: "webapps",
-    },
-        {
-      title: "Mortgage Buddy",
-      description: "AI chatbot for mortgage customers, lead qualification and support at scale with multi-tenant SaaS.",
-      image: "/images/projects/mortgagemvp.png",
-      tags: ["Next.js", "Tailwind CSS", "ShadCN UI", "PostgreSQL", "Prisma", "Vercel", "SaaS"],
-      details:
-        "Situation: Mortgage companies needed an automated way to qualify leads and handle high volumes of customer inquiries.\n\nTask: Build a scalable SaaS chatbot platform supporting multiple investors and organizations.\n\nAction: Developed a multi-tenant chatbot system using Next.js, PostgreSQL, and Prisma. Implemented role-based access, admin dashboards, third-party chatbot API integrations, and REST APIs.\n\nResult: Delivered an enterprise SaaS chatbot platform enabling automated lead qualification, customer support, and scalable multi-tenant management.",
-      github: "https://github.com/csmtalha",
-      demo: "#",
-      category: "webapps",
-    },
-    {
-      title: "Loan Management System (LMS)",
-      description: "Multi-branch LMS for a microfinance NBFC - full loan lifecycle from borrower registration to SECP-style regulatory reporting across 14 branches.",
-      image: "/images/projects/lms.png",
-      tags: ["NestJS", "Next.js 16", "Prisma", "PostgreSQL", "TypeScript", "Tailwind CSS", "Multi-tenant", "SaaS"],
-      details:
-        "Situation: A microfinance NBFC with 14 branches and 100+ field staff needed to digitize their entire loan lifecycle, managed manually across disconnected systems.\n\nTask: Build a production-ready, multi-branch loan management platform covering every stage from borrower onboarding to regulatory reporting.\n\nAction: Delivered a 5-phase full-stack system. NestJS + Prisma + PostgreSQL API with JWT/Passport auth and role-based guards. Next.js 16 App Router frontend with Zustand and Recharts. Phases covered: branch/staff/borrower management with KYC document upload; loan product configuration, multi-level approval, disbursement, EMI calculation, and PDF agreement generation; payment collection with PAR bucket tracking and nightly overdue-detection cron; dashboard KPIs, branch comparison, officer performance, and SECP compliance reports with Excel/PDF exports; searchable audit trail with SMS notifications.\n\nResult: A complete, production-grade LMS handling the full loan lifecycle across 14 branches with regulatory-ready exports, automated overdue detection, and clean branch-scoped multi-tenant architecture.",
-      github: "https://github.com/csmtalha",
-      demo: "#",
-      category: "webapps",
-    },
-    {
-      title: "Neblo AI - Marketing Site",
-      description: "Full marketing website for an AI-powered freight broker automation platform, built with Next.js 16, Sanity CMS, and Framer Motion.",
-      image: "/images/projects/neblo-ai.png",
-      tags: ["Next.js 16", "Tailwind CSS v4", "Framer Motion", "Sanity CMS", "Resend", "Vercel", "ISR", "SSG"],
-      details:
-        "Situation: Neblo AI, an early-stage freight broker automation startup, needed a complete marketing website balancing brand storytelling, SEO performance, and developer experience.\n\nTask: Design and build the full marketing site from scratch - Home, Features, Copilot, Blog, FAQ, Contact, Privacy, and Terms pages.\n\nAction: Built with Next.js 16 App Router and Turbopack, Tailwind CSS v4, and deployed on Vercel. Kept all page.tsx files as pure server components by isolating Framer Motion v12 animations in dedicated client components - achieving scroll-triggered animations with zero hydration tax. Integrated Sanity CMS for the blog with ISR and live webhooks so new posts go live within seconds of publishing in Sanity Studio without a rebuild. Added Resend for transactional email and an auto-generated sitemap that dynamically includes all blog posts for full SEO coverage.\n\nResult: Delivered a fully static, SEO-optimized marketing site with best-in-class performance, a live CMS-driven blog, and a clean architecture that separates server and client concerns.",
-      github: "https://github.com/csmtalha",
-      demo: "https://neblo.ai",
-      category: "webapps",
-    },
-        {
-      title: "Creexio",
-      description: "High-converting lead generation platform for a SaaS agency - Framer Motion animations, reCAPTCHA forms, blog, and SEO optimization.",
-      image: "/images/projects/creexio.png",
-      tags: ["Next.js", "Framer Motion", "Tailwind CSS", "Nodemailer", "reCAPTCHA", "SEO", "AOS"],
-      details:
-        "Situation: A web development agency needed a marketing platform that could generate inbound leads, showcase case studies, and support a growing blog - all with strong SEO and conversion-focused UX.\n\nTask: Build a production marketing site that functions as both a brand showcase and a lead capture engine.\n\nAction: Built with Next.js and Tailwind CSS v4. Framer Motion and AOS deliver scroll-triggered animations. Sticky mobile CTA rail and contact forms with Google reCAPTCHA reduce spam while keeping conversion friction low. Markdown-powered blog with gray-matter. Auto-generated sitemap. Nodemailer for transactional email delivery.\n\nResult: A live production platform with measurable inbound conversion - services, testimonials, process timeline, and tech stack all contributing to trust signals for prospective clients.",
-      github: "https://github.com/csmtalha",
-      demo: "https://www.creexio.com/",
-      category: "webapps",
-    },
-    {
-      title: "Google Chat HR Assistant",
-      description: "AI-powered HR bot inside Google Chat - answers leave, payroll, and policy questions live from Google Sheets and Notion.",
-      image: "/images/projects/google-chat-hr-bot.png",
-      tags: ["Google Apps Script", "OpenAI GPT-4o", "Notion API", "Google Sheets", "Google Chat", "AI Automation"],
-      details:
-        "Situation: Cloudpacer employees had to manually look up HR policies, leave balances, and payroll info across disconnected tools, causing delays and repeated questions to HR staff.\n\nTask: Build an AI-powered HR assistant that lives inside Google Chat - no external apps, no dashboards, no new logins.\n\nAction: Built a fully serverless system using 6 modular Google Apps Script files. Integrated Google Sheets for live employee and leave data, Notion API as an HR knowledge base, and a 2-call OpenAI GPT-4o-mini pipeline - the first call extracts smart search queries from the user's question, the second answers using real policy content. Rendered responses as interactive Google Chat Cards v2 with buttons and quick replies. Handled JWT-based service account auth, merged-header column mapping in Sheets, Excel serial date timezone corrections, and Notion's verbatim title search limitations.\n\nResult: Delivered a production HR assistant where employees get instant answers to leave balances, salary info, WFH policy, payroll dates, and benefits - entirely inside a tool they already use, with zero frontend or deployment overhead.",
-      github: "https://github.com/csmtalha",
+        "Situation: Cloudpacer's sales team wrote every proposal from scratch, even when the company had built something similar before.\n\nTask: Design a CRM that finds relevant past work for each job post and drafts a grounded proposal, safe for multiple roles to use.\n\nAction: Designed the system and wrote its foundation: the database schema, 80 row-level-security policies over 24 tables, an app-level permission layer mirrored by Postgres RLS, Supabase clients and the UI shell. Specified the retrieval flow (Claude breaks a job post into requirements, OpenAI embeddings in pgvector find similar projects, the app drafts a proposal), and wrote the developer onboarding guide and a 50-ticket plan.\n\nResult: Four engineers built features in parallel on that foundation. A parity test fails CI if app rules and database policies drift, and I later found and fixed an RLS leak on the embeddings table.",
+      github: "",
       demo: "#",
       category: "webapps",
     },
     {
       title: "Fleet Safety & FMCSA Compliance Platform",
-      description: "Full-stack SaaS for trucking companies to monitor CSA scores, manage DataQs cases, and stay FMCSA compliant.",
+      description: "Multi-tenant SaaS a US compliance firm uses to dispute FMCSA violations for trucking carriers. NestJS API with 16 modules and ~147 endpoints, two React front ends.",
       image: "/images/projects/fleetsafety.png",
-      tags: ["NestJS", "React", "TypeScript", "PostgreSQL", "TypeORM", "Tailwind CSS", "SaaS", "Multi-tenant"],
+      tags: ["NestJS", "React", "TypeScript", "PostgreSQL", "TypeORM", "Tailwind CSS", "Multi-tenant", "RBAC"],
       details:
-        "Situation: Trucking carriers struggled to manage FMCSA compliance, monitor CSA/BASIC scores, and handle DataQs disputes through fragmented manual processes.\n\nTask: Build a multi-tenant SaaS platform translating complex federal regulations into workflows carriers could actually use.\n\nAction: Developed a full-stack platform with NestJS, TypeORM, and PostgreSQL on the backend and React + TypeScript + Tailwind CSS on the frontend. Implemented multi-tenant architecture with JWT authentication and rotating refresh tokens, separate portals for GEIA staff and carrier clients, DataQs and CPDP case management with evidence uploads, corrective action plan tracking, and automated email/SMS notifications.\n\nResult: Delivered a production SaaS platform enabling trucking companies to monitor FMCSA CSA scores and BASIC percentiles, manage compliance cases end-to-end, and maintain complete audit history - reducing compliance risk through automation and domain-driven software design.",
-      github: "https://github.com/csmtalha",
+        "Situation: A US compliance firm managed FMCSA violation disputes (DataQs) for trucking carriers through spreadsheets and email.\n\nTask: Co-build a multi-tenant platform with a staff console and a carrier portal.\n\nAction: Wrote ~80 commits (~33k lines) across the NestJS 10 + TypeORM + PostgreSQL API and both React 18 + Vite front ends. Every request passes a JWT, tenant and role guard chain over tenant-scoped, soft-delete entities. Shipped user invites and 6-role RBAC, granular staff permissions, SendGrid and Twilio notifications, a training module with quizzes and attestations, a 6-step dispute-submission wizard, password reset and a data-retention cron. Hardened the API with Helmet, CORS, rate limiting and refresh-token rotation, and replaced TypeORM auto-sync with versioned migrations.\n\nResult: An API of 16 modules, 40 entities and ~147 endpoints, ready for the first pilot carrier with strict tenant isolation.",
+      github: "",
       demo: "#",
+      category: "webapps",
+    },
+    {
+      title: "Loan Management System (Freelance)",
+      description: "Full loan lifecycle for a 14-branch microfinance lender, from KYC and approvals to EMI schedules, collections and regulator-ready reports.",
+      image: "/images/projects/lms.png",
+      tags: ["NestJS", "Next.js 16", "Prisma", "PostgreSQL", "TypeScript", "Tailwind CSS", "Cron Jobs"],
+      details:
+        "Situation: A microfinance lender with 14 branches managed loans on paper forms, WhatsApp and disconnected spreadsheets.\n\nTask: Build one platform for the full loan lifecycle, from borrower onboarding to regulatory reporting.\n\nAction: Delivered a five-phase system as a freelance engagement. NestJS + Prisma + PostgreSQL API with JWT/Passport auth and role guards; Next.js 16 App Router front end with Zustand and Recharts. Covers branch, staff and borrower management with KYC uploads; configurable loan products, multi-level approval, disbursement, reducing-balance EMI schedules and PDF agreements; collections with PAR-bucket tracking and a nightly overdue-detection cron; branch and officer dashboards; regulator-style reports with Excel/PDF export; and a searchable audit trail with SMS notifications.\n\nResult: One branch-scoped system for the whole loan lifecycle, with regulatory reports generated on demand instead of assembled by hand.",
+      github: "",
+      demo: "#",
+      category: "webapps",
+    },
+    {
+      title: "RecruitIQ",
+      description: "Multi-tenant AI recruiting platform: GPT-4o resume parsing, candidate ranking, Kanban pipeline, and an HR assistant over policy PDFs with pgvector.",
+      image: "/images/projects/reqiq.png",
+      tags: ["Next.js 15", "FastAPI", "PostgreSQL", "pgvector", "OpenAI GPT-4o", "LangChain", "Celery", "Docker"],
+      details:
+        "Situation: HR teams screened resumes by hand, scheduled interviews over email and answered the same policy questions repeatedly.\n\nTask: Build a multi-tenant recruiting platform with AI at each stage of the pipeline.\n\nAction: FastAPI backend with SQLAlchemy, Alembic, Celery and PostgreSQL 17 + pgvector; Next.js 15 front end with TanStack Query and Zustand. GPT-4o parses PDF/DOCX resumes into structured records and scores candidates against the job description. Kanban pipeline, interview scheduling, onboarding templates, time-to-hire analytics with CSV export, and four-role RBAC. The HR assistant embeds policy documents with OpenAI embeddings and answers with source citations via LangChain.\n\nResult: Resume ingestion to onboarding in one platform, shipped with Docker Compose and auto-generated OpenAPI docs.",
+      github: "",
+      demo: "#",
+      category: "webapps",
+    },
+    {
+      title: "Datalyze",
+      description: "Self-serve analytics SaaS: upload CSV, Excel, PDF or Word files and get charts plus AI-written insights. Stripe subscriptions with per-plan usage limits.",
+      image: "/images/projects/datalyzer.png",
+      tags: ["Next.js 16", "Supabase", "Stripe", "OpenAI", "TypeScript", "Recharts", "Plotly"],
+      details:
+        "Situation: Small teams wanted insights from their spreadsheets and documents without learning a BI tool.\n\nTask: Build a self-serve analytics SaaS with file parsing, AI insights and subscription billing.\n\nAction: Next.js 16 with Supabase Auth (email and Google OAuth) and row-level security on every table. Parses CSV, XLSX, PDF, DOCX and JSON (ExcelJS, pdf-parse, mammoth), infers column types, then produces charts (Recharts, Plotly 3D), correlations and outlier detection, with GPT-4o-mini writing the trend summary. Stripe checkout, customer portal and webhooks drive Free, Pro and Team plans with per-plan file-size and row limits and PDF/Excel export.\n\nResult: A complete SaaS codebase, from upload to billing, built solo in one week. Source on GitHub.",
+      github: "https://github.com/csmtalha/datalyzer",
+      demo: "#",
+      category: "webapps",
+    },
+    {
+      title: "MedNotes",
+      description: "Records a doctor-patient visit in the browser, transcribes it with Whisper and drafts a structured SOAP note with ICD-10 suggestions.",
+      image: "/images/projects/mednotemvp.png",
+      tags: ["Next.js", "FastAPI", "OpenAI Whisper", "GPT-4o-mini", "PostgreSQL", "Docker", "Healthcare AI"],
+      details:
+        "Situation: Physicians spend a large share of their day writing up visit notes and looking up diagnosis codes.\n\nTask: Prototype a tool that turns a recorded visit into a structured clinical note.\n\nAction: Browser audio recording posts to a FastAPI backend (SQLAlchemy, PostgreSQL). Whisper transcribes the conversation in multiple languages, and GPT-4o-mini drafts a SOAP note (Subjective, Objective, Assessment, Plan) with ICD-10/CPT suggestions, medication warnings and follow-up items. Patient records keep visit history. JWT auth in HTTP-only cookies with bcrypt, Dockerized with docker-compose.\n\nResult: A working prototype where one recording produces a transcript, SOAP note, suggested codes and a follow-up plan.",
+      github: "",
+      demo: "#",
+      category: "webapps",
+    },
+    {
+      title: "Neblo AI - Marketing Site",
+      description: "Migrated an AI freight-brokerage startup's site from Framer to Next.js 16 with an embedded Sanity Studio, ISR and programmatic-SEO landing pages.",
+      image: "/images/projects/neblo-ai.png",
+      tags: ["Next.js 16", "React 19", "Tailwind CSS v4", "Sanity v5", "Framer Motion", "SendGrid", "Vercel", "ISR"],
+      details:
+        "Situation: Neblo AI, an early-stage freight-brokerage automation startup, had outgrown its Framer site and needed a CMS-driven blog and SEO landing pages.\n\nTask: Rebuild the site in code without losing the design, and let the team publish without a developer.\n\nAction: Sole developer on a Next.js 16 App Router rebuild with Tailwind CSS v4 and React 19. Kept pages as server components, with Framer Motion isolated in client components. Embedded Sanity v5 Studio at /studio with 7 schemas, draft mode and a revalidation webhook for ISR. Added programmatic-SEO landing pages, a sitemap and RSS feed, and a SendGrid contact form. Deployed on Vercel.\n\nResult: 13 pages live at neblo.ai; new posts go live seconds after publishing in Sanity.",
+      github: "",
+      demo: "https://neblo.ai",
+      category: "webapps",
+    },
+    {
+      title: "Multi-tenant Mortgage AI SaaS",
+      description: "AI assistant platform for mortgage lenders: admin and user dashboards, chat interface, and a subdomain-based multi-tenant design.",
+      image: "/images/projects/mortgagemvp.png",
+      tags: ["Next.js", "Tailwind CSS", "shadcn/ui", "PostgreSQL", "Prisma", "Vercel", "Multi-tenant"],
+      details:
+        "Situation: A US mortgage-technology client needed an AI assistant that multiple lender groups could use under their own branding.\n\nTask: Build the dashboards and chat experience, and design how one codebase serves many tenants.\n\nAction: Built admin and user dashboards and the AI chat interface in Next.js with shadcn/ui, PostgreSQL and Prisma, including role-based access and user management. Wrote the multi-tenant design: tenant resolved from the subdomain, per-tenant branding and feature flags in configuration, and users linked to a tenant in a shared schema.\n\nResult: A single codebase that new lender groups can be onboarded to by configuration rather than a new build.",
+      github: "",
+      demo: "#",
+      category: "webapps",
+    },
+    {
+      title: "Al Ibrahim Travels",
+      description: "Travel and Umrah-package site with a self-managed CMS on Next.js and Firebase. Main contributor (152 of 186 commits).",
+      image: "/images/projects/alibrahimtravels.png",
+      tags: ["Next.js", "React", "Firebase", "Cloud Functions", "Google Maps", "Tailwind CSS"],
+      details:
+        "Situation: A travel agency needed to update packages, destinations and blog content without waiting on developers.\n\nTask: Turn a Next.js travel template into a self-managed site with a real content backend.\n\nAction: Built the CMS on Firestore with security rules, Cloud Functions for background tasks, Google Maps and Places integration, and Firebase Hosting. Dynamic pages for Umrah packages, destinations, bookings and blog posts, server-rendered for SEO.\n\nResult: A live site at alibrahimtravel.com that the agency updates on its own.",
+      github: "",
+      demo: "https://www.alibrahimtravel.com/",
+      category: "webapps",
+    },
+    {
+      title: "Google Chat HR Assistant",
+      description: "AI HR bot inside Google Chat that answers leave, payroll and policy questions from Google Sheets and Notion.",
+      image: "/images/projects/google-chat-hr-bot.png",
+      tags: ["Google Apps Script", "OpenAI GPT-4o-mini", "Notion API", "Google Sheets", "Google Chat"],
+      details:
+        "Situation: Cloudpacer employees looked up HR policies, leave balances and payroll dates across disconnected tools, sending the same questions to HR.\n\nTask: Answer those questions inside Google Chat, with no new app or login.\n\nAction: Built a serverless assistant in 6 modular Apps Script files. A two-call GPT-4o-mini pipeline first turns the question into search queries, then answers from live Notion policy pages. Employee and leave data come live from Google Sheets. Responses render as interactive Google Chat Cards v2. Handled service-account JWT auth, merged-header column mapping, spreadsheet date and timezone quirks, and Notion's exact-title search limits.\n\nResult: Employees get leave balances, payroll dates and policy answers in the chat tool they already use, with nothing to deploy or host.",
+      github: "",
+      demo: "#",
+      category: "webapps",
+    },
+    {
+      title: "Creexio",
+      description: "Personal studio site on Next.js 16: service pages, a markdown blog with 13 posts, reCAPTCHA-protected contact form and SEO setup.",
+      image: "/images/projects/creexio.png",
+      tags: ["Next.js 16", "React 19", "Tailwind CSS v4", "Nodemailer", "reCAPTCHA v3", "SEO"],
+      details:
+        "Situation: I needed a fast, SEO-friendly site for my freelance studio.\n\nTask: Customize a Next.js theme into a site with services, case studies, a blog and a spam-safe contact form.\n\nAction: Built on Next.js 16 and Tailwind CSS v4. Markdown blog with gray-matter (13 posts), service and case-study pages, an auto-generated sitemap, and a contact form protected by reCAPTCHA v3 that sends through SMTP with Nodemailer.\n\nResult: Live at creexio.com.",
+      github: "",
+      demo: "https://www.creexio.com/",
       category: "webapps",
     },
     // WordPress
@@ -301,12 +310,12 @@ export default function Projects() {
     // Django
     {
       title: "Bigeq",
-      description: "Django ecommerce platform with product catalog, cart, and checkout.",
+      description: "UI and UX improvements for a Django equine e-commerce marketplace.",
       image: "/images/projects/Bigeq.png",
-      tags: ["Django", "Python", "E-commerce", "PostgreSQL"],
+      tags: ["Django", "Python", "Django Templates", "JavaScript", "E-commerce"],
       details:
-        "Situation: The client required a custom ecommerce platform with full control over backend functionality.\n\nTask: Develop a scalable ecommerce system with product management and checkout features.\n\nAction: Built the platform using Django and PostgreSQL, implementing product catalog, cart, checkout, and admin management.\n\nResult: Delivered a scalable ecommerce backend capable of supporting future integrations and frontend applications.",
-      github: "https://github.com/csmtalha",
+        "Situation: An online horse marketplace built on Django had a dated interface and a confusing buying flow.\n\nTask: Improve the storefront UI and UX without a full rebuild.\n\nAction: Reworked layouts and page structure in Django templates with HTML, CSS and vanilla JavaScript, and cleaned up the listing and browsing flow.\n\nResult: A clearer, more consistent marketplace experience on the existing Django backend.",
+      github: "",
       demo: "#",
       category: "django",
     },
@@ -317,7 +326,7 @@ export default function Projects() {
       image: "/images/php-to-next.png",
       tags: ["Next.js", "PHP", "Migration", "Performance", "React"],
       details:
-        "Situation: The legacy insurance platform built in PHP faced performance and maintainability limitations.\n\nTask: Modernize the application with a scalable frontend framework.\n\nAction: Migrated the system to Next.js, refactoring legacy code, improving routing, and optimizing frontend performance.\n\nResult: Delivered a modernized platform with improved performance, scalability, and user experience.",
+        "Situation: The insurance company's public site ran on a legacy PHP codebase that was slow and hard to change.\n\nTask: Rebuild it on a modern framework and automate deployment.\n\nAction: Rebuilt the site in Next.js 14, refactoring the legacy page logic and routing, and set up a GitHub Actions pipeline that builds a Docker image and deploys it to AWS ECS.\n\nResult: A faster, maintainable site with push-to-deploy releases.",
       github: "https://github.com/csmtalha",
       demo: "#",
       category: "migrations",
@@ -431,6 +440,13 @@ export default function Projects() {
                       <Button variant="secondary" size="sm" className="gap-1" asChild>
                         <a href={project.demo} target="_blank" rel="noopener noreferrer">
                           Live <ExternalLink className="h-3.5 w-3.5" />
+                        </a>
+                      </Button>
+                    )}
+                    {project.github && project.github !== "https://github.com/csmtalha" && (
+                      <Button variant="secondary" size="sm" className="gap-1" asChild>
+                        <a href={project.github} target="_blank" rel="noopener noreferrer">
+                          Code <Github className="h-3.5 w-3.5" />
                         </a>
                       </Button>
                     )}

@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: "https://talha.creexio.com",
+  siteUrl: "https://talha-saleem.vercel.app",
   generateRobotsTxt: true,
   robotsTxtOptions: {
     policies: [{ userAgent: "*", allow: "/" }],

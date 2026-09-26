@@ -4,19 +4,21 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 
 const STATS = [
-  { target: 6, suffix: "", label: "Industries Shipped", sub: "Fintech · Freight · Healthcare · Real Estate" },
-  { target: 5, suffix: "+", label: "Years in Production", sub: "Full-stack · SaaS · Compliance" },
-  { target: 100, suffix: "+", label: "Users Onboarded", sub: "Field agents · Operators · Clients" },
-  { target: 2, suffix: "", label: "Published AI Books", sub: "Kindle · Business AI · Productivity" },
+  { target: 6, suffix: "+", label: "Years in Production", sub: "Full-stack · SaaS · Compliance" },
+  { target: 207, suffix: "", label: "API Routes, Latest Platform", sub: "AttendanceIQ HRMS · 100 data models" },
+  { target: 202, suffix: "", label: "Test Files Gating Deploys", sub: "Vitest · real-Postgres integration tests" },
+  { target: 2, suffix: "", label: "Published Books", sub: "Kindle · Business AI · Productivity" },
 ];
 
 const CLIENTS = ["Fintech & NBFC", "Freight & Compliance", "Healthcare Tech", "Real Estate", "E-commerce"];
 
 function CountUp({ target, suffix, active }: { target: number; suffix: string; active: boolean }) {
-  const [count, setCount] = useState(0);
+  // Start at the real value so server-rendered HTML (crawlers, link previews) never shows 0.
+  const [count, setCount] = useState(target);
 
   useEffect(() => {
     if (!active) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let frame = 0;
     const total = 40;
     const id = setInterval(() => {

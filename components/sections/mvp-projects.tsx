@@ -28,7 +28,7 @@ const MVP_PROJECTS = [
   {
     title: "MedNotes",
     description:
-      "Records doctor–patient visits via browser audio, transcribes with Whisper, and generates structured SOAP notes with ICD-10 codes automatically.",
+      "Records doctor-patient visits via browser audio, transcribes with Whisper, and generates structured SOAP notes with ICD-10 codes automatically.",
     image: "/images/projects/mednotemvp.png",
     tags: ["Next.js", "FastAPI", "OpenAI Whisper", "GPT-4", "PostgreSQL", "Docker", "Cloud Run", "Healthcare AI"],
     details:

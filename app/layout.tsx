@@ -8,13 +8,13 @@ import "@/app/globals.css";
 import Footer from "@/components/sections/footer";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://talha.creexio.com"),
+  metadataBase: new URL("https://talha-saleem.vercel.app"),
   title: {
     default: "Talha Saleem | Lead Full Stack Engineer",
     template: "%s | Talha Saleem",
   },
   description:
-    "Lead Full Stack Engineer with 5+ years building scalable SaaS & multi-tenant platforms. React, Next.js, Vue.js, Node.js, NestJS, AWS, Stripe.",
+    "Lead Full-Stack Engineer with 6+ years shipping TypeScript products end to end. React, Next.js, Node.js, NestJS, PostgreSQL, AI integrations, AWS.",
   robots: {
     index: true,
     follow: true,

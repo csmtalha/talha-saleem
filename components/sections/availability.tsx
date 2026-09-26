@@ -7,16 +7,16 @@ import { Clock, Globe, MessageSquare, Briefcase, Code2, Rocket, Calendar } from 
 import Link from "next/link";
 
 const ENGAGEMENTS = [
-  { icon: Briefcase, label: "Remote full-time roles" },
-  { icon: Code2, label: "Freelance & contract" },
-  { icon: Rocket, label: "Startup MVP builds" },
-  { icon: Calendar, label: "Fixed-scope projects" },
+  { icon: Briefcase, label: "Remote full-time: Senior / Lead Full-Stack Engineer" },
+  { icon: Rocket, label: "Product teams building SaaS or AI features" },
+  { icon: Code2, label: "Long-term contract roles" },
+  { icon: Calendar, label: "Notice period and start date on request" },
 ];
 
 const DETAILS = [
   { icon: Globe, label: "Timezone", value: "Lahore, Pakistan (UTC+5)" },
-  { icon: Clock, label: "Overlap", value: "PST - 4–6 hrs daily" },
-  { icon: MessageSquare, label: "Response", value: "< 24 hrs, Mon–Fri" },
+  { icon: Clock, label: "Overlap", value: "PST - 4-6 hrs daily" },
+  { icon: MessageSquare, label: "Response", value: "< 24 hrs, Mon-Fri" },
 ];
 
 export default function Availability() {
@@ -51,11 +51,11 @@ export default function Availability() {
       >
         <motion.div variants={itemVariants} className="text-center mb-12 md:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 gradient-text">
-            Let&apos;s Build Together
+            Availability
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6" />
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Currently open to new projects and roles. Here&apos;s what works well.
+            Open to remote full-time roles. Here&apos;s how I work across time zones.
           </p>
         </motion.div>
 
@@ -91,7 +91,7 @@ export default function Availability() {
               className="w-full bg-gradient-to-r from-primary to-purple-500 hover:opacity-90 text-primary-foreground"
               asChild
             >
-              <Link href="#contact">Start a Conversation</Link>
+              <Link href="#contact">Get in Touch</Link>
             </Button>
           </motion.div>
 
@@ -119,7 +119,7 @@ export default function Availability() {
 
             <div className="rounded-xl bg-primary/5 border border-primary/10 p-4">
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Happy to jump on a quick call to see if there&apos;s a fit - no commitment, just a conversation.
+                Happy to do a screening call, a technical interview or a paid trial task, whichever your process uses.
               </p>
             </div>
           </motion.div>

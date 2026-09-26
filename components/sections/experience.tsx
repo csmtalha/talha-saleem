@@ -4,183 +4,131 @@ import { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Briefcase } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Briefcase, FileText, GraduationCap } from "lucide-react";
+
+interface Role {
+  company: string;
+  position: string;
+  period: string;
+  summary: string;
+  highlights: string[];
+  skills: string[];
+}
+
+const ROLES: Role[] = [
+  {
+    company: "Cloudpacer · Full-time",
+    position: "Lead Full-Stack Engineer",
+    period: "Aug 2022 - Present",
+    summary:
+      "Software services company building SaaS for US and local clients. Promoted from Software Engineer to Lead; I own architecture and delivery on internal platforms and client builds.",
+    highlights: [
+      "AttendanceIQ: designed and built the company's complete HRMS as primary engineer (361 of 403 commits): employee records, attendance and shifts, leave, payroll, performance, learning, helpdesk and audit. 100 Prisma models, 207 API routes, 202 test files, CI-gated blue-green deploys to AWS.",
+      "Fleet safety & FMCSA compliance platform for US trucking carriers: co-built the multi-tenant NestJS API (16 modules, ~147 endpoints, JWT → tenant → role guards) and both React front ends; shipped RBAC, notifications, training and a 6-step dispute wizard.",
+      "AI proposal CRM: architected the Next.js + Supabase foundation (80 RLS policies over 24 tables, permission layer, onboarding guide and 50-ticket plan) for a Claude + pgvector retrieval flow that four engineers built on.",
+      "Neblo AI: sole developer migrating the marketing site from Framer to Next.js 16 with embedded Sanity Studio, webhook-driven ISR and programmatic-SEO pages (live at neblo.ai).",
+      "Earlier: a multi-tenant mortgage AI SaaS (dashboards, chat, tenant design), AWS Textract finance-report automation, a Next.js + Firebase travel CMS, a PHP-to-Next.js migration, and a Google Chat HR assistant.",
+    ],
+    skills: ["TypeScript", "Next.js", "React", "NestJS", "Node.js", "PostgreSQL", "Prisma", "Supabase", "pgvector", "Claude / OpenAI", "Vitest", "Playwright", "GitHub Actions", "AWS", "Docker", "Vercel"],
+  },
+  {
+    company: "Napollo Software Design · Full-time",
+    position: "Frontend Developer",
+    period: "Jul 2021 - Aug 2022",
+    summary:
+      "Delivered client projects end to end, from requirements through deployment.",
+    highlights: [
+      "Built React interfaces from Figma designs and contributed shared components reused across client projects.",
+      "Built custom WordPress themes and plugins, WooCommerce and Shopify Liquid storefronts, payment integrations and hosting setups for small-business clients, with a focus on page speed and SEO.",
+    ],
+    skills: ["React", "JavaScript", "WordPress", "WooCommerce", "Shopify Liquid", "PHP", "Figma"],
+  },
+  {
+    company: "Spadasoft · Full-time",
+    position: "Web Developer",
+    period: "Feb 2020 - Jun 2021",
+    summary: "Built and maintained client-facing web applications.",
+    highlights: [
+      "Integrated REST APIs, built responsive layouts, and improved load times with code splitting, image optimization and lazy loading.",
+    ],
+    skills: ["JavaScript", "React", "HTML/CSS", "SCSS", "REST APIs", "Git"],
+  },
+];
 
 export default function Experience() {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const isInView = useInView(ref, { once: true, margin: "-80px" });
   const controls = useAnimation();
 
   useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    }
+    if (isInView) controls.start("visible");
   }, [isInView, controls]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
   };
-
   const itemVariants = {
     hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-      },
-    },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } },
   };
 
-  const experiences = [
-    {
-      company: "CloudPacer",
-      position: "Software Engineer",
-      period: "Aug 2022 - Present",
-      description: [
-        "Built a smart AI-powered mortgage dashboard using Next.js and Tailwind CSS, delivering user and admin interfaces with seamless two-way data sync between frontend and PostgreSQL backend.",
-        "Integrated LLM APIs for real-time conversational support, providing users with personalized mortgage insights via a responsive chat interface.",
-        "Designed and implemented scalable authentication and user management systems with secure session handling and role-based access.",
-        "Developed a self-managed travel CMS platform with dynamic destination and booking pages using Next.js and Firebase, reducing content update dependency on developers.",
-        "Migrated a legacy insurance application from PHP to Next.js, enhancing performance, maintainability, and CI/CD deployment workflows.",
-        "Revamped an eCommerce platform frontend with Django templates and vanilla JS, improving UX, layout structure, and overall site engagement.",
-        "Integrated real-time map tracking in a logistics application using Leaflet.js and React.js, enabling dynamic route visualization and optimization.",
-        "Engineered backend APIs using NestJS and PostgreSQL with well-structured service/controller logic, resolving key issues and ensuring system stability.",
-        "Automated invoice and payroll data extraction using AWS Textract and JavaScript RegEx, rendering results in interactive React.js data tables.",
-        "Troubleshot and improved backend reliability by diagnosing issues via AWS CloudWatch and Jenkins pipelines, boosting system performance and uptime.",
-      ],
-      skills: [
-        "React.js",
-        "Next.js",
-        "TailwindCSS",
-        "Shadcn",
-        "Node.js",
-        "Nest.js",
-        "Material UI",
-        "MongoDB",
-        "Postgresql",
-        "Firestore",
-        "Python",
-        "Django",
-        "Docker",
-        "Vercel",
-        "RESTful APIs",
-        "Authentication",
-      ],
-    },
-    // {
-    //   company: "Freelance",
-    //   position: "Frontend Developer",
-    //   period: "2020 - 2025",
-    //   description: [
-    //     "Delivered over multiple custom web applications and websites for clients across various industries.",
-    //     "Specialized in creating high-performance React and Next.js applications with modern UI/UX design.",
-    //     "Developed custom WordPress themes and plugins for content-driven websites.",
-    //     "Implemented e-commerce solutions using Shopify, WooCommerce, and custom platforms.",
-    //     "Provided ongoing maintenance, support, and feature enhancements for client projects.",
-    //   ],
-    //   skills: [
-    //     "React.js",
-    //     "Next.js",
-    //     "WordPress",
-    //     "Shopify",
-    //     "E-commerce",
-    //     "UI/UX Design",
-    //     "Technical Writing",
-    //   ],
-    // },
-    {
-      company: "Napollo LLC",
-      position: "Frontend Developer",
-      period: "May 2020 - July 2022",
-      description: [
-        "Developed and maintained dynamic, responsive websites using WordPress and Shopify, building custom themes and plugins to meet unique client requirements.",
-        "Created interactive UI components with React.js, improving site responsiveness and user engagement across desktop and mobile platforms.",
-        "Integrated third-party APIs and Shopify Liquid templates to enable advanced functionality in eCommerce storefronts.",
-        "Collaborated closely with backend developers and designers to translate Figma wireframes into pixel-perfect, production-ready web pages.",
-        "Improved SEO performance and accessibility compliance by optimizing frontend markup and page structure.",
-        "Conducted cross-browser testing and debugging to ensure seamless performance across major browsers and devices.",
-        "Streamlined development workflows using Git, Trello, and Agile sprints, consistently delivering client projects on time.",
-      ],
-      skills: [
-        "WordPress",
-        "Shopify",
-        "Liquid",
-        "HTML/CSS",
-        "JavaScript",
-        "React.js",
-        "APIs",
-        "Figma",
-        "Git",
-        "Trello",
-        "SEO",
-        "Accessibility",
-        "Cross-Browser Testing",
-        "Agile",
-      ],
-    },
-  ];
-
   return (
-    <section id="experience" className="w-full bg-muted/30">
+    <section
+      id="experience"
+      className="w-full bg-gradient-to-b from-background to-muted/20 relative overflow-hidden"
+    >
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]" />
       <motion.div
         ref={ref}
-        className="section-container"
+        className="section-container relative z-10"
         variants={containerVariants}
         animate={controls}
       >
-        <motion.div variants={itemVariants} className="mb-12 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Work Experience
+        <motion.div variants={itemVariants} className="text-center mb-12 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 gradient-text">
+            Experience
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto"></div>
+          <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6" />
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+            6+ years across three companies, from client websites to leading full-stack platforms.
+          </p>
         </motion.div>
 
-        <div className="space-y-8">
-          {experiences.map((exp, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <Card className="overflow-hidden border-l-4 border-l-primary">
-                <CardHeader className="bg-muted/50 p-6">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      <div className="bg-primary/10 p-2 rounded-full">
+        <div className="space-y-6 max-w-5xl mx-auto">
+          {ROLES.map((role) => (
+            <motion.div key={role.company} variants={itemVariants}>
+              <Card className="overflow-hidden border border-border/50 border-l-4 border-l-primary bg-card/50">
+                <CardHeader className="p-6 pb-3">
+                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-3">
+                    <div className="flex items-start gap-3">
+                      <div className="bg-primary/10 p-2 rounded-full shrink-0">
                         <Briefcase className="h-5 w-5 text-primary" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold">{exp.position}</h3>
-                        <p className="text-muted-foreground">{exp.company}</p>
+                        <h3 className="text-xl font-bold">{role.position}</h3>
+                        <p className="text-muted-foreground">{role.company}</p>
                       </div>
                     </div>
-                    <Badge
-                      variant="outline"
-                      className="md:self-start px-3 py-1"
-                    >
-                      {exp.period}
+                    <Badge variant="outline" className="self-start px-3 py-1 whitespace-nowrap">
+                      {role.period}
                     </Badge>
                   </div>
                 </CardHeader>
-                <CardContent className="p-6">
+                <CardContent className="p-6 pt-0">
+                  <p className="text-sm text-muted-foreground italic mb-3">{role.summary}</p>
                   <ul className="space-y-2 mb-4">
-                    {exp.description.map((item, i) => (
-                      <li key={i} className="flex items-start">
-                        <span className="text-primary mr-2">•</span>
+                    {role.highlights.map((item) => (
+                      <li key={item} className="flex items-start text-sm leading-relaxed">
+                        <span className="text-primary mr-2 mt-0.5">•</span>
                         <span>{item}</span>
                       </li>
                     ))}
                   </ul>
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {exp.skills.map((skill) => (
-                      <Badge
-                        key={skill}
-                        variant="secondary"
-                        className="px-2 py-1 text-xs"
-                      >
+                  <div className="flex flex-wrap gap-1.5">
+                    {role.skills.map((skill) => (
+                      <Badge key={skill} variant="secondary" className="text-xs bg-primary/10 text-primary border-primary/20">
                         {skill}
                       </Badge>
                     ))}
@@ -189,6 +137,27 @@ export default function Experience() {
               </Card>
             </motion.div>
           ))}
+
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row items-center justify-between gap-4 rounded-xl border border-border/50 bg-card/50 p-5"
+          >
+            <div className="flex items-center gap-3">
+              <div className="bg-primary/10 p-2 rounded-full">
+                <GraduationCap className="h-5 w-5 text-primary" />
+              </div>
+              <div>
+                <p className="font-semibold">BS Computer Science, University of Lahore</p>
+                <p className="text-sm text-muted-foreground">2018 - 2022 · Employee of the Year 2024, Cloudpacer</p>
+              </div>
+            </div>
+            <Button variant="outline" className="glass-effect gap-2" asChild>
+              <a href="/files/Talha-Saleem-CV.pdf" target="_blank" rel="noopener noreferrer">
+                <FileText className="h-4 w-4" />
+                Full CV (PDF)
+              </a>
+            </Button>
+          </motion.div>
         </div>
       </motion.div>
     </section>

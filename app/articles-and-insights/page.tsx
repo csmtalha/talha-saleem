@@ -9,13 +9,13 @@ export const metadata = {
   description:
     "Engineering articles, tutorials, and insights from Talha Saleem - covering Next.js, React, Node.js, SaaS architecture, AI tooling, and modern web development.",
   alternates: {
-    canonical: "https://talha.creexio.com/articles-and-insights",
+    canonical: "https://talha-saleem.vercel.app/articles-and-insights",
   },
   openGraph: {
     title: "Articles & Insights | Talha Saleem",
     description:
       "Engineering articles, tutorials, and insights from Talha Saleem - covering Next.js, React, Node.js, SaaS architecture, AI tooling, and modern web development.",
-    url: "https://talha.creexio.com/articles-and-insights",
+    url: "https://talha-saleem.vercel.app/articles-and-insights",
     type: "website",
   },
 };
