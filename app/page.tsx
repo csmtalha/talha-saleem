@@ -51,9 +51,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://talha-saleem.vercel.app/images/profilepic.jpeg",
-        width: 1200,
-        height: 630,
+        url: "https://talha-saleem.vercel.app/images/talha-saleem.jpg",
+        width: 1254,
+        height: 1254,
         alt: "Talha Saleem - Lead Full-Stack Engineer",
       },
     ],
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Talha Saleem | Lead Full-Stack Engineer",
     description: DESCRIPTION,
-    images: ["https://talha-saleem.vercel.app/images/profilepic.jpeg"],
+    images: ["https://talha-saleem.vercel.app/images/talha-saleem.jpg"],
   },
 };
 
@@ -71,7 +71,7 @@ const personSchema = {
   "@type": "Person",
   name: "Talha Saleem",
   url: "https://talha-saleem.vercel.app",
-  image: "https://talha-saleem.vercel.app/images/profilepic.jpeg",
+  image: "https://talha-saleem.vercel.app/images/talha-saleem.jpg",
   jobTitle: "Lead Full-Stack Engineer",
   worksFor: { "@type": "Organization", name: "Cloudpacer" },
   alumniOf: { "@type": "CollegeOrUniversity", name: "University of Lahore" },

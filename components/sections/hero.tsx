@@ -6,7 +6,7 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink, FileText } from "lucide-react";
 import Link from "next/link";
-import profilePic from "@/public/images/hero-dp.png";
+import profilePic from "@/public/images/talha-saleem.jpg";
 
 const INDUSTRIES = [
   "Fintech & NBFC",
