@@ -1,9 +1,10 @@
 # *
 User-agent: *
 Allow: /
+Disallow: /api/
 
 # Host
-Host: https://talha-saleem.vercel.app
+Host: https://talhasaleem.dev
 
 # Sitemaps
-Sitemap: https://talha-saleem.vercel.app/sitemap.xml
+Sitemap: https://talhasaleem.dev/sitemap.xml

@@ -1,15 +1,24 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-// useRef kept for the section scroll ref
+import { useState, type ChangeEvent, type FormEvent, type ReactNode } from "react";
 import Script from "next/script";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Mail, MapPin, Clock, CheckCircle2, AlertCircle, Loader2, MessageCircle } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import {
+  AlertCircle,
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  CheckCircle2,
+  Copy,
+  FileText,
+  Linkedin,
+  Loader2,
+  Mail,
+  MessageCircle,
+} from "lucide-react";
+import { Reveal } from "@/components/motion/reveal";
+import { SITE } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 declare global {
   interface Window {
@@ -22,38 +31,83 @@ declare global {
 
 type Status = "idle" | "loading" | "success" | "error";
 
-export default function Contact() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const controls = useAnimation();
+const INTENTS = ["Full-time role", "Contract project", "Technical consultation", "Something else"] as const;
 
+const field =
+  "w-full rounded-xl border border-input bg-background/60 px-4 py-3 text-[15px] text-foreground outline-none transition-all duration-200 placeholder:text-muted-foreground/70 hover:border-foreground/20 focus:border-primary/60 focus:bg-background focus:ring-4 focus:ring-primary/15 disabled:opacity-60";
+
+function Method({
+  href,
+  icon,
+  label,
+  value,
+  accent,
+  external = true,
+  action,
+}: {
+  href: string;
+  icon: ReactNode;
+  label: string;
+  value: string;
+  accent: string;
+  external?: boolean;
+  action?: ReactNode;
+}) {
+  return (
+    <div className="spotlight glass group relative flex items-center gap-4 rounded-2xl p-4 transition-transform duration-300 hover:-translate-y-0.5">
+      <span className={cn("grid h-11 w-11 shrink-0 place-items-center rounded-xl ring-1", accent)}>{icon}</span>
+      <a
+        href={href}
+        {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        className="min-w-0 flex-1 after:absolute after:inset-0 after:z-[2] after:content-['']"
+      >
+        <span className="block text-xs text-muted-foreground">{label}</span>
+        <span className="block truncate text-[15px] font-medium text-foreground">{value}</span>
+      </a>
+      {action ?? (
+        <ArrowUpRight className="h-4 w-4 shrink-0 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+      )}
+    </div>
+  );
+}
+
+export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [intent, setIntent] = useState<string | null>(null);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
-    if (isInView) controls.start("visible");
-  }, [isInView, controls]);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+  const pickIntent = (i: string) => {
+    setIntent(i);
+    setForm((prev) => ({ ...prev, subject: prev.subject && !(INTENTS as readonly string[]).includes(prev.subject) ? prev.subject : i }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(SITE.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      window.location.href = `mailto:${SITE.email}`;
+    }
+  };
+
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setStatus("loading");
     setErrorMsg("");
 
     try {
-      // v3: execute silently and get token
+      // reCAPTCHA v3 runs invisibly and returns a token
       const recaptchaToken = await new Promise<string>((resolve, reject) => {
+        if (!window.grecaptcha) return reject(new Error("Spam protection didn't load. Please email me directly."));
         window.grecaptcha.ready(async () => {
           try {
-            const token = await window.grecaptcha.execute(
-              process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!,
-              { action: "contact" }
-            );
-            resolve(token);
+            resolve(await window.grecaptcha.execute(process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!, { action: "contact" }));
           } catch (err) {
             reject(err);
           }
@@ -66,254 +120,225 @@ export default function Contact() {
         body: JSON.stringify({ ...form, recaptchaToken }),
       });
       const data = await res.json();
-
       if (!res.ok) throw new Error(data.error || "Something went wrong.");
 
       setStatus("success");
       setForm({ name: "", email: "", subject: "", message: "" });
+      setIntent(null);
     } catch (err: unknown) {
       setStatus("error");
       setErrorMsg(err instanceof Error ? err.message : "Failed to send. Please try again.");
     }
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-  };
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.5 } },
-  };
-
   return (
-    <section
-      id="contact"
-      className="w-full bg-gradient-to-b from-muted/20 to-background relative overflow-hidden"
-    >
+    <section id="contact" className="section-y relative overflow-hidden">
       <Script
         src={`https://www.google.com/recaptcha/api.js?render=${process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}`}
         strategy="lazyOnload"
       />
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[600px] bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,hsl(var(--primary)/0.18),transparent)]" />
 
-      <div className="absolute inset-0 bg-dots-pattern opacity-[0.02]" />
-      <div className="absolute top-20 left-1/4 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-20 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl" />
-
-      <motion.div
-        ref={ref}
-        className="section-container relative z-10"
-        variants={containerVariants}
-        animate={controls}
-      >
-        <motion.div variants={itemVariants} className="mb-12 md:mb-16 text-center">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 gradient-text">
-            Get In Touch
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Have a project in mind or want to discuss opportunities? Send a message and I&apos;ll reply within 24 hours.
+      <div className="container-x">
+        <Reveal blur className="mx-auto max-w-3xl text-center">
+          <p className="eyebrow justify-center">
+            <span className="text-primary">07</span>
+            <span className="h-px w-6 bg-border" />
+            Contact
           </p>
-        </motion.div>
+          <h2 className="mt-5 text-balance text-[clamp(2.5rem,7vw,5rem)] font-semibold leading-[0.98] tracking-[-0.045em]">
+            Let&apos;s build something <span className="text-gradient-animated">that ships.</span>
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-base text-muted-foreground sm:text-lg">
+            Hiring a senior engineer, or need a product built end to end? Tell me what you&apos;re working on and I&apos;ll reply within 24 hours.
+          </p>
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a href={`mailto:${SITE.email}`} className="btn-glow h-[52px] px-7 text-base">
+              <Mail className="h-4 w-4" />
+              Email me directly
+            </a>
+            <a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer" className="btn-ghost h-[52px]">
+              <MessageCircle className="h-4 w-4 text-emerald-400" />
+              Chat on WhatsApp
+            </a>
+          </div>
+        </Reveal>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left: info */}
-          <motion.div variants={itemVariants}>
-            <Card className="h-full glass-effect border-0 shadow-lg">
-              <CardContent className="p-8 flex flex-col h-full">
-                <h3 className="text-xl font-bold mb-8 gradient-text">Contact Information</h3>
+        <div className="mt-16 grid gap-5 lg:grid-cols-5">
+          <Reveal className="flex flex-col gap-3 lg:col-span-2" delay={0.05}>
+            <Method
+              href={`mailto:${SITE.email}`}
+              external={false}
+              label="Email"
+              value={SITE.email}
+              accent="bg-primary/10 text-primary ring-primary/20"
+              icon={<Mail className="h-5 w-5" />}
+              action={
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  aria-label="Copy email address"
+                  className="relative z-[3] grid h-9 w-9 shrink-0 place-items-center rounded-lg text-muted-foreground transition-colors hover:bg-foreground/[0.06] hover:text-foreground"
+                >
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.span key={copied ? "y" : "n"} initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.5, opacity: 0 }}>
+                      {copied ? <Check className="h-4 w-4 text-emerald-400" /> : <Copy className="h-4 w-4" />}
+                    </motion.span>
+                  </AnimatePresence>
+                </button>
+              }
+            />
+            <Method
+              href={SITE.whatsapp}
+              label="WhatsApp"
+              value={SITE.whatsappDisplay}
+              accent="bg-emerald-400/10 text-emerald-500 ring-emerald-400/20 dark:text-emerald-400"
+              icon={<MessageCircle className="h-5 w-5" />}
+            />
+            <Method
+              href={SITE.linkedin}
+              label="LinkedIn"
+              value="in/csmtalha"
+              accent="bg-[#0A66C2]/10 text-[#0A66C2] ring-[#0A66C2]/25 dark:text-[#5aa9f5]"
+              icon={<Linkedin className="h-5 w-5" />}
+            />
+            <Method
+              href={SITE.cv}
+              label="Résumé"
+              value="Download CV (PDF)"
+              accent="bg-signal/10 text-signal ring-signal/20"
+              icon={<FileText className="h-5 w-5" />}
+            />
+            <div className="glass mt-auto rounded-2xl p-4 text-sm text-muted-foreground">
+              <span className="font-medium text-foreground">Lahore, Pakistan · UTC+5.</span> 4–6 hours of daily overlap with US
+              Pacific time; I reply within 24 hours, Monday to Friday.
+            </div>
+          </Reveal>
 
-                <div className="space-y-6 flex-1">
-                  <div className="flex items-start gap-4">
-                    <div className="bg-primary/10 p-3 rounded-full shrink-0">
-                      <Mail className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-medium">Email</p>
-                      <a href="mailto:csmtalha@gmail.com" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                        csmtalha@gmail.com
-                      </a>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="bg-primary/10 p-3 rounded-full shrink-0">
-                      <MapPin className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-medium">Location</p>
-                      <p className="text-muted-foreground text-sm">Lahore, Pakistan</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="bg-primary/10 p-3 rounded-full shrink-0">
-                      <Clock className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <p className="font-medium">Availability</p>
-                      <p className="text-muted-foreground text-sm">PST overlap · Responds within 24 hrs</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-4">
-                    <div className="bg-green-500/10 p-3 rounded-full shrink-0">
-                      <MessageCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
-                    </div>
-                    <div>
-                      <p className="font-medium">WhatsApp</p>
-                      <a
-                        href="https://wa.me/923174353728"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-green-600 dark:hover:text-green-400 transition-colors text-sm"
-                      >
-                        +92 317 435 3728
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-8 pt-8 border-t border-border/50">
-                  <p className="text-sm font-semibold uppercase tracking-wider text-primary mb-4">Connect</p>
-                  <div className="flex gap-3">
-                    <Button variant="outline" size="icon" asChild>
-                      <a href="https://github.com/csmtalha" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-                          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-                        </svg>
-                        <span className="sr-only">GitHub</span>
-                      </a>
-                    </Button>
-                    <Button variant="outline" size="icon" asChild>
-                      <a href="https://linkedin.com/in/csmtalha/" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
-                          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                          <rect x="2" y="9" width="4" height="12" />
-                          <circle cx="4" cy="4" r="2" />
-                        </svg>
-                        <span className="sr-only">LinkedIn</span>
-                      </a>
-                    </Button>
-                    <Button variant="outline" size="icon" className="hover:border-green-500 hover:text-green-600 dark:hover:text-green-400" asChild>
-                      <a href="https://wa.me/923174353728" target="_blank" rel="noopener noreferrer" className="hover:scale-110 transition-transform duration-200">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="h-5 w-5">
-                          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                        </svg>
-                        <span className="sr-only">WhatsApp</span>
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Right: form */}
-          <motion.div variants={itemVariants}>
-            <Card className="glass-effect border-0 shadow-lg">
-              <CardContent className="p-8">
-                <h3 className="text-xl font-bold mb-8 gradient-text">Send a Message</h3>
-
+          <Reveal className="lg:col-span-3" delay={0.12}>
+            <div className="glass relative h-full overflow-hidden rounded-3xl p-6 sm:p-8">
+              <div aria-hidden className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-primary/70 to-transparent" />
+              <AnimatePresence mode="wait">
                 {status === "success" ? (
-                  <div className="flex flex-col items-center justify-center py-12 text-center gap-4">
-                    <CheckCircle2 className="h-14 w-14 text-green-500" />
-                    <h4 className="text-xl font-semibold">Message sent!</h4>
-                    <p className="text-muted-foreground text-sm max-w-xs">
-                      Thanks for reaching out. I&apos;ll get back to you within 24 hours.
-                    </p>
-                    <Button variant="outline" size="sm" onClick={() => setStatus("idle")} className="mt-2">
+                  <motion.div
+                    key="done"
+                    initial={{ opacity: 0, scale: 0.96 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex h-full min-h-[420px] flex-col items-center justify-center gap-4 text-center"
+                  >
+                    <motion.span
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", stiffness: 260, damping: 16, delay: 0.1 }}
+                      className="grid h-16 w-16 place-items-center rounded-full bg-emerald-400/15 text-emerald-400 shadow-[0_0_40px_-6px_rgba(52,211,153,0.6)]"
+                    >
+                      <CheckCircle2 className="h-8 w-8" />
+                    </motion.span>
+                    <h3 className="text-2xl font-semibold">Message sent</h3>
+                    <p className="max-w-xs text-sm text-muted-foreground">Thanks for reaching out. I&apos;ll get back to you within 24 hours.</p>
+                    <button type="button" onClick={() => setStatus("idle")} className="btn-ghost mt-2 h-10 text-sm">
                       Send another
-                    </Button>
-                  </div>
+                    </button>
+                  </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="space-y-1.5">
-                        <Label htmlFor="name">Name <span className="text-red-500">*</span></Label>
-                        <Input
-                          id="name"
-                          name="name"
-                          placeholder="Your name"
-                          value={form.name}
-                          onChange={handleChange}
-                          required
-                          disabled={status === "loading"}
-                        />
-                      </div>
-                      <div className="space-y-1.5">
-                        <Label htmlFor="email">Email <span className="text-red-500">*</span></Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          placeholder="you@example.com"
-                          value={form.email}
-                          onChange={handleChange}
-                          required
-                          disabled={status === "loading"}
-                        />
+                  <motion.form key="form" onSubmit={onSubmit} className="space-y-5" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                    <div>
+                      <p className="text-sm font-medium">What&apos;s this about?</p>
+                      <div className="mt-3 flex flex-wrap gap-2">
+                        {INTENTS.map((i) => (
+                          <button
+                            key={i}
+                            type="button"
+                            onClick={() => pickIntent(i)}
+                            aria-pressed={intent === i}
+                            className={cn(
+                              "rounded-full border px-3.5 py-1.5 text-sm transition-all duration-200",
+                              intent === i
+                                ? "border-primary bg-primary/15 text-foreground shadow-[0_0_20px_-6px_hsl(var(--primary)/0.8)]"
+                                : "border-border/80 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                            )}
+                          >
+                            {i}
+                          </button>
+                        ))}
                       </div>
                     </div>
 
-                    <div className="space-y-1.5">
-                      <Label htmlFor="subject">Subject</Label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        placeholder="What's this about?"
-                        value={form.subject}
-                        onChange={handleChange}
-                        disabled={status === "loading"}
-                      />
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <label className="block space-y-1.5">
+                        <span className="text-sm font-medium">
+                          Name <span className="text-primary">*</span>
+                        </span>
+                        <input name="name" value={form.name} onChange={onChange} required disabled={status === "loading"} placeholder="Your name" autoComplete="name" className={field} />
+                      </label>
+                      <label className="block space-y-1.5">
+                        <span className="text-sm font-medium">
+                          Email <span className="text-primary">*</span>
+                        </span>
+                        <input name="email" type="email" value={form.email} onChange={onChange} required disabled={status === "loading"} placeholder="you@company.com" autoComplete="email" className={field} />
+                      </label>
                     </div>
 
-                    <div className="space-y-1.5">
-                      <Label htmlFor="message">Message <span className="text-red-500">*</span></Label>
-                      <Textarea
-                        id="message"
+                    <label className="block space-y-1.5">
+                      <span className="text-sm font-medium">Subject</span>
+                      <input name="subject" value={form.subject} onChange={onChange} disabled={status === "loading"} placeholder="Role, project or question" className={field} />
+                    </label>
+
+                    <label className="block space-y-1.5">
+                      <span className="text-sm font-medium">
+                        Message <span className="text-primary">*</span>
+                      </span>
+                      <textarea
                         name="message"
-                        placeholder="Tell me about the role, team or project..."
                         rows={5}
                         value={form.message}
-                        onChange={handleChange}
+                        onChange={onChange}
                         required
                         disabled={status === "loading"}
-                        className="resize-none"
+                        placeholder="A few lines about the role, team or product, plus a timeline if you have one."
+                        className={cn(field, "resize-none")}
                       />
-                    </div>
+                    </label>
 
-                    {/* reCAPTCHA v3 runs invisibly - no widget needed */}
+                    <AnimatePresence>
+                      {status === "error" && errorMsg && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          className="flex items-center gap-2 rounded-xl bg-destructive/10 px-4 py-3 text-sm text-destructive"
+                        >
+                          <AlertCircle className="h-4 w-4 shrink-0" />
+                          {errorMsg}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
 
-                    {status === "error" && errorMsg && (
-                      <div className="flex items-center gap-2 text-red-500 text-sm bg-red-500/10 rounded-lg px-4 py-3">
-                        <AlertCircle className="h-4 w-4 shrink-0" />
-                        {errorMsg}
-                      </div>
-                    )}
-
-                    <Button
-                      type="submit"
-                      size="lg"
-                      className="w-full bg-gradient-to-r from-primary to-purple-500 hover:opacity-90 text-primary-foreground"
-                      disabled={status === "loading"}
-                    >
+                    <button type="submit" disabled={status === "loading"} className="btn-glow w-full disabled:cursor-wait disabled:opacity-80">
                       {status === "loading" ? (
                         <>
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          <Loader2 className="h-4 w-4 animate-spin" />
                           Sending…
                         </>
                       ) : (
-                        "Send Message"
+                        <>
+                          Send message
+                          <ArrowRight className="h-4 w-4" />
+                        </>
                       )}
-                    </Button>
-                  </form>
+                    </button>
+                    <p className="text-center text-xs leading-relaxed text-muted-foreground">
+                      Your details are only used to reply to you. This form is protected by reCAPTCHA and the Google{" "}
+                      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground">Privacy Policy</a> and{" "}
+                      <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:text-foreground">Terms of Service</a> apply.
+                    </p>
+                  </motion.form>
                 )}
-              </CardContent>
-            </Card>
-          </motion.div>
+              </AnimatePresence>
+            </div>
+          </Reveal>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

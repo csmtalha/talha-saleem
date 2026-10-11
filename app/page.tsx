@@ -1,87 +1,95 @@
 import type { Metadata } from "next";
 import Hero from "@/components/sections/hero";
-import Stats from "@/components/sections/stats";
-import Experience from "@/components/sections/experience";
-import CaseStudies from "@/components/sections/case-studies";
+import Proof from "@/components/sections/proof";
+import FeaturedWork from "@/components/sections/featured-work";
+import CtaBand from "@/components/sections/cta-band";
 import Projects from "@/components/sections/projects";
-import About from "@/components/sections/about";
+import Experience from "@/components/sections/experience";
 import Skills from "@/components/sections/skills";
-import Blog from "@/components/sections/blog";
-import BookPromo from "@/components/sections/book-promo";
-import Availability from "@/components/sections/availability";
+import About from "@/components/sections/about";
+import Writing from "@/components/sections/writing";
 import Contact from "@/components/sections/contact";
-import CtaSection from "@/components/sections/cta-section";
-import Header from "@/components/sections/header";
-import ScrollToTop from "@/components/scroll-to-top";
+import { FloatingActions } from "@/components/effects/floating-actions";
+import { FEATURED } from "@/lib/projects";
+import { SITE } from "@/lib/site";
 
+const SITE_URL = SITE.url;
 const TITLE = "Talha Saleem | Lead Full-Stack Engineer (React, Next.js, Node.js, NestJS)";
 const DESCRIPTION =
-  "Lead Full-Stack Engineer with 6+ years shipping TypeScript products end to end: React/Next.js, Node.js/NestJS, PostgreSQL, AI integrations, tests and AWS deploys. Open to remote senior and lead roles.";
+  "Lead Full-Stack Engineer with 6+ years shipping SaaS and AI products end to end: React/Next.js, Node.js/NestJS, PostgreSQL, RAG with pgvector, tests and AWS deploys. Hire me for remote senior roles or contract builds.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://talha-saleem.vercel.app"),
-  title: TITLE,
+  metadataBase: new URL(SITE_URL),
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   keywords: [
     "Talha Saleem",
     "Lead Full-Stack Engineer",
+    "hire full-stack developer",
     "Senior Full-Stack Engineer remote",
-    "Senior React Next.js developer",
+    "Next.js developer for hire",
+    "React Next.js consultant",
     "NestJS Node.js engineer",
     "TypeScript full-stack engineer Pakistan",
-    "PostgreSQL Prisma Supabase",
+    "SaaS developer Lahore",
     "AI integration engineer RAG pgvector",
     "multi-tenant SaaS engineer",
+    "HRMS payroll software developer",
     "remote software engineer PST overlap",
   ],
-  authors: [{ name: "Talha Saleem", url: "https://talha-saleem.vercel.app" }],
+  authors: [{ name: "Talha Saleem", url: SITE_URL }],
   creator: "Talha Saleem",
+  category: "technology",
   verification: {
     google: "DLA0_IP3Hsut84nJRmawwY7w18Tp7lAZeqGafn8IBH4",
   },
   alternates: {
-    canonical: "https://talha-saleem.vercel.app",
+    canonical: SITE_URL,
   },
+  // Preview images come from app/opengraph-image.tsx and app/twitter-image.tsx
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
-    url: "https://talha-saleem.vercel.app",
+    url: SITE_URL,
     siteName: "Talha Saleem",
     type: "profile",
     locale: "en_US",
-    images: [
-      {
-        url: "https://talha-saleem.vercel.app/images/talha-saleem.jpg",
-        width: 1254,
-        height: 1254,
-        alt: "Talha Saleem - Lead Full-Stack Engineer",
-      },
-    ],
+    firstName: "Talha",
+    lastName: "Saleem",
+    username: "csmtalha",
   },
   twitter: {
     card: "summary_large_image",
     title: "Talha Saleem | Lead Full-Stack Engineer",
     description: DESCRIPTION,
-    images: ["https://talha-saleem.vercel.app/images/talha-saleem.jpg"],
   },
 };
 
-const personSchema = {
-  "@context": "https://schema.org",
+const person = {
   "@type": "Person",
+  "@id": `${SITE_URL}/#person`,
   name: "Talha Saleem",
-  url: "https://talha-saleem.vercel.app",
-  image: "https://talha-saleem.vercel.app/images/talha-saleem.jpg",
+  url: SITE_URL,
+  image: `${SITE_URL}/images/talha-saleem.jpg`,
   jobTitle: "Lead Full-Stack Engineer",
   worksFor: { "@type": "Organization", name: "Cloudpacer" },
   alumniOf: { "@type": "CollegeOrUniversity", name: "University of Lahore" },
+  award: "Employee of the Year 2024, Cloudpacer",
   address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
   email: "mailto:csmtalha@gmail.com",
   sameAs: [
     "https://www.linkedin.com/in/csmtalha",
     "https://github.com/csmtalha",
+    "https://www.creexio.com",
+    "https://www.amazon.com/dp/B0GX34T63R",
   ],
   description: DESCRIPTION,
+  hasOccupation: {
+    "@type": "Occupation",
+    name: "Lead Full-Stack Engineer",
+    occupationLocation: { "@type": "Country", name: "Pakistan" },
+    skills: "TypeScript, React, Next.js, Node.js, NestJS, PostgreSQL, Prisma, Supabase, RAG, AWS",
+  },
   knowsAbout: [
     "TypeScript",
     "React",
@@ -93,32 +101,65 @@ const personSchema = {
     "Supabase",
     "Retrieval-augmented generation",
     "Multi-tenant SaaS",
+    "Row-level security",
     "AWS",
     "Stripe",
   ],
 };
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    person,
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: "Talha Saleem",
+      description: DESCRIPTION,
+      publisher: { "@id": `${SITE_URL}/#person` },
+      inLanguage: "en",
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": `${SITE_URL}/#profile`,
+      url: SITE_URL,
+      name: TITLE,
+      isPartOf: { "@id": `${SITE_URL}/#website` },
+      mainEntity: { "@id": `${SITE_URL}/#person` },
+      dateModified: new Date().toISOString().slice(0, 10),
+    },
+    {
+      "@type": "ItemList",
+      name: "Selected work by Talha Saleem",
+      itemListElement: FEATURED.map((p, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `${SITE_URL}/work/${p.slug}`,
+        name: p.name,
+      })),
+    },
+  ],
+};
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center">
+    <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
       />
-      <Header />
       <Hero />
-      <Stats />
-      <CaseStudies />
-      <Experience />
+      <Proof />
+      <FeaturedWork />
+      <CtaBand />
       <Projects />
+      <Experience />
       <Skills />
       <About />
-      <Availability />
-      <Blog />
-      <BookPromo />
+      <Writing />
       <Contact />
-      <CtaSection />
-      <ScrollToTop />
-    </main>
+      <FloatingActions />
+    </>
   );
 }

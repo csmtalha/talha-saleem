@@ -8,6 +8,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { Metadata } from "next";
 import "./blog-styles.css";
+import { SITE } from "@/lib/site";
 
 type Props = {
   params: Promise<{
@@ -33,8 +34,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const articleUrl = `https://talha-saleem.vercel.app/articles-and-insights/${post.slug}`;
-  const imageUrl = post.metadata.image || "/images/default-image.jpg";
+  const articleUrl = `${SITE.url}/articles-and-insights/${post.slug}`;
+  const imageUrl = post.metadata.image || "/images/talha-saleem.jpg";
 
   return {
     title: `${post.metadata.title} | Talha Saleem`,
@@ -85,8 +86,8 @@ export default async function Post({ params }: Props) {
   const contentHtml = processedContent.toString();
 
   // SEO Metadata
-  const articleUrl = `https://talha-saleem.vercel.app/articles-and-insights/${post.slug}`;
-  const imageUrl = post.metadata.image || "/images/default-image.jpg"; // Default image if no image exists
+  const articleUrl = `${SITE.url}/articles-and-insights/${post.slug}`;
+  const imageUrl = post.metadata.image || "/images/talha-saleem.jpg"; // Default image if no image exists
   const categories = post.metadata.categories?.join(", ") || "";
   const tags = post.metadata.tags?.join(", ") || "";
 
@@ -105,9 +106,12 @@ export default async function Post({ params }: Props) {
             dateModified: post.metadata.date,
             author: {
               "@type": "Person",
+              "@id": `${SITE.url}/#person`,
               name: "Talha Saleem",
+              url: SITE.url,
             },
-            image: post.metadata.image || "/images/default-image.jpg",
+            publisher: { "@id": `${SITE.url}/#person` },
+            image: `${SITE.url}${post.metadata.image || "/images/talha-saleem.jpg"}`,
             mainEntityOfPage: articleUrl,
             articleSection: categories,
             keywords: tags,

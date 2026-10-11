@@ -3,43 +3,41 @@ import Link from "next/link";
 import Image from "next/image";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { SITE } from "@/lib/site";
 
 export const metadata = {
   title: "Articles & Insights",
   description:
     "Engineering articles, tutorials, and insights from Talha Saleem - covering Next.js, React, Node.js, SaaS architecture, AI tooling, and modern web development.",
   alternates: {
-    canonical: "https://talha-saleem.vercel.app/articles-and-insights",
+    canonical: `${SITE.url}/articles-and-insights`,
   },
   openGraph: {
     title: "Articles & Insights | Talha Saleem",
     description:
       "Engineering articles, tutorials, and insights from Talha Saleem - covering Next.js, React, Node.js, SaaS architecture, AI tooling, and modern web development.",
-    url: "https://talha-saleem.vercel.app/articles-and-insights",
+    url: `${SITE.url}/articles-and-insights`,
     type: "website",
   },
 };
 
 export default function BlogPage() {
-  const posts = getAllPosts();
+  const posts = getAllPosts().sort(
+    (a, b) => +new Date(b.metadata.date) - +new Date(a.metadata.date)
+  );
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
-      {/* Background decorations */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl animate-pulse-glow"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse-glow delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl animate-pulse-glow delay-2000"></div>
-      </div>
+    <main className="relative min-h-screen">
+      <div aria-hidden className="bg-grid mask-radial pointer-events-none absolute inset-x-0 top-0 -z-10 h-[600px]" />
 
-      <div className="relative max-w-7xl mx-auto px-6 py-12 md:py-16 lg:py-20">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 gradient-text-animated">
-            Articles & Insights ✍️
+      <div className="relative mx-auto max-w-6xl px-5 py-12 sm:px-8 md:py-16">
+        <div className="mb-14 max-w-2xl">
+          <p className="eyebrow">Writing</p>
+          <h1 className="mt-4 text-[clamp(2.5rem,6vw,4rem)] font-semibold leading-[1.02] tracking-[-0.045em]">
+            Articles &amp; <span className="text-gradient-animated">insights</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Talha&apos;s thoughts, experiences, and insights on web development,
-            technology trends, and the journey of building modern applications.
+          <p className="mt-5 text-lg leading-relaxed text-muted-foreground">
+            Notes from building production software: Next.js, migrations, AI in real workflows, and how I make engineering calls.
           </p>
         </div>
 
@@ -47,11 +45,11 @@ export default function BlogPage() {
           {posts.map((post) => (
             <div key={post.slug}>
               <Link href={`/articles-and-insights/${post.slug}`}>
-                <Card className="card-hover glass-effect border-0 shadow-lg overflow-hidden group h-full">
+                <Card className="card-hover glass-effect spotlight rounded-2xl border-0 overflow-hidden group h-full">
                   <CardContent className="p-0">
                     {/* Featured Image */}
                     {post.metadata.image && (
-                      <div className="relative h-[300px] overflow-hidden">
+                      <div className="relative aspect-[16/10] overflow-hidden">
                         <Image
                           src={post.metadata.image}
                           alt={post.metadata.title}

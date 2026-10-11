@@ -1,221 +1,256 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef, type CSSProperties } from "react";
 import Image from "next/image";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, ExternalLink, FileText } from "lucide-react";
-import Link from "next/link";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ArrowRight, Award, Download } from "lucide-react";
 import profilePic from "@/public/images/talha-saleem.jpg";
+import { TechIcon, type TechIconName } from "@/components/icons/tech-icons";
+import { SITE } from "@/lib/site";
 
-const INDUSTRIES = [
-  "Fintech & NBFC",
-  "Freight & Compliance",
-  "Healthcare Tech",
-  "Real Estate",
-  "E-commerce",
+const STACK: { name: TechIconName; label: string }[] = [
+  { name: "typescript", label: "TypeScript" },
+  { name: "react", label: "React" },
+  { name: "nextjs", label: "Next.js" },
+  { name: "nodejs", label: "Node.js" },
+  { name: "nestjs", label: "NestJS" },
+  { name: "postgresql", label: "PostgreSQL" },
+  { name: "prisma", label: "Prisma" },
+  { name: "supabase", label: "Supabase" },
+  { name: "anthropic", label: "Claude" },
+  { name: "langchain", label: "LangChain" },
+  { name: "python", label: "Python" },
+  { name: "fastapi", label: "FastAPI" },
+  { name: "docker", label: "Docker" },
+  { name: "githubactions", label: "GitHub Actions" },
+  { name: "tailwind", label: "Tailwind CSS" },
+  { name: "stripe", label: "Stripe" },
+  { name: "vercel", label: "Vercel" },
 ];
 
+const d = (s: number) => ({ "--d": `${s}s` }) as CSSProperties;
+
+function HeroBackground() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      {/* hairline grid, plus a brighter copy revealed around the pointer */}
+      <div className="bg-grid mask-radial absolute inset-0" />
+      <div
+        className="bg-grid absolute inset-0 opacity-0 transition-opacity duration-500 [--grid-line:hsl(var(--primary)/0.35)] group-hover/hero:opacity-100"
+        style={{
+          WebkitMaskImage: "radial-gradient(260px circle at var(--hx, 50%) var(--hy, 30%), #000, transparent 70%)",
+          maskImage: "radial-gradient(260px circle at var(--hx, 50%) var(--hy, 30%), #000, transparent 70%)",
+        }}
+      />
+      {/* light beams travelling along grid lines */}
+      <div className="mask-radial absolute inset-0">
+        <span className="absolute left-0 top-[168px] h-px w-48 animate-beam-x bg-gradient-to-r from-transparent via-primary to-transparent" />
+        <span className="absolute left-0 top-[392px] h-px w-64 animate-beam-x bg-gradient-to-r from-transparent via-signal to-transparent [animation-delay:3.5s] [animation-duration:12s]" />
+        <span className="absolute left-[336px] top-0 h-48 w-px animate-beam-y bg-gradient-to-b from-transparent via-primary to-transparent [animation-delay:1.5s]" />
+        <span className="absolute left-[952px] top-0 h-56 w-px animate-beam-y bg-gradient-to-b from-transparent via-signal to-transparent [animation-delay:6s] [animation-duration:14s]" />
+      </div>
+      <div className="absolute left-1/2 top-0 h-[520px] w-[900px] -translate-x-1/2 -translate-y-1/3 rounded-full bg-[radial-gradient(closest-side,hsl(var(--primary)/0.22),transparent)]" />
+    </div>
+  );
+}
+
+function PhotoCard() {
+  const ref = useRef<HTMLDivElement>(null);
+  const px = useMotionValue(0);
+  const py = useMotionValue(0);
+  const rx = useSpring(useTransform(py, [-0.5, 0.5], [7, -7]), { stiffness: 200, damping: 20 });
+  const ry = useSpring(useTransform(px, [-0.5, 0.5], [-9, 9]), { stiffness: 200, damping: 20 });
+
+  return (
+    <div className="rise relative mx-auto hidden w-full max-w-[380px] [perspective:1200px] lg:block" style={d(0.35)}>
+      <div className="absolute -inset-10 -z-10 rounded-full bg-[radial-gradient(closest-side,hsl(var(--primary)/0.35),hsl(var(--signal)/0.12)_60%,transparent)] blur-2xl" />
+      <motion.div
+        ref={ref}
+        onPointerMove={(e) => {
+          const r = ref.current?.getBoundingClientRect();
+          if (!r) return;
+          px.set((e.clientX - r.left) / r.width - 0.5);
+          py.set((e.clientY - r.top) / r.height - 0.5);
+        }}
+        onPointerLeave={() => {
+          px.set(0);
+          py.set(0);
+        }}
+        style={{ rotateX: rx, rotateY: ry, transformStyle: "preserve-3d" }}
+        className="glass relative rounded-[28px] p-2"
+      >
+        <div className="relative aspect-[4/5] overflow-hidden rounded-[22px]">
+          <Image
+            src={profilePic}
+            alt="Talha Saleem, Lead Full-Stack Engineer"
+            fill
+            sizes="380px"
+            className="object-cover"
+            priority
+            quality={85}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+          <div className="absolute inset-x-4 bottom-4 flex items-center justify-between">
+            <div>
+              <p className="text-sm font-semibold text-white">Talha Saleem</p>
+              <p className="text-xs text-white/70">Lead Full-Stack · Cloudpacer</p>
+            </div>
+            <span className="rounded-full bg-black/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider text-white/80 backdrop-blur">
+              Lahore · UTC+5
+            </span>
+          </div>
+        </div>
+
+        <div
+          style={{ transform: "translateZ(40px)" }}
+          className="glass-strong absolute -left-10 top-[-2%] flex animate-float items-center gap-3 rounded-2xl px-3.5 py-2.5"
+        >
+          <span className="grid h-9 w-9 place-items-center rounded-xl bg-amber-400/15 text-amber-400">
+            <Award className="h-[18px] w-[18px]" />
+          </span>
+          <div className="leading-tight">
+            <p className="text-[11px] text-muted-foreground">Employee of the Year</p>
+            <p className="text-sm font-semibold">2024 · Cloudpacer</p>
+          </div>
+        </div>
+
+        <div
+          style={{ transform: "translateZ(60px)", animationDelay: "-3s" }}
+          className="glass-strong absolute -right-6 -top-5 flex animate-float items-center gap-2.5 rounded-2xl px-3.5 py-2.5"
+        >
+          <span className="relative flex h-2.5 w-2.5">
+            <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-emerald-400" />
+            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
+          </span>
+          <p className="text-sm font-medium">Replies within 24h</p>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
+function StackMarquee() {
+  const row = [...STACK, ...STACK];
+  return (
+    <div className="rise mt-16 md:mt-24" style={d(0.85)}>
+      <p className="eyebrow mb-5 w-full justify-center">Stack I ship with daily</p>
+      <div className="mask-fade-x group relative overflow-hidden">
+        <ul className="flex w-max animate-marquee group-hover:[animation-play-state:paused]">
+          {row.map((t, i) => (
+            <li
+              key={`${t.name}-${i}`}
+              aria-hidden={i >= STACK.length}
+              className="glass mr-3 flex items-center gap-2.5 rounded-full px-4 py-2 text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground"
+            >
+              <TechIcon name={t.name} className="h-4 w-4" />
+              {t.label}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
 export default function Hero() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-  const controls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) controls.start("visible");
-  }, [isInView, controls]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 0.05 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 24, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-    },
-  };
+  const ref = useRef<HTMLElement>(null);
 
   return (
     <section
       id="hero"
-      className="w-full min-h-screen flex items-center justify-center bg-gradient-to-br from-background via-background to-primary/5 relative overflow-hidden"
+      ref={ref}
+      onPointerMove={(e) => {
+        const el = ref.current;
+        if (!el) return;
+        const r = el.getBoundingClientRect();
+        el.style.setProperty("--hx", `${e.clientX - r.left}px`);
+        el.style.setProperty("--hy", `${e.clientY - r.top}px`);
+      }}
+      className="group/hero relative isolate overflow-hidden pb-16 pt-32 sm:pt-40 md:pb-20 lg:pt-44"
     >
-      <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] dark:opacity-[0.05]" />
-        <div className="absolute top-20 left-20 w-72 h-72 bg-primary/10 rounded-full blur-3xl animate-pulse-glow" />
-        <div
-          className="absolute bottom-20 right-20 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse-glow"
-          style={{ animationDelay: "1s" }}
-        />
+      <HeroBackground />
+
+      <div className="container-x">
+        <div className="grid items-center gap-14 lg:grid-cols-[1.45fr_1fr] lg:gap-8">
+          <div className="text-center lg:text-left">
+            <div className="rise flex justify-center lg:justify-start" style={d(0)}>
+              <a
+                href="#contact"
+                className="glass group inline-flex items-center gap-2.5 rounded-full py-1 pl-1 pr-3.5 text-[13px] text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <span className="relative h-6 w-6 overflow-hidden rounded-full ring-1 ring-border">
+                  <Image src={profilePic} alt="" fill sizes="24px" className="object-cover" />
+                </span>
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-emerald-400" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+                </span>
+                <span className="sm:hidden">Available for new work</span>
+                <span className="hidden sm:inline">Available for remote roles &amp; contract builds</span>
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+              </a>
+            </div>
+
+            <div className="rise mt-7" style={d(0.1)}>
+              <h1 className="text-gradient-animated pb-2 text-[clamp(3.4rem,11vw,7.25rem)] font-semibold leading-[0.92] tracking-[-0.045em]">
+                Talha Saleem
+                <span className="sr-only">, Lead Full-Stack Engineer (React, Next.js, Node.js, NestJS)</span>
+              </h1>
+            </div>
+
+            <p
+              className="rise mt-5 text-balance text-[clamp(1.25rem,2.6vw,1.75rem)] font-medium leading-snug tracking-tight text-foreground/90"
+              style={d(0.25)}
+            >
+              Lead Full-Stack Engineer who takes SaaS and AI products{" "}
+              <span className="text-gradient">from schema to shipped.</span>
+            </p>
+
+            <p
+              className="rise mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg lg:mx-0"
+              style={d(0.35)}
+            >
+              6+ years building TypeScript products end to end: multi-tenant platforms, payroll-grade
+              data, AI features with retrieval, and the tests and deploys that keep them honest.
+            </p>
+
+            <div className="rise mt-9 flex flex-col items-center gap-4 sm:flex-row lg:justify-start" style={d(0.45)}>
+              <a href="#contact" className="btn-glow h-[52px] px-7 text-base">
+                Let&apos;s Work Together
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <a
+                href={SITE.cv}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
+              >
+                <Download className="h-4 w-4" />
+                or grab my CV
+              </a>
+            </div>
+
+            {/* Social proof, above the fold */}
+            <dl className="rise mx-auto mt-12 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-border/60 bg-border/60 text-left sm:max-w-xl lg:mx-0" style={d(0.55)}>
+              {[
+                { k: "6+", v: "years in production" },
+                { k: "35+", v: "products & sites" },
+                { k: "2024", v: "Employee of the Year" },
+              ].map((s) => (
+                <div key={s.v} className="bg-background/80 px-3 py-3.5 sm:px-5">
+                  <dt className="sr-only">{s.v}</dt>
+                  <dd className="text-xl font-semibold tracking-tight sm:text-2xl">{s.k}</dd>
+                  <dd aria-hidden className="mt-0.5 text-[11px] leading-tight text-muted-foreground sm:text-xs">{s.v}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+          <PhotoCard />
+        </div>
       </div>
 
-      <motion.div
-        ref={ref}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 lg:py-20 z-10 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20"
-        variants={containerVariants}
-        animate={controls}
-      >
-        {/* Left */}
-        <div className="flex-1 space-y-6 text-center lg:text-left">
-
-          {/* Status */}
-          <motion.div variants={itemVariants} className="flex justify-center lg:justify-start">
-            <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-sm font-medium">
-              <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-              Open to remote Senior / Lead Full-Stack roles · PST overlap
-            </span>
-          </motion.div>
-
-          {/* Name + tagline */}
-          <motion.div variants={itemVariants} className="space-y-3">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
-              <span className="gradient-text-animated">Talha Saleem</span>
-            </h1>
-            <p className="text-xl sm:text-2xl md:text-3xl font-semibold text-foreground/90 leading-tight">
-              Lead Full-Stack Engineer who{" "}
-              <span className="gradient-text">owns it end to end.</span>
-            </p>
-            <p className="text-sm text-muted-foreground">
-              TypeScript · React / Next.js · Node.js / NestJS · PostgreSQL · AI integrations · AWS
-            </p>
-          </motion.div>
-
-          {/* Pitch */}
-          <motion.div
-            variants={itemVariants}
-            className="space-y-3 text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed mx-auto lg:mx-0"
-          >
-            <p>
-              6+ years shipping production software. At Cloudpacer I designed and built a complete HRMS
-              (attendance, leave, payroll, performance), co-built a multi-tenant FMCSA compliance
-              platform for US carriers, and architected an AI proposal CRM on Supabase and pgvector.
-            </p>
-            <p>
-              Schema to UI, tests to deploys. I leave systems better documented than I found them.
-            </p>
-          </motion.div>
-
-          {/* CTAs */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-wrap gap-3 justify-center lg:justify-start"
-          >
-            <Button
-              size="lg"
-              className="bg-gradient-to-r from-primary to-purple-500 hover:opacity-90 text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300"
-              asChild
-            >
-              <Link href="#case-studies">
-                See My Work
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="glass-effect" asChild>
-              <a href="/files/Talha-Saleem-CV.pdf" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
-                <FileText className="h-4 w-4" />
-                Download CV
-              </a>
-            </Button>
-          </motion.div>
-
-          {/* Recent launch */}
-          <motion.div variants={itemVariants}>
-            <a
-              href="https://neblo.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"
-            >
-              <span className="px-2 py-0.5 rounded bg-primary/10 text-primary text-xs font-semibold uppercase tracking-wider">
-                Latest
-              </span>
-              <span>Recently shipped: neblo.ai marketing site (Next.js 16 + Sanity)</span>
-              <ExternalLink className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </a>
-          </motion.div>
-
-          {/* Industry trust bar */}
-          <motion.div variants={itemVariants} className="pt-1">
-            <p className="text-xs text-muted-foreground/60 uppercase tracking-wider mb-2 text-center lg:text-left">
-              Industries served
-            </p>
-            <div className="flex flex-wrap gap-2 justify-center lg:justify-start">
-              {INDUSTRIES.map((item) => (
-                <span
-                  key={item}
-                  className="px-3 py-1 rounded-full bg-muted/60 text-xs text-muted-foreground border border-border/50"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-
-          <div className="sr-only" aria-hidden>
-            Lead Full Stack Engineer · SaaS · Multi-tenant · React · Next.js · Vue.js · Node.js · NestJS · AWS
-          </div>
-        </div>
-
-        {/* Right: Photo */}
-        <motion.div
-          variants={itemVariants}
-          className="relative w-full max-w-sm md:max-w-md aspect-square shrink-0"
-        >
-          <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary/20 via-purple-500/20 to-blue-500/20 blur-3xl animate-pulse-glow" />
-          <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl">
-            <Image
-              src={profilePic}
-              alt="Talha Saleem - Lead Full Stack Engineer"
-              width={400}
-              height={400}
-              sizes="(max-width: 768px) 384px, 448px"
-              className="object-cover w-full h-full"
-              priority
-              quality={85}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-          </div>
-
-          {/* Floating badge: experience */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1, duration: 0.4 }}
-            className="absolute -bottom-4 -left-4 bg-background border border-border shadow-xl rounded-2xl px-4 py-3 flex items-center gap-3"
-          >
-            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary font-bold">
-              6+
-            </div>
-            <div>
-              <p className="text-xs text-muted-foreground leading-none">Years shipping</p>
-              <p className="text-sm font-semibold leading-tight">production software</p>
-            </div>
-          </motion.div>
-
-          {/* Floating badge: projects */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.2, duration: 0.4 }}
-            className="absolute -top-4 -right-4 bg-background border border-border shadow-xl rounded-2xl px-4 py-3 flex items-center gap-3"
-          >
-            <div className="w-10 h-10 rounded-xl bg-green-500/10 flex items-center justify-center text-green-600 font-bold">
-              2024
-            </div>
-            <div>
-              <p className="text-xs text-muted-foreground leading-none">Employee of the Year</p>
-              <p className="text-sm font-semibold leading-tight">Cloudpacer</p>
-            </div>
-          </motion.div>
-        </motion.div>
-      </motion.div>
+      <StackMarquee />
     </section>
   );
 }

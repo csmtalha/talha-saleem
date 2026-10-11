@@ -1,153 +1,130 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { motion, useAnimation, useInView } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
+import { Bot, Boxes, Database, FlaskConical, Layout, Plug, ServerCog, Sparkles } from "lucide-react";
+import { EASE, Reveal, SpotlightCard, popChild } from "@/components/motion/reveal";
+import { SectionHeading } from "@/components/section-heading";
+import { TechIcon, iconFor } from "@/components/icons/tech-icons";
 
-const STACK = {
-  Frontend: ["TypeScript", "React", "Next.js (App Router, RSC, ISR)", "Vue 3", "Tailwind CSS", "shadcn/ui", "TanStack Query", "Zustand", "Framer Motion"],
-  Backend: ["Node.js", "NestJS", "Express", "FastAPI", "Django / DRF", "REST", "WebSockets", "Cron & background jobs"],
-  Data: ["PostgreSQL", "Prisma", "TypeORM", "SQLAlchemy", "Supabase (RLS, Edge Functions)", "pgvector", "Redis"],
-  "AI / LLM": ["Anthropic Claude", "OpenAI (GPT-4o, Whisper, embeddings)", "RAG with pgvector", "LangChain"],
-  "Testing & DevOps": ["Vitest", "Jest", "Playwright", "pytest", "GitHub Actions", "Docker", "AWS", "nginx + PM2", "Vercel"],
-  Integrations: ["Stripe", "SendGrid", "Resend", "Twilio", "Slack", "Google Workspace APIs", "Sanity CMS", "Firebase", "WordPress", "Shopify"],
-};
+const STACK = [
+  {
+    title: "Frontend",
+    icon: Layout,
+    items: ["TypeScript", "React", "Next.js (App Router, RSC, ISR)", "Vue 3", "Tailwind CSS", "shadcn/ui", "TanStack Query", "Zustand", "Framer Motion"],
+  },
+  {
+    title: "Backend",
+    icon: ServerCog,
+    items: ["Node.js", "NestJS", "Express", "FastAPI", "Django / DRF", "REST", "WebSockets", "Cron & background jobs"],
+  },
+  {
+    title: "Data",
+    icon: Database,
+    items: ["PostgreSQL", "Prisma", "TypeORM", "SQLAlchemy", "Supabase (RLS, Edge Functions)", "pgvector", "Redis"],
+  },
+  {
+    title: "AI / LLM",
+    icon: Bot,
+    items: ["Anthropic Claude", "OpenAI (GPT-4o, Whisper, embeddings)", "RAG with pgvector", "LangChain"],
+  },
+  {
+    title: "Testing & DevOps",
+    icon: FlaskConical,
+    items: ["Vitest", "Jest", "Playwright", "pytest", "GitHub Actions", "Docker", "AWS", "nginx + PM2", "Vercel"],
+  },
+  {
+    title: "Integrations",
+    icon: Plug,
+    items: ["Stripe", "SendGrid", "Resend", "Twilio", "Slack", "Google Workspace APIs", "Sanity CMS", "Firebase", "WordPress", "Shopify"],
+  },
+];
 
 const SPECIALTIES = [
   "Multi-tenant SaaS and RBAC",
   "Row-level security and data isolation",
   "Test suites that gate deploys",
-  "Legacy migrations (PHP, Framer, Vue 2 to modern stacks)",
-];
-
-const INTERESTED_IN = [
-  "Remote senior / lead full-stack roles",
-  "Product teams shipping AI features",
+  "Retrieval-augmented AI features",
+  "Legacy migrations (PHP, Framer, Vue 2 → modern stacks)",
 ];
 
 export default function Skills() {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-80px" });
-  const controls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) controls.start("visible");
-  }, [isInView, controls]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.06, delayChildren: 0.08 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 12, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
-    },
-  };
-
   return (
-    <section
-      id="skills"
-      className="w-full bg-gradient-to-b from-background to-muted/30 relative overflow-hidden"
-    >
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]" />
-      <motion.div
-        ref={ref}
-        className="section-container relative z-10"
-        variants={containerVariants}
-        animate={controls}
-      >
-        <motion.div
-          variants={itemVariants}
-          className="text-center mb-12 md:mb-16"
-        >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 gradient-text">
-            Skills & Expertise
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-purple-500 mx-auto mb-6" />
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-            Technologies Talha uses, and where he adds the most value.
-          </p>
-        </motion.div>
+    <section id="skills" className="section-y relative">
+      <div className="container-x">
+        <SectionHeading
+          index="04"
+          eyebrow="Skills"
+          title={
+            <>
+              One engineer, <span className="text-gradient">the whole stack.</span>
+            </>
+          }
+          description="The tools I reach for, from the database schema to the deploy pipeline."
+        />
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mb-10">
-          {Object.entries(STACK).map(([category, items]) => (
-            <motion.div key={category} variants={itemVariants}>
-              <Card className="h-full border-0 shadow-lg glass-effect overflow-hidden card-hover">
-                <CardContent className="p-6">
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-4">
-                    {category}
-                  </h3>
-                  <div className="flex flex-wrap gap-2">
-                    {items.map((skill) => (
-                      <Badge
-                        key={skill}
-                        variant="secondary"
-                        className="text-xs bg-primary/10 text-primary border-primary/20 hover:bg-primary/20 transition-colors"
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {STACK.map((group, gi) => (
+            <Reveal key={group.title} delay={(gi % 3) * 0.08}>
+              <SpotlightCard className="h-full p-6">
+                <div className="flex items-center gap-3">
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary ring-1 ring-primary/20">
+                    <group.icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="text-base font-semibold">{group.title}</h3>
+                  <span className="ml-auto font-mono text-[11px] text-muted-foreground">{String(group.items.length).padStart(2, "0")}</span>
+                </div>
+                <motion.ul
+                  className="mt-5 flex flex-wrap gap-2"
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, margin: "-40px" }}
+                  variants={{ hidden: {}, show: { transition: { staggerChildren: 0.035, delayChildren: 0.15 + (gi % 3) * 0.08 } } }}
+                >
+                  {group.items.map((item) => {
+                    const icon = iconFor(item);
+                    return (
+                      <motion.li
+                        key={item}
+                        variants={popChild}
+                        whileHover={{ y: -2, transition: { duration: 0.15, ease: EASE } }}
+                        className="chip cursor-default py-1.5 text-[13px]"
                       >
-                        {skill}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
+                        {icon && <TechIcon name={icon} className="h-3.5 w-3.5" />}
+                        {item}
+                      </motion.li>
+                    );
+                  })}
+                </motion.ul>
+              </SpotlightCard>
+            </Reveal>
           ))}
         </div>
 
-        <motion.div variants={itemVariants} className="space-y-6">
-          <Card className="border-0 shadow-lg glass-effect overflow-hidden border-l-4 border-l-primary">
-            <CardContent className="p-6">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">
-                Specialties
-              </h3>
-              <p className="text-muted-foreground text-sm mb-4">
-                Where he adds the most value on complex projects:
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {SPECIALTIES.map((item) => (
-                  <Badge
-                    key={item}
-                    variant="secondary"
-                    className="text-xs bg-primary/15 text-primary border-primary/30 hover:bg-primary/25"
-                  >
-                    {item}
-                  </Badge>
-                ))}
+        <Reveal className="mt-5" delay={0.1}>
+          <div className="glass relative overflow-hidden rounded-2xl p-6 sm:p-7">
+            <div aria-hidden className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-primary via-signal to-transparent" />
+            <div className="flex flex-col gap-5 lg:flex-row lg:items-center">
+              <div className="flex shrink-0 items-center gap-3">
+                <span className="grid h-10 w-10 place-items-center rounded-xl bg-signal/10 text-signal ring-1 ring-signal/20">
+                  <Sparkles className="h-5 w-5" />
+                </span>
+                <div>
+                  <h3 className="text-base font-semibold">Where I add the most value</h3>
+                  <p className="text-xs text-muted-foreground">On complex, multi-team products</p>
+                </div>
               </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border border-dashed border-primary/30 bg-primary/5 overflow-hidden">
-            <CardContent className="p-6">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-primary mb-3">
-                Looking for
-              </h3>
-              <p className="text-muted-foreground text-sm mb-4">
-                The kind of team and work Talha is looking for next.
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {INTERESTED_IN.map((item) => (
-                  <Badge
-                    key={item}
-                    variant="outline"
-                    className="text-xs border-primary/40 text-foreground/90"
-                  >
-                    {item}
-                  </Badge>
+              <ul className="flex flex-wrap gap-2 lg:ml-auto lg:justify-end">
+                {SPECIALTIES.map((s) => (
+                  <li key={s} className="inline-flex items-center gap-1.5 rounded-full border border-primary/25 bg-primary/[0.07] px-3 py-1.5 text-[13px] font-medium text-foreground/90">
+                    <Boxes className="h-3.5 w-3.5 text-primary" />
+                    {s}
+                  </li>
                 ))}
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-      </motion.div>
+              </ul>
+            </div>
+          </div>
+        </Reveal>
+      </div>
     </section>
   );
 }

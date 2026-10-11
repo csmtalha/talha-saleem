@@ -1,14 +1,19 @@
 import type { ReactNode } from "react";
-import type { Metadata } from "next";
-import { Source_Sans_3, Plus_Jakarta_Sans } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@/components/analytics";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Backdrop } from "@/components/effects/backdrop";
+import { CursorGlow } from "@/components/effects/cursor-glow";
+import { SPLASH_SCRIPT, Splash } from "@/components/effects/splash";
+import Header from "@/components/sections/header";
+import Footer from "@/components/sections/footer";
 import { cn } from "@/lib/utils";
 import "@/app/globals.css";
-import Footer from "@/components/sections/footer";
+import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://talha-saleem.vercel.app"),
+  metadataBase: new URL(SITE.url),
   title: {
     default: "Talha Saleem | Lead Full Stack Engineer",
     template: "%s | Talha Saleem",
@@ -22,37 +27,46 @@ export const metadata: Metadata = {
   },
 };
 
-const sourceSans = Source_Sans_3({
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#08090d" },
+    { media: "(prefers-color-scheme: light)", color: "#fcfcfd" },
+  ],
+};
+
+const geist = Geist({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
   variable: "--font-sans",
+  display: "swap",
 });
 
-const plusJakarta = Plus_Jakarta_Sans({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
-  variable: "--font-heading",
+  weight: ["400", "500"],
+  variable: "--font-mono",
+  display: "swap",
 });
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: SPLASH_SCRIPT }} />
+      </head>
       <body
         className={cn(
-          "min-h-screen flex flex-col bg-background font-sans antialiased text-foreground",
-          sourceSans.variable,
-          plusJakarta.variable
+          "flex min-h-screen flex-col bg-background font-sans text-foreground antialiased",
+          geist.variable,
+          geistMono.variable
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <main className="flex-grow pt-20">{children}</main>{" "}
-          {/* Content pushes down */}
-          <Footer /> {/* Footer stays at the bottom */}
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          <Splash />
+          <Backdrop />
+          <CursorGlow />
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <Footer />
           <Analytics />
         </ThemeProvider>
       </body>
