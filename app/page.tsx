@@ -78,7 +78,7 @@ const person = {
   address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
   email: `mailto:${SITE.email}`,
   sameAs: [
-    "https://www.linkedin.com/in/csmtalha",
+    SITE.linkedin,
     "https://github.com/csmtalha",
     "https://www.creexio.com",
     "https://www.amazon.com/dp/B0GX34T63R",

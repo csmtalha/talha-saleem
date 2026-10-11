@@ -7,7 +7,7 @@ export const SITE = {
   email: "talhasaleem.dev@gmail.com",
   whatsapp: "https://wa.me/923174353728",
   whatsappDisplay: "+92 317 435 3728",
-  linkedin: "https://www.linkedin.com/in/csmtalha/",
+  linkedin: "https://www.linkedin.com/in/talhasaleemdev/",
   github: "https://github.com/csmtalha",
   cv: "/files/Talha-Saleem-CV.pdf",
   location: "Lahore, Pakistan (UTC+5)",

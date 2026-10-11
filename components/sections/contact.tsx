@@ -198,7 +198,7 @@ export default function Contact() {
             <Method
               href={SITE.linkedin}
               label="LinkedIn"
-              value="in/csmtalha"
+              value="in/talhasaleemdev"
               accent="bg-[#0A66C2]/10 text-[#0A66C2] ring-[#0A66C2]/25 dark:text-[#5aa9f5]"
               icon={<Linkedin className="h-5 w-5" />}
             />
