@@ -306,10 +306,23 @@ export default function Contact() {
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}
-                          className="flex items-center gap-2 rounded-xl bg-destructive/10 px-4 py-3 text-sm text-destructive"
+                          className="flex items-start gap-2 rounded-xl bg-destructive/10 px-4 py-3 text-sm text-destructive"
                         >
-                          <AlertCircle className="h-4 w-4 shrink-0" />
-                          {errorMsg}
+                          <AlertCircle className="mt-0.5 h-4 w-4 shrink-0" />
+                          <span>
+                            {errorMsg}{" "}
+                            <span className="text-foreground/80">
+                              You can also reach me directly at{" "}
+                              <a href={`mailto:${SITE.email}`} className="font-medium underline underline-offset-2">
+                                {SITE.email}
+                              </a>{" "}
+                              or on{" "}
+                              <a href={SITE.whatsapp} target="_blank" rel="noopener noreferrer" className="font-medium underline underline-offset-2">
+                                WhatsApp
+                              </a>
+                              .
+                            </span>
+                          </span>
                         </motion.div>
                       )}
                     </AnimatePresence>

@@ -76,7 +76,7 @@ const person = {
   alumniOf: { "@type": "CollegeOrUniversity", name: "University of Lahore" },
   award: "Employee of the Year 2024, Cloudpacer",
   address: { "@type": "PostalAddress", addressLocality: "Lahore", addressCountry: "PK" },
-  email: "mailto:csmtalha@gmail.com",
+  email: `mailto:${SITE.email}`,
   sameAs: [
     "https://www.linkedin.com/in/csmtalha",
     "https://github.com/csmtalha",

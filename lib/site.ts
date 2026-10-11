@@ -4,7 +4,7 @@ export const SITE = {
   domain: "talhasaleem.dev",
   name: "Talha Saleem",
   role: "Lead Full-Stack Engineer",
-  email: "csmtalha@gmail.com",
+  email: "talhasaleem.dev@gmail.com",
   whatsapp: "https://wa.me/923174353728",
   whatsappDisplay: "+92 317 435 3728",
   linkedin: "https://www.linkedin.com/in/csmtalha/",
