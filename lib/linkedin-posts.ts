@@ -1,6 +1,6 @@
 /**
  * Latest LinkedIn posts (there are no long-form Pulse articles on the profile).
- * Collected from the public profile on 2026-10-11; titles are each post's
+ * Collected from the public profile (last updated 2026-10-12); titles are each post's
  * opening line. Update this list by hand when a new post goes out.
  */
 export interface LinkedInPost {
@@ -13,6 +13,18 @@ export interface LinkedInPost {
 export const LINKEDIN_FOLLOWERS = "3,400+";
 
 export const LINKEDIN_POSTS: LinkedInPost[] = [
+  {
+    title: "A \"website is down\" message turned out to be a hacked WordPress site",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7515463051563839488/",
+    date: "2026-10-12",
+    blurb: "700+ casino spam posts, 4 fake admins and API keys that survive password changes: how I found and cleaned a 4-month takeover.",
+  },
+  {
+    title: "Multi-tenancy is not a feature you add later",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7515263810878939136/",
+    date: "2026-10-12",
+    blurb: "A compliance platform with zero tenant_id in the codebase, and the 3-sprint refactor of its data layer that followed.",
+  },
   {
     title: "Most teams want to add AI before understanding the problem",
     url: "https://www.linkedin.com/feed/update/urn:li:activity:7515126532391018497/",
