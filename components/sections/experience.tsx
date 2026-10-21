@@ -28,9 +28,9 @@ const ROLES: Role[] = [
     summary:
       "Software services company building SaaS for US and local clients. Promoted from Software Engineer to Lead; I own architecture and delivery on internal platforms and client builds.",
     highlights: [
-      "Cloudpacer HRMS: designed and built the company's complete HRMS as primary engineer (430+ of 475 commits). 100+ data models, 220+ API routes, 240+ test files and CI-gated blue-green deploys to AWS.",
+      "HRMS: designed and built the company's complete HRMS as primary engineer (430+ of 475 commits). 100+ data models, 220+ API routes, 240+ test files and CI-gated blue-green deploys to AWS.",
       "GEIA CSA/DOT Score Improvement Platform for an insurer's trucking clients: co-built the multi-tenant NestJS API (16 modules, ~147 endpoints, JWT → tenant → role guards) and wired both React portals (73 of 200 commits).",
-      "CloudPacer Knowledge Base: architected the Next.js + Supabase foundation (RLS-secured schema, can() permission engine, onboarding guide and 50-ticket plan) for a Claude + pgvector proposal CRM that four engineers built on.",
+      "AI Proposal CRM: architected the Next.js + Supabase foundation (RLS-secured schema, can() permission engine, onboarding guide and 50-ticket plan) for a Claude + pgvector proposal CRM that four engineers built on.",
       "Client platforms under NDA: a multi-tenant AI assistant for mortgage lending guidelines, a charter-coach booking marketplace and a student wellbeing analytics app.",
       "Neblo AI: sole developer moving the marketing site from Framer to Next.js 16 with embedded Sanity Studio and webhook-driven ISR (live at neblo.ai).",
       "Earlier: a multi-tenant mortgage AI SaaS, AWS Textract finance-report automation, a Next.js + Firebase travel CMS, a PHP-to-Next.js migration and a Google Chat HR assistant.",

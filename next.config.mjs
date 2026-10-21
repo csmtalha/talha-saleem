@@ -27,6 +27,13 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  async redirects() {
+    return [
+      // The HRMS case study moved from its old slug; keep shared links working
+      { source: "/work/cloudpacer-hrms", destination: "/work/hrms", permanent: true },
+      { source: "/work/cloudpacer-knowledge-base", destination: "/work/ai-proposal-crm", permanent: true },
+    ];
+  },
 };
 
 if (userConfig) {

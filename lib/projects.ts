@@ -40,7 +40,7 @@ export interface Project {
   featured?: boolean;
   /** Most recent work on it, "YYYY-MM" (or "YYYY" when only the year is known). Drives sort order. */
   date: string;
-  /** Where and in what capacity, e.g. "Primary engineer · Cloudpacer" */
+  /** Where and in what capacity, e.g. "Primary engineer" */
   role: string;
   /** Prefix for the "… by Talha Saleem" line; matches how much I actually built */
   credit: "Built" | "Co-built" | "Architected" | "Developed" | "Migrated" | "UI/UX";
@@ -90,26 +90,26 @@ export const CATEGORY_LABEL: Record<ProjectCategory, string> = {
 export const PROJECTS: Project[] = [
   // ── Featured: latest and most important ─────────────────────
   {
-    slug: "cloudpacer-hrms",
+    slug: "hrms",
     date: "2026-10",
-    name: "Cloudpacer HRMS",
+    name: "HRMS",
     category: "saas",
     featured: true,
-    role: "Primary engineer · Cloudpacer",
+    role: "Primary engineer",
     credit: "Built",
-    image: "/images/projects/cloudpacer-hrms/attendance-analytics.png",
+    image: "/images/projects/hrms/attendance-analytics.png",
     gallery: [
-      { src: "/images/projects/cloudpacer-hrms/attendance-analytics.png", caption: "Attendance analytics across the organisation, fed by the biometric devices" },
-      { src: "/images/projects/cloudpacer-hrms/role-permissions.png", caption: "Role permissions: every module switched on or off per role, with defaults and approval rules" },
-      { src: "/images/projects/cloudpacer-hrms/admin-settings.png", caption: "Admin settings: payroll rules, leave types, attendance sync, integrations and the audit log" },
-      { src: "/images/projects/cloudpacer-hrms/user-guide.png", caption: "A built-in, role-aware user guide covering 56 screens" },
+      { src: "/images/projects/hrms/attendance-analytics.png", caption: "Attendance analytics across the organisation, fed by the biometric devices" },
+      { src: "/images/projects/hrms/role-permissions.png", caption: "Role permissions: every module switched on or off per role, with defaults and approval rules" },
+      { src: "/images/projects/hrms/admin-settings.png", caption: "Admin settings: payroll rules, leave types, attendance sync, integrations and the audit log" },
+      { src: "/images/projects/hrms/user-guide.png", caption: "A built-in, role-aware user guide covering 56 screens" },
     ],
     icon: "users",
     modules: ["Attendance & shifts", "Leave", "Payroll", "Performance", "Helpdesk", "Audit log"],
     summary:
       "One HR platform in place of spreadsheets: attendance, leave, payroll and reviews, with 240+ test files gating every deploy.",
     problem:
-      "Cloudpacer ran HR across spreadsheets and separate tools. Attendance was exported from biometric devices, payroll was rebuilt by hand every month, and leave, reviews and helpdesk requests lived somewhere else. None of it was connected or auditable.",
+      "The company ran HR across spreadsheets and separate tools. Attendance was exported from biometric devices, payroll was rebuilt by hand every month, and leave, reviews and helpdesk requests lived somewhere else. None of it was connected or auditable.",
     contribution:
       "Designed and built the complete HRMS as primary engineer (430+ of 475 commits) on Next.js, Prisma and PostgreSQL. Attendance flows in from biometric devices into an append-only punch log, the payroll engine reproduces the finance team's salary sheet, and module-level permissions cover every role from Employee to Super Admin.",
     outcome:
@@ -131,19 +131,19 @@ export const PROJECTS: Project[] = [
     stack: ["Next.js 16", "TypeScript", "Prisma", "PostgreSQL", "NextAuth", "node-cron", "Vitest", "GitHub Actions", "AWS", "ZKTeco ADMS"],
   },
   {
-    slug: "cloudpacer-knowledge-base",
+    slug: "ai-proposal-crm",
     date: "2026-10",
-    name: "CloudPacer Knowledge Base",
+    name: "AI Proposal CRM",
     category: "saas",
     featured: true,
-    role: "Architect · Cloudpacer",
+    role: "Architect",
     credit: "Architected",
     image: "/images/projects/ai-proposal-crm.png",
     imageFit: "contain",
     summary:
       "An internal knowledge base and lead CRM that finds the agency's most relevant past work for each job post and drafts a grounded proposal with Claude.",
     problem:
-      "Cloudpacer's sales team wrote every proposal from scratch, even when the company had shipped something similar before. Knowledge of past work lived in people's heads and scattered documents.",
+      "The sales team wrote every proposal from scratch, even when the company had shipped something similar before. Knowledge of past work lived in people's heads and scattered documents.",
     contribution:
       "Designed the system and wrote its 70-file foundation: the Supabase schema and row-level-security migrations, seed data, the can() permission engine with tests, auth and the app shell. Specified the retrieval flow (Claude breaks a job post into requirements, embeddings in pgvector find the closest past projects, the app drafts a grounded proposal), wrote the onboarding guide and a 50-ticket plan, and owned the repo, reviewing and merging the team's PRs.",
     outcome:
@@ -168,7 +168,7 @@ export const PROJECTS: Project[] = [
     category: "saas",
     featured: true,
     confidential: true,
-    role: "Developer · Cloudpacer client",
+    role: "Developer",
     credit: "Developed",
     icon: "landmark",
     modules: ["Tenant branding", "Bot workflows", "Broker workspaces", "Guide review", "Stripe billing", "Newsletter AI"],
@@ -231,7 +231,7 @@ export const PROJECTS: Project[] = [
     name: "Neblo AI Marketing Site",
     category: "web",
     featured: true,
-    role: "Sole developer · Cloudpacer",
+    role: "Sole developer",
     credit: "Built",
     image: "/images/projects/neblo-ai.png",
     summary:
@@ -259,7 +259,7 @@ export const PROJECTS: Project[] = [
     name: "GEIA CSA/DOT Score Improvement Platform",
     category: "saas",
     featured: true,
-    role: "Co-builder · Cloudpacer",
+    role: "Co-builder",
     credit: "Co-built",
     image: "/images/projects/fleetsafety.png",
     summary:
@@ -347,7 +347,7 @@ export const PROJECTS: Project[] = [
     name: "AI Recruitment & Applicant Tracking Platform",
     category: "saas",
     confidential: true,
-    role: "Developer · Cloudpacer",
+    role: "Developer",
     credit: "Developed",
     icon: "users",
     modules: ["Resume parsing", "AI match score", "Kanban pipeline", "HR chatbot"],
@@ -422,7 +422,7 @@ export const PROJECTS: Project[] = [
     date: "2026",
     name: "Google Chat HR Assistant",
     category: "saas",
-    role: "Internal tool · Cloudpacer",
+    role: "Internal tool",
     credit: "Built",
     image: "/images/projects/google-chat-hr-bot.png",
     summary:
@@ -479,7 +479,7 @@ export const PROJECTS: Project[] = [
     name: "Student Wellbeing & Mood Analytics Platform for Schools",
     category: "saas",
     confidential: true,
-    role: "Developer · Cloudpacer client",
+    role: "Developer",
     credit: "Developed",
     icon: "graduation",
     modules: ["Mood check-ins", "Journals", "Trend analytics", "Students to watch"],
@@ -596,7 +596,7 @@ export const PROJECTS: Project[] = [
     name: "Charter Coach Booking Marketplace & Operator Portal",
     category: "saas",
     confidential: true,
-    role: "Developer · Cloudpacer client",
+    role: "Developer",
     credit: "Developed",
     icon: "bus",
     modules: ["Booking engine", "Dynamic pricing", "Stripe Connect", "Operator portal"],

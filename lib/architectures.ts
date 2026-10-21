@@ -83,7 +83,7 @@ export interface Architecture {
 }
 
 export const ARCHITECTURES: Record<string, Architecture> = {
-  "cloudpacer-hrms": {
+  "hrms": {
     groups: [
       { label: "Office LAN", from: [0, 0], to: [0, 1] },
       { label: "Next.js 16 · App Router", from: [1, 0], to: [2, 2], tone: "primary" },
@@ -122,7 +122,7 @@ export const ARCHITECTURES: Record<string, Architecture> = {
     ],
   },
 
-  "cloudpacer-knowledge-base": {
+  "ai-proposal-crm": {
     groups: [
       { label: "Next.js 16", from: [1, 0], to: [2, 0], tone: "primary" },
       { label: "Supabase", from: [3, 0], to: [3, 1] },
