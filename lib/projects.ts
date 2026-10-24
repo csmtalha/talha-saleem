@@ -92,7 +92,7 @@ export const PROJECTS: Project[] = [
   {
     slug: "hrms",
     date: "2026-10",
-    name: "HRMS",
+    name: "Enterprise HRMS",
     category: "saas",
     featured: true,
     role: "Primary engineer",

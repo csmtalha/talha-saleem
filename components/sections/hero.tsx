@@ -202,22 +202,25 @@ export default function Hero() {
               className="rise mt-5 text-balance text-[clamp(1.25rem,2.6vw,1.75rem)] font-medium leading-snug tracking-tight text-foreground/90"
               style={d(0.25)}
             >
-              Lead Full-Stack Engineer who takes SaaS and AI products{" "}
-              <span className="text-gradient">from schema to shipped.</span>
+              I build the system that{" "}
+              <span className="text-gradient">replaces your spreadsheets.</span>
             </p>
 
             <p
               className="rise mx-auto mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg lg:mx-0"
               style={d(0.35)}
             >
-              6+ years building TypeScript products end to end: multi-tenant platforms, payroll-grade
-              data, AI features with retrieval, and the tests and deploys that keep them honest.
+              Lead Full-Stack Engineer specializing in custom business software: HR systems, multi-tenant
+              SaaS and AI-powered tools built around how your team actually works.
             </p>
 
             <div className="rise mt-9 flex flex-col items-center gap-4 sm:flex-row lg:justify-start" style={d(0.45)}>
-              <a href="#contact" className="btn-glow h-[52px] px-7 text-base">
-                Let&apos;s Work Together
+              <a href="#work" className="btn-glow h-[52px] px-7 text-base">
+                See My Work
                 <ArrowRight className="h-4 w-4" />
+              </a>
+              <a href="#contact" className="btn-ghost h-[52px] px-6 text-base">
+                Let&apos;s Talk
               </a>
               <a
                 href={SITE.cv}
@@ -226,7 +229,7 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
               >
                 <Download className="h-4 w-4" />
-                or grab my CV
+                CV
               </a>
             </div>
 

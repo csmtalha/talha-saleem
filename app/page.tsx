@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import Hero from "@/components/sections/hero";
 import Proof from "@/components/sections/proof";
 import FeaturedWork from "@/components/sections/featured-work";
+import WhatIBuild from "@/components/sections/what-i-build";
+import ManualProcess from "@/components/sections/manual-process";
 import CtaBand from "@/components/sections/cta-band";
 import Projects from "@/components/sections/projects";
 import Experience from "@/components/sections/experience";
@@ -151,6 +153,7 @@ export default function Home() {
       />
       <Hero />
       <Proof />
+      <WhatIBuild />
       <FeaturedWork />
       <CtaBand />
       <Projects />
@@ -158,6 +161,7 @@ export default function Home() {
       <Skills />
       <About />
       <Writing />
+      <ManualProcess />
       <Contact />
       <FloatingActions />
     </>

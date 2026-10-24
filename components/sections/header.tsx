@@ -11,10 +11,13 @@ import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { label: "Work", section: "work" },
-  { label: "Projects", section: "projects" },
   { label: "Experience", section: "experience" },
-  { label: "Skills", section: "skills" },
   { label: "Writing", section: "writing" },
+] as const;
+
+const PAGE_LINKS = [
+  { label: "Services", href: "/services" },
+  { label: "Articles", href: "/articles-and-insights" },
 ] as const;
 
 export function Monogram({ className }: { className?: string }) {
@@ -134,17 +137,19 @@ export default function Header() {
               </button>
             </li>
           ))}
-          <li>
-            <Link
-              href="/articles-and-insights"
-              className={cn(
-                "rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors duration-200",
-                pathname.startsWith("/articles") ? "text-foreground" : "text-muted-foreground hover:text-foreground"
-              )}
-            >
-              Articles
-            </Link>
-          </li>
+          {PAGE_LINKS.map((l) => (
+            <li key={l.href}>
+              <Link
+                href={l.href}
+                className={cn(
+                  "rounded-full px-3.5 py-1.5 text-sm font-medium transition-colors duration-200",
+                  pathname.startsWith(l.href) ? "text-foreground" : "text-muted-foreground hover:text-foreground"
+                )}
+              >
+                {l.label}
+              </Link>
+            </li>
+          ))}
         </ul>
 
         <div className="flex items-center gap-1">
@@ -208,14 +213,14 @@ export default function Header() {
                 animate="show"
                 variants={{ hidden: {}, show: { transition: { staggerChildren: 0.04, delayChildren: 0.05 } } }}
               >
-                {[...NAV_ITEMS, { label: "Articles", section: "__articles" }].map((item) => (
+                {[...NAV_ITEMS, ...PAGE_LINKS.map((l) => ({ label: l.label, section: `__page:${l.href}` }))].map((item) => (
                   <motion.li
                     key={item.section}
                     variants={{ hidden: { opacity: 0, x: -8 }, show: { opacity: 1, x: 0 } }}
                   >
-                    {item.section === "__articles" ? (
+                    {item.section.startsWith("__page:") ? (
                       <Link
-                        href="/articles-and-insights"
+                        href={item.section.slice("__page:".length)}
                         onClick={() => setOpen(false)}
                         className="flex items-center justify-between rounded-2xl px-4 py-3.5 text-base font-medium text-foreground/90 transition-colors hover:bg-foreground/[0.05]"
                       >

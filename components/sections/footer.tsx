@@ -5,6 +5,7 @@ import { SITE } from "@/lib/site";
 
 const LINKS = [
   { label: "Selected work", href: "/#work" },
+  { label: "Services", href: "/services" },
   { label: "Projects", href: "/#projects" },
   { label: "Experience", href: "/#experience" },
   { label: "Articles", href: "/articles-and-insights" },
@@ -29,7 +30,7 @@ export default function Footer() {
               <span className="font-semibold tracking-tight">Talha Saleem</span>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Lead Full-Stack Engineer. I design, build and ship SaaS and AI products, from schema to deploy.
+              I build the system that replaces your spreadsheets. Custom business software, multi-tenant SaaS and AI-powered tools.
             </p>
             <a href="/#contact" className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">
               Start a conversation
@@ -67,7 +68,7 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col gap-2 border-t border-border/60 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Talha Saleem. All rights reserved.</p>
-          <p>Built with Next.js, Tailwind CSS and Framer Motion.</p>
+          <p>Building systems that work as hard as your team.</p>
         </div>
       </div>
 
