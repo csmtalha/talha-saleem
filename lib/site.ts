@@ -9,6 +9,7 @@ export const SITE = {
   whatsappDisplay: "+92 317 435 3728",
   linkedin: "https://www.linkedin.com/in/talhasaleemdev/",
   github: "https://github.com/csmtalha",
+  instagram: "https://www.instagram.com/talhasaleem.dev/",
   cv: "/files/Talha-Saleem-CV.pdf",
   location: "Lahore, Pakistan (UTC+5)",
   photo: "/images/talha-saleem.jpg",

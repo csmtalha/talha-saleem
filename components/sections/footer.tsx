@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Github, Linkedin, Mail, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Github, Instagram, Linkedin, Mail, MessageCircle } from "lucide-react";
 import { Monogram } from "@/components/sections/header";
 import { SITE } from "@/lib/site";
 
@@ -15,6 +15,7 @@ const LINKS = [
 const SOCIAL = [
   { label: "LinkedIn", href: SITE.linkedin, icon: Linkedin },
   { label: "GitHub", href: SITE.github, icon: Github },
+  { label: "Instagram", href: SITE.instagram, icon: Instagram },
   { label: "WhatsApp", href: SITE.whatsapp, icon: MessageCircle },
   { label: "Email", href: `mailto:${SITE.email}`, icon: Mail },
 ];

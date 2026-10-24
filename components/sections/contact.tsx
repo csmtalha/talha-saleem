@@ -11,6 +11,7 @@ import {
   CheckCircle2,
   Copy,
   FileText,
+  Instagram,
   Linkedin,
   Loader2,
   Mail,
@@ -201,6 +202,13 @@ export default function Contact() {
               value="in/talhasaleemdev"
               accent="bg-[#0A66C2]/10 text-[#0A66C2] ring-[#0A66C2]/25 dark:text-[#5aa9f5]"
               icon={<Linkedin className="h-5 w-5" />}
+            />
+            <Method
+              href={SITE.instagram}
+              label="Instagram"
+              value="@talhasaleem.dev"
+              accent="bg-[#E1306C]/10 text-[#E1306C] ring-[#E1306C]/25 dark:text-[#f06595]"
+              icon={<Instagram className="h-5 w-5" />}
             />
             <Method
               href={SITE.cv}

@@ -82,6 +82,7 @@ const person = {
   sameAs: [
     SITE.linkedin,
     "https://github.com/csmtalha",
+    "https://www.instagram.com/talhasaleem.dev/",
     "https://www.creexio.com",
     "https://www.amazon.com/dp/B0GX34T63R",
   ],
