@@ -700,7 +700,7 @@ export const PROJECTS: Project[] = [
     summary: "A 1,000+ component school-management portal moved from end-of-life Vue 2 to Vue 3 and Vite, module by module, without a feature freeze.",
     problem: "A large staff portal (admissions, attendance, timetables, exams, finance, payroll) was stuck on Vue 2, Vue CLI and a UI kit with no Vue 3 version.",
     contribution:
-      "Migrated it module by module, from Dashboard and Schedule through Staff, Students, Admissions, Courses and Attendance: Vue 3.5 with the Composition API, Vue Router 4, Vuex 4 and Vite 5. Replaced plugins that had no Vue 3 versions and removed filters and deprecated patterns.",
+      "Migrated it module by module, from Dashboard and Schedule through Staff, Students, Admissions, Courses and Attendance: Vue 3.5, Vue Router 4, Vuex 4 and Vite 5, keeping the app's Options API components. Replaced plugins that had no Vue 3 versions and removed filters and deprecated patterns.",
     outcome: "A supported, faster-building codebase across 1,011 components and 66 page modules.",
     stack: ["Vue 3", "Vite", "Vuex 4", "Vue Router 4", "Element Plus", "PrimeVue", "AG Grid"],
   },
