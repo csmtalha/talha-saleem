@@ -11,6 +11,7 @@ import { SITE } from "@/lib/site";
 const STACK: { name: TechIconName; label: string }[] = [
   { name: "typescript", label: "TypeScript" },
   { name: "react", label: "React" },
+  { name: "vue", label: "Vue 3" },
   { name: "nextjs", label: "Next.js" },
   { name: "nodejs", label: "Node.js" },
   { name: "nestjs", label: "NestJS" },

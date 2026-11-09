@@ -10,7 +10,7 @@ const STACK = [
   {
     title: "Frontend",
     icon: Layout,
-    items: ["TypeScript", "React", "Next.js (App Router, RSC, ISR)", "Vue 3", "Tailwind CSS", "shadcn/ui", "TanStack Query", "Zustand", "Framer Motion"],
+    items: ["TypeScript", "React", "Next.js (App Router, RSC, ISR)", "Vue 3", "Vuex", "Vue Router", "Vite", "Tailwind CSS", "shadcn/ui", "TanStack Query", "Zustand", "Framer Motion"],
   },
   {
     title: "Backend",

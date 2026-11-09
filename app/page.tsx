@@ -16,9 +16,9 @@ import { FEATURED } from "@/lib/projects";
 import { SITE } from "@/lib/site";
 
 const SITE_URL = SITE.url;
-const TITLE = "Talha Saleem | Lead Full-Stack Engineer (React, Next.js, Node.js, NestJS)";
+const TITLE = "Talha Saleem | Lead Full-Stack Engineer (React, Vue, Next.js, Node.js)";
 const DESCRIPTION =
-  "Lead Full-Stack Engineer with 6+ years shipping SaaS and AI products end to end: React/Next.js, Node.js/NestJS, PostgreSQL, RAG with pgvector, tests and AWS deploys. Hire me for remote senior roles or contract builds.";
+  "Lead Full-Stack Engineer with 6+ years shipping SaaS and AI products end to end: React/Next.js, Vue 3, Node.js/NestJS, PostgreSQL, RAG with pgvector, tests and AWS deploys. Hire me for remote senior roles or contract builds.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     "Senior Full-Stack Engineer remote",
     "Next.js developer for hire",
     "React Next.js consultant",
+    "Vue.js developer for hire",
+    "Vue 3 Vuex Vite engineer",
+    "React and Vue full-stack developer",
     "NestJS Node.js engineer",
     "TypeScript full-stack engineer Pakistan",
     "SaaS developer Lahore",
@@ -91,11 +94,13 @@ const person = {
     "@type": "Occupation",
     name: "Lead Full-Stack Engineer",
     occupationLocation: { "@type": "Country", name: "Pakistan" },
-    skills: "TypeScript, React, Next.js, Node.js, NestJS, PostgreSQL, Prisma, Supabase, RAG, AWS",
+    skills: "TypeScript, React, Vue 3, Next.js, Node.js, NestJS, PostgreSQL, Prisma, Supabase, RAG, AWS",
   },
   knowsAbout: [
     "TypeScript",
     "React",
+    "Vue.js",
+    "Vuex",
     "Next.js",
     "Node.js",
     "NestJS",
