@@ -215,6 +215,13 @@ export default function Hero() {
               SaaS and AI-powered tools built around how your team actually works.
             </p>
 
+            <p
+              className="rise mx-auto mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground/90 lg:mx-0"
+              style={d(0.4)}
+            >
+              Also open to senior &amp; lead remote roles with product teams · React, Vue, Node.js / NestJS.
+            </p>
+
             <div className="rise mt-9 flex flex-col items-center gap-4 sm:flex-row lg:justify-start" style={d(0.45)}>
               <a href="#work" className="btn-glow h-[52px] px-7 text-base">
                 See My Work

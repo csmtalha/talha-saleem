@@ -18,7 +18,7 @@ import { SITE } from "@/lib/site";
 const SITE_URL = SITE.url;
 const TITLE = "Talha Saleem | Lead Full-Stack Engineer (React, Vue, Next.js, Node.js)";
 const DESCRIPTION =
-  "Lead Full-Stack Engineer with 6+ years shipping SaaS and AI products end to end: React/Next.js, Vue 3, Node.js/NestJS, PostgreSQL, RAG with pgvector, tests and AWS deploys. Hire me for remote senior roles or contract builds.";
+  "Lead Full-Stack Engineer with nearly 7 years shipping SaaS and AI products end to end: React/Next.js, Vue 3, Node.js/NestJS, PostgreSQL, RAG with pgvector, tests and AWS deploys. Hire me for remote senior roles or contract builds.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
