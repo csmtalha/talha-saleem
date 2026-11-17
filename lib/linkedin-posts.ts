@@ -14,6 +14,12 @@ export const LINKEDIN_FOLLOWERS = "3,400+";
 
 export const LINKEDIN_POSTS: LinkedInPost[] = [
   {
+    title: "Named Employee of the Month at Cloudpacer again",
+    url: "https://www.linkedin.com/feed/update/urn:li:activity:7528591393133588480/",
+    date: "2026-11-17",
+    blurb: "On the shift from senior engineer to leading a team: the hardest problems become sequencing and decisions, not code, plus onboarding new engineers and watching them ship.",
+  },
+  {
     title: "A \"website is down\" message turned out to be a hacked WordPress site",
     url: "https://www.linkedin.com/feed/update/urn:li:activity:7515463051563839488/",
     date: "2026-10-12",
