@@ -59,9 +59,46 @@ const SERVICES = [
   },
 ];
 
+const FAQS = [
+  {
+    q: "What does Talha Saleem build?",
+    a: "Custom business systems, multi-tenant SaaS and AI features. I turn manual, spreadsheet-driven operations into software built around your exact workflow — HR, finance, logistics, compliance and internal tools.",
+  },
+  {
+    q: "What is your tech stack?",
+    a: "TypeScript end to end: React, Vue 3 and Next.js on the front end; Node.js, NestJS and PostgreSQL on the back end; AI with Claude, OpenAI and retrieval-augmented generation over pgvector; deployed on AWS or Vercel with tests and CI/CD.",
+  },
+  {
+    q: "Do you work remotely, and in which time zone?",
+    a: "Yes — fully remote from Lahore, Pakistan (UTC+5), with 4–6 hours of daily overlap with US Pacific time. I work well in async teams.",
+  },
+  {
+    q: "Are you available for hire?",
+    a: "Yes. I take on remote senior and lead engineering roles as well as contract builds. The fastest way to start is a WhatsApp message or the contact form.",
+  },
+  {
+    q: "How do projects start, and how is pricing set?",
+    a: "Every engagement starts with a specific business problem. I scope the work and quote per project once the outcome is clear — there is no fixed package price. Tell me what your team does manually and I will tell you what I would build and how long it takes.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQS.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function ServicesPage() {
   return (
     <main className="relative min-h-screen pt-32 sm:pt-40">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <section className="section-y">
         <div className="container-x">
           <Reveal blur className="max-w-2xl">
@@ -121,6 +158,37 @@ export default function ServicesPage() {
               </StaggerItem>
             ))}
           </Stagger>
+
+          <section aria-labelledby="faq-heading" className="mt-20">
+            <Reveal>
+              <p className="eyebrow">
+                <span className="text-primary">FAQ</span>
+                <span className="h-px w-6 bg-border" />
+                Before you reach out
+              </p>
+              <h2
+                id="faq-heading"
+                className="mt-4 text-balance text-[clamp(1.8rem,4vw,2.6rem)] font-semibold leading-[1.08] tracking-[-0.03em]"
+              >
+                Frequently asked questions
+              </h2>
+            </Reveal>
+            <Stagger className="mt-8 divide-y divide-border/60 border-y border-border/60">
+              {FAQS.map((f) => (
+                <StaggerItem key={f.q}>
+                  <details className="group py-5">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-left text-lg font-medium tracking-tight marker:hidden">
+                      {f.q}
+                      <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-300 group-open:rotate-90 group-open:text-primary" />
+                    </summary>
+                    <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+                      {f.a}
+                    </p>
+                  </details>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </section>
 
           <Reveal className="mt-14" delay={0.1}>
             <div className="relative isolate overflow-hidden rounded-[2rem] border border-primary/25 px-6 py-12 text-center sm:px-12">
