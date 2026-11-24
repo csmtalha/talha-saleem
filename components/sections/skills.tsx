@@ -10,12 +10,12 @@ const STACK = [
   {
     title: "Frontend",
     icon: Layout,
-    items: ["TypeScript", "React", "Next.js (App Router, RSC, ISR)", "Vue 3", "Vuex", "Vue Router", "Vite", "Tailwind CSS", "shadcn/ui", "TanStack Query", "Zustand", "Framer Motion"],
+    items: ["TypeScript", "React", "Next.js (App Router, RSC, ISR)", "React Native / Expo", "Vue 3", "Vuex", "Vue Router", "Vite", "Tailwind CSS", "shadcn/ui", "TanStack Query", "Zustand", "Framer Motion"],
   },
   {
     title: "Backend",
     icon: ServerCog,
-    items: ["Node.js", "NestJS", "Express", "FastAPI", "Django / DRF", "REST", "Event-driven microservices", "NATS / JetStream", "WebSockets", "Cron & background jobs"],
+    items: ["Node.js", "NestJS", "Express", "FastAPI", "Pydantic", "Django / DRF", "REST", "Event-driven microservices", "NATS / JetStream", "WebSockets", "Cron & background jobs"],
   },
   {
     title: "Data",
@@ -25,12 +25,12 @@ const STACK = [
   {
     title: "AI / LLM",
     icon: Bot,
-    items: ["Anthropic Claude", "OpenAI (GPT-4o, Whisper, embeddings)", "RAG with pgvector", "LangChain"],
+    items: ["Anthropic Claude", "OpenAI (GPT-4o, Whisper, embeddings)", "RAG with pgvector", "LangChain", "Structured LLM output", "LLM evals", "Prompt versioning", "LLM observability"],
   },
   {
     title: "Testing & DevOps",
     icon: FlaskConical,
-    items: ["Vitest", "Jest", "Playwright", "pytest", "Contract testing", "GitHub Actions", "Docker", "AWS", "nginx + PM2", "Vercel"],
+    items: ["Vitest", "Jest", "Playwright", "pytest", "Contract testing", "Sentry", "GitHub Actions", "Docker", "AWS", "nginx + PM2", "Vercel"],
   },
   {
     title: "Integrations",
@@ -50,6 +50,7 @@ const SPECIALTIES = [
   "Test suites that gate deploys",
   "Event-driven integrations & contract testing",
   "Retrieval-augmented AI features",
+  "LLM apps with safety guardrails & evals",
   "Legacy migrations (PHP, Framer, Vue 2 → modern stacks)",
 ];
 

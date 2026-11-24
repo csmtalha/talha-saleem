@@ -194,9 +194,9 @@ export const ARCHITECTURES: Record<string, Architecture> = {
     ],
   },
 
-  "pms-integration-factory": {
+  "pms-third-party-integrations": {
     groups: [
-      { label: "Factory", from: [1, 0], to: [2, 2], tone: "primary" },
+      { label: "Generation", from: [1, 0], to: [2, 2], tone: "primary" },
       { label: "GitOps", from: [1, 4], to: [2, 4] },
     ],
     nodes: [
@@ -210,9 +210,9 @@ export const ARCHITECTURES: Record<string, Architecture> = {
       { id: "svc", col: 2, row: 2, label: "Generated service", sub: "NestJS + seams", icon: { tech: "nestjs" }, tone: "signal" },
       { id: "bus", col: 0, row: 3, label: "Recorded traffic", sub: "NATS · redacted", icon: "radio" },
       { id: "harness", col: 1, row: 3, label: "Grading harness", sub: "4-way failure taxonomy", icon: "check" },
-      { id: "gates", col: 2, row: 3, label: "Validation gates", sub: "15 gates · 330+ tests", icon: "shield" },
+      { id: "gates", col: 2, row: 3, label: "Validation gates", sub: "16 gates · 800+ tests", icon: "shield" },
       { id: "img", col: 1, row: 4, label: "Docker images", sub: "built in CI", icon: { tech: "docker" } },
-      { id: "k8s", col: 2, row: 4, label: "Kubernetes", sub: "Argo CD · dev / stage", icon: "cloud" },
+      { id: "deploy", col: 2, row: 4, label: "GitOps deploy", sub: "dev / stage", icon: "cloud" },
     ],
     edges: [
       { from: "docs", to: "agent" },
@@ -226,7 +226,7 @@ export const ARCHITECTURES: Record<string, Architecture> = {
       { from: "harness", to: "svc", label: "grades" },
       { from: "harness", to: "fill", label: "retry", dashed: true },
       { from: "svc", to: "gates" },
-      { from: "img", to: "k8s" },
+      { from: "img", to: "deploy" },
     ],
   },
 
