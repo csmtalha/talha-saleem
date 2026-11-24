@@ -13,7 +13,7 @@ export function GET() {
 
   const body = `# Talha Saleem
 
-> Lead Full-Stack Engineer in Lahore, Pakistan (UTC+5) with nearly 7 years shipping SaaS and AI products end to end: TypeScript, React, Vue 3, Next.js, Node.js, NestJS, PostgreSQL, Prisma, Supabase, retrieval-augmented generation with pgvector, tests and AWS deploys. Employee of the Year 2024 at Cloudpacer. Available for remote senior/lead roles and contract builds, with 4–6 hours of daily overlap with US Pacific time.
+> Lead Full-Stack & AI Engineer in Lahore, Pakistan (UTC+5) with 6+ years shipping SaaS and AI products end to end: TypeScript, React, Vue 3, Next.js, Node.js, NestJS, PostgreSQL, Prisma, Supabase, retrieval-augmented generation with pgvector, LLM applications, tests and AWS deploys. Employee of the Year 2024 at Cloudpacer. Available for remote senior/lead roles and contract builds, with 4–6 hours of daily overlap with US Pacific time.
 
 ## Contact
 

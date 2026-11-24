@@ -16,9 +16,9 @@ import { FEATURED } from "@/lib/projects";
 import { SITE } from "@/lib/site";
 
 const SITE_URL = SITE.url;
-const TITLE = "Talha Saleem | Lead Full-Stack Engineer (React, Vue, Next.js, Node.js)";
+const TITLE = "Talha Saleem | Lead Full-Stack & AI Engineer";
 const DESCRIPTION =
-  "Lead Full-Stack Engineer with nearly 7 years shipping SaaS and AI products end to end: React/Next.js, Vue 3, Node.js/NestJS, PostgreSQL, RAG with pgvector, tests and AWS deploys. Hire me for remote senior roles or contract builds.";
+  "Lead Full-Stack & AI Engineer with 6+ years shipping SaaS and AI products end to end: RAG and LLM apps, React/Next.js, Vue 3, Node.js/NestJS, PostgreSQL and AWS. Open to remote senior roles and contract builds.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Talha Saleem | Lead Full-Stack Engineer",
+    title: "Talha Saleem | Lead Full-Stack & AI Engineer",
     description: DESCRIPTION,
   },
 };
@@ -76,7 +76,7 @@ const person = {
   name: "Talha Saleem",
   url: SITE_URL,
   image: `${SITE_URL}/images/talha-saleem.jpg`,
-  jobTitle: "Lead Full-Stack Engineer",
+  jobTitle: "Lead Full-Stack & AI Engineer",
   worksFor: { "@type": "Organization", name: "Cloudpacer" },
   alumniOf: { "@type": "CollegeOrUniversity", name: "University of Lahore" },
   award: "Employee of the Year 2024, Cloudpacer",
@@ -92,7 +92,7 @@ const person = {
   description: DESCRIPTION,
   hasOccupation: {
     "@type": "Occupation",
-    name: "Lead Full-Stack Engineer",
+    name: "Lead Full-Stack & AI Engineer",
     occupationLocation: { "@type": "Country", name: "Pakistan" },
     skills: "TypeScript, React, Vue 3, Next.js, Node.js, NestJS, PostgreSQL, Prisma, Supabase, RAG, AWS",
   },

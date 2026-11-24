@@ -15,11 +15,11 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: "Talha Saleem | Lead Full-Stack Engineer",
+    default: "Talha Saleem | Lead Full-Stack & AI Engineer",
     template: "%s | Talha Saleem",
   },
   description:
-    "Lead Full-Stack Engineer with nearly 7 years shipping SaaS and AI products end to end. React, Vue 3, Next.js, Node.js/NestJS, PostgreSQL, AI integrations, AWS.",
+    "Lead Full-Stack & AI Engineer with 6+ years shipping SaaS and AI products end to end. RAG and LLM apps, React, Vue 3, Next.js, Node.js/NestJS, PostgreSQL, AWS.",
   robots: {
     index: true,
     follow: true,
