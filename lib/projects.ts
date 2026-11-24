@@ -205,7 +205,7 @@ export const PROJECTS: Project[] = [
     icon: "building",
     modules: ["LLM research agent", "Code generator", "Contract tests", "Event bus", "GitOps deploys"],
     summary:
-      "Connects third-party property-management systems to a shared event platform with tested, contract-compliant integration services, each graded automatically against real recorded traffic.",
+      "Connects third-party property-management systems used by short-term-rental operators in the US and UK to a shared event platform, with tested, contract-compliant integration services graded automatically against real recorded traffic.",
     problem:
       "Every property-management-system integration was a bespoke service with no shared contract and no automated proof that it spoke the same event format as the integrations already in production.",
     contribution:
