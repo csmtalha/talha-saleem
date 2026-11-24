@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Bot, Boxes, Database, FlaskConical, Layout, Plug, ServerCog, Sparkles } from "lucide-react";
+import { Bot, Boxes, Database, FlaskConical, Layout, Plug, ServerCog, ShoppingBag, Sparkles } from "lucide-react";
 import { EASE, Reveal, SpotlightCard, popChild } from "@/components/motion/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { TechIcon, iconFor } from "@/components/icons/tech-icons";
@@ -35,7 +35,12 @@ const STACK = [
   {
     title: "Integrations",
     icon: Plug,
-    items: ["Stripe", "SendGrid", "Resend", "Twilio", "Slack", "Google Workspace APIs", "Sanity CMS", "Firebase", "WordPress", "Shopify"],
+    items: ["Stripe", "SendGrid", "Resend", "Twilio", "Slack", "Google Workspace APIs", "Sanity CMS", "Firebase"],
+  },
+  {
+    title: "CMS & E-commerce",
+    icon: ShoppingBag,
+    items: ["Custom WordPress", "WordPress Themes & Plugins", "WooCommerce", "Custom Shopify", "Shopify Liquid"],
   },
 ];
 
