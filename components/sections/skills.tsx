@@ -15,12 +15,12 @@ const STACK = [
   {
     title: "Backend",
     icon: ServerCog,
-    items: ["Node.js", "NestJS", "Express", "FastAPI", "Django / DRF", "REST", "WebSockets", "Cron & background jobs"],
+    items: ["Node.js", "NestJS", "Express", "FastAPI", "Django / DRF", "REST", "Event-driven microservices", "NATS / JetStream", "WebSockets", "Cron & background jobs"],
   },
   {
     title: "Data",
     icon: Database,
-    items: ["PostgreSQL", "Prisma", "TypeORM", "SQLAlchemy", "Supabase (RLS, Edge Functions)", "pgvector", "Redis"],
+    items: ["PostgreSQL", "Prisma", "TypeORM", "Kysely", "SQLAlchemy", "Supabase (RLS, Edge Functions)", "pgvector", "Redis"],
   },
   {
     title: "AI / LLM",
@@ -30,7 +30,7 @@ const STACK = [
   {
     title: "Testing & DevOps",
     icon: FlaskConical,
-    items: ["Vitest", "Jest", "Playwright", "pytest", "GitHub Actions", "Docker", "AWS", "nginx + PM2", "Vercel"],
+    items: ["Vitest", "Jest", "Playwright", "pytest", "Contract testing", "GitHub Actions", "Docker", "AWS", "nginx + PM2", "Vercel"],
   },
   {
     title: "Integrations",
@@ -48,6 +48,7 @@ const SPECIALTIES = [
   "Multi-tenant SaaS and RBAC",
   "Row-level security and data isolation",
   "Test suites that gate deploys",
+  "Event-driven integrations & contract testing",
   "Retrieval-augmented AI features",
   "Legacy migrations (PHP, Framer, Vue 2 → modern stacks)",
 ];
