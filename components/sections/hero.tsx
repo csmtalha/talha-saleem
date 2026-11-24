@@ -203,8 +203,8 @@ export default function Hero() {
               className="rise mt-5 text-balance text-[clamp(1.25rem,2.6vw,1.75rem)] font-medium leading-snug tracking-tight text-foreground/90"
               style={d(0.25)}
             >
-              I build the system that{" "}
-              <span className="text-gradient">replaces your spreadsheets.</span>
+              I build AI products that{" "}
+              <span className="text-gradient">hold up in production.</span>
             </p>
 
             <p

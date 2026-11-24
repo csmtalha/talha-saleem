@@ -31,7 +31,7 @@ export default function Footer() {
               <span className="font-semibold tracking-tight">Talha Saleem</span>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              I build the system that replaces your spreadsheets. Custom business software, multi-tenant SaaS and AI-powered tools.
+              I build AI products that hold up in production. RAG and LLM apps, multi-tenant SaaS and custom business software.
             </p>
             <a href="/#contact" className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline">
               Start a conversation
