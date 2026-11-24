@@ -54,6 +54,8 @@ export interface Project {
   modules?: string[];
   /** Real name is withheld; the product is described generically */
   confidential?: boolean;
+  /** Temporarily hidden from the whole site (kept in data; set false to restore) */
+  hidden?: boolean;
   /** Outcome-first, one sentence. Used on cards. */
   summary: string;
   problem: string;
@@ -87,7 +89,7 @@ export const CATEGORY_LABEL: Record<ProjectCategory, string> = {
   django: "Django",
 };
 
-export const PROJECTS: Project[] = [
+const ALL_PROJECTS: Project[] = [
   // ── Featured: latest and most important ─────────────────────
   {
     slug: "hrms",
@@ -195,6 +197,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: "pms-third-party-integrations",
+    hidden: true,
     date: "2026-11",
     name: "Property-Management-System Integrations (Third-Party Providers)",
     category: "saas",
@@ -863,6 +866,8 @@ export const PROJECTS: Project[] = [
 
 const byLatest = (a: Project, b: Project) => b.date.localeCompare(a.date);
 
+/** Visible projects (hidden ones stay in ALL_PROJECTS but never render). */
+export const PROJECTS: Project[] = ALL_PROJECTS.filter((p) => !p.hidden);
 /** Most important work, newest first. */
 export const FEATURED = PROJECTS.filter((p) => p.featured).sort(byLatest);
 /** Everything else, newest first. */
